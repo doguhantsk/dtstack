@@ -408,26 +408,29 @@
             emailjs.init("-E1BQ3DQoMooRhu8e"); 
         })();
 
-        // --- 3. PRELOADER & SİTE YÜKLEME ---
-        document.addEventListener("DOMContentLoaded", () => {
+        // --- 3. PRELOADER & SİTE YÜKLEME (GÜNCELLENDİ: window.load) ---
+        // Artık DOMContentLoaded değil, "load" kullanıyoruz.
+        // Bu sayede tüm resimler yüklendikten sonra site açılır, kayma olmaz.
+        window.addEventListener("load", () => {
             const counter = document.getElementById("loader-text");
             const bar = document.getElementById("loader-bar");
             const preloader = document.getElementById("preloader");
             const cursor = document.getElementById("cursor");
 
             // Custom Cursor Takibi
-            document.addEventListener('mousemove', (e) => {
-                if(cursor) {
-                    cursor.style.left = e.clientX + 'px';
-                    cursor.style.top = e.clientY + 'px';
-                }
-            });
+            try {
+                document.addEventListener('mousemove', (e) => {
+                    if(cursor) {
+                        cursor.style.left = e.clientX + 'px';
+                        cursor.style.top = e.clientY + 'px';
+                    }
+                });
 
-            // Linklerin üzerine gelince büyüme
-            document.querySelectorAll('a, button, .cursor-pointer, .type-btn').forEach(link => {
-                link.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-                link.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-            });
+                document.querySelectorAll('a, button, .cursor-pointer, .type-btn').forEach(link => {
+                    link.addEventListener('mouseenter', () => cursor?.classList.add('hovered'));
+                    link.addEventListener('mouseleave', () => cursor?.classList.remove('hovered'));
+                });
+            } catch(e) { console.log("Cursor init hatası (önemsiz)"); }
 
             // Yükleme Sayacı (0'dan 100'e)
             let count = 0;
@@ -455,13 +458,19 @@
                         initSiteAnimations();
                     }
                 }
-            }, 30);
+            }, 20); // Biraz hızlandırdık (30->20ms)
         });
 
-        // --- 4. SİTE İÇİ ANİMASYONLAR ---
+        // --- 4. SİTE İÇİ ANİMASYONLAR (GÜNCELLENDİ: Refresh) ---
         function initSiteAnimations() {
+            // Scroll kilidini garanti aç
+            document.body.style.overflow = 'auto';
+
             if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 gsap.registerPlugin(ScrollTrigger);
+
+                // KRİTİK DÜZELTME: Tüm elementler yerleşince scroll yerlerini tekrar hesapla
+                ScrollTrigger.refresh();
 
                 // Başlık Animasyonu (Harf harf)
                 try {
@@ -475,7 +484,11 @@
                 gsap.utils.toArray('.reveal').forEach(elem => {
                     gsap.from(elem, { 
                         y: 50, opacity: 0, duration: 1, ease: "power3.out", 
-                        scrollTrigger: { trigger: elem, start: "top 85%" } 
+                        scrollTrigger: { 
+                            trigger: elem, 
+                            start: "top 90%", // Biraz daha erken tetikle (%90)
+                            toggleActions: "play none none reverse"
+                        } 
                     });
                 });
             }
@@ -490,9 +503,18 @@
             for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
+            
+            // Tab değişince sayfa boyu değişir, animasyonu yenile:
+            if(typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
         }
 
-        function toggleFaq(element) { element.classList.toggle("active"); }
+        function toggleFaq(element) { 
+            element.classList.toggle("active");
+            // Accordion açılınca (transition süresi kadar bekle ve yenile)
+            setTimeout(() => { 
+                if(typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); 
+            }, 350);
+        }
 
         const modal = document.getElementById('project-modal');
         const frame = document.getElementById('project-frame');
