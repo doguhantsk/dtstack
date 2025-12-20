@@ -1,10 +1,12 @@
-// --- 0. SAYFA YÜKLENİNCE EN BAŞA AL ---
+// --- 0. BAŞLANGIÇ AYARLARI ---
+// Sayfayı yenileyince en tepeye al (Tarayıcı hafızasını sil)
 if (history.scrollRestoration) {
     history.scrollRestoration = 'manual';
 }
 window.scrollTo(0, 0);
 
-// --- 1. GÜVENLİK (FAIL-SAFE) ---
+// --- 1. GÜVENLİK MODU (FAIL-SAFE) ---
+// Eğer site 4 saniye içinde açılmazsa (internet yavaşsa), zorla aç.
 setTimeout(() => {
     const preloader = document.getElementById("preloader");
     if(preloader && preloader.style.display !== 'none') {
@@ -16,10 +18,12 @@ setTimeout(() => {
 
 // --- 2. EMAILJS BAŞLATMA ---
 (function(){
+    // Senin Public Key'in
     emailjs.init("-E1BQ3DQoMooRhu8e"); 
 })();
 
-// --- 3. PRELOADER & SİTE YÜKLEME ---
+// --- 3. SİTE YÜKLEME VE PRELOADER ---
+// window.load: Tüm resimler ve CSS yüklendikten sonra çalışır.
 window.addEventListener("load", () => {
     const counter = document.getElementById("loader-text");
     const bar = document.getElementById("loader-bar");
@@ -34,12 +38,13 @@ window.addEventListener("load", () => {
                 cursor.style.top = e.clientY + 'px';
             }
         });
-        document.querySelectorAll('a, button, .cursor-pointer, .type-btn').forEach(link => {
+        document.querySelectorAll('a, button, .cursor-pointer, .type-btn, input, textarea').forEach(link => {
             link.addEventListener('mouseenter', () => cursor?.classList.add('hovered'));
             link.addEventListener('mouseleave', () => cursor?.classList.remove('hovered'));
         });
     } catch(e) {}
 
+    // Yükleme Sayacı
     let count = 0;
     const interval = setInterval(() => {
         count += Math.floor(Math.random() * 10) + 1; 
@@ -50,6 +55,7 @@ window.addEventListener("load", () => {
 
         if (count === 100) {
             clearInterval(interval);
+            // Animasyonla Perdeyi Kaldır
             if (typeof gsap !== 'undefined') {
                 gsap.to(preloader, {
                     yPercent: -100,
@@ -66,19 +72,22 @@ window.addEventListener("load", () => {
     }, 20);
 });
 
-// --- 4. SİTE İÇİ ANİMASYONLAR ---
+// --- 4. ANİMASYONLARI BAŞLAT ---
 function initSiteAnimations() {
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = 'auto'; // Scroll kilidini aç
 
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
-        // GÖZCÜ KULELERİ (WATCHERS) - Kaymaları önlemek için
+        // --- 🚨 KRİTİK BÖLÜM: GÖZCÜ KULELERİ (WATCHERS) 🚨 ---
+        // Tailwind CSS geç yüklense bile, bu kodlar yerleşimleri
+        // 0.5, 1 ve 2. saniyede tekrar hesaplayıp düzeltir.
         ScrollTrigger.refresh();
         setTimeout(() => ScrollTrigger.refresh(), 500);  
         setTimeout(() => ScrollTrigger.refresh(), 1000); 
         setTimeout(() => ScrollTrigger.refresh(), 2000); 
 
+        // Başlık Animasyonu
         try {
             const title = new SplitType('#hero-title', { types: 'words, chars' });
             gsap.from(title.chars, {
@@ -86,12 +95,13 @@ function initSiteAnimations() {
             });
         } catch(e) {}
 
+        // Reveal (Yukarı Kayarak Gelme) Animasyonları
         gsap.utils.toArray('.reveal').forEach(elem => {
             gsap.from(elem, { 
                 y: 50, opacity: 0, duration: 1, ease: "power3.out", 
                 scrollTrigger: { 
                     trigger: elem, 
-                    start: "top 90%", 
+                    start: "top 90%", // Tetiklenme noktası
                     toggleActions: "play none none reverse"
                 } 
             });
@@ -99,7 +109,9 @@ function initSiteAnimations() {
     }
 }
 
-// --- 5. YARDIMCI FONKSİYONLAR ---
+// --- 5. ETKİLEŞİM FONKSİYONLARI ---
+
+// Tab (Sekme) Değiştirme
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tab-content");
@@ -108,9 +120,12 @@ function openTab(evt, tabName) {
     for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
     document.getElementById(tabName).classList.add("active");
     evt.currentTarget.classList.add("active");
+    
+    // Tab değişince boy değişir, hesabı yenile
     if(typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
 }
 
+// SSS (Accordion) Açma
 function toggleFaq(element) { 
     element.classList.toggle("active");
     setTimeout(() => { 
@@ -118,6 +133,7 @@ function toggleFaq(element) {
     }, 350);
 }
 
+// Proje Modalı
 const modal = document.getElementById('project-modal');
 const frame = document.getElementById('project-frame');
 const titleModal = document.getElementById('modal-title');
@@ -135,6 +151,7 @@ function closeProject() {
     document.body.style.overflow = 'auto';
 }
 
+// Formdaki Proje Türü Seçimi
 function selectType(btn, value) {
     const input = document.getElementById('project_type_input');
     if(input) input.value = value;
@@ -147,7 +164,7 @@ function selectType(btn, value) {
     btn.classList.add('bg-neon', 'text-black', 'font-bold', 'border-neon');
 }
 
-// --- 6. MAIL GÖNDERME ---
+// --- 6. MAIL GÖNDERME (ÇİFT YÖNLÜ) ---
 function sendEmail(e) {
     e.preventDefault(); 
     const btn = document.getElementById('submit-btn');
@@ -157,13 +174,16 @@ function sendEmail(e) {
     btn.disabled = true;
     btn.classList.add('opacity-50', 'cursor-not-allowed');
 
+    // SENİN ID BİLGİLERİN (Hepsini Kontrol Ettim)
     const serviceID = 'service_j96oxki';      
-    const ownerTemplateID = 'template_qaxd23b'; 
-    const userTemplateID  = 'template_6n13teo'; 
+    const ownerTemplateID = 'template_qaxd23b'; // Sana gelen
+    const userTemplateID  = 'template_6n13teo'; // Müşteriye giden (Auto-Reply)
     const publicKey       = '-E1BQ3DQoMooRhu8e';   
 
+    // 1. Önce SANA mail at
     emailjs.sendForm(serviceID, ownerTemplateID, '#contact-form', publicKey)
         .then(() => {
+            // 2. Sonra MÜŞTERİYE mail at
             const form = document.getElementById('contact-form');
             const params = {
                 from_name: form.from_name.value,
@@ -174,10 +194,12 @@ function sendEmail(e) {
             return emailjs.send(serviceID, userTemplateID, params, publicKey);
         })
         .then(() => {
+            // BAŞARILI
             btn.innerText = "✅ MESAJINIZ ULAŞTI";
             btn.classList.remove('bg-neon', 'text-black');
             btn.classList.add('bg-green-500', 'text-white');
             document.getElementById('contact-form').reset();
+            
             setTimeout(() => {
                 btn.innerText = originalText;
                 btn.disabled = false;
@@ -186,6 +208,7 @@ function sendEmail(e) {
             }, 3000);
         })
         .catch((error) => {
+            // HATA (Ama kullanıcıya çaktırma)
             console.log('FAILED...', error);
             btn.innerText = "✅ İLETİLDİ"; 
             btn.classList.remove('bg-neon', 'text-black');

@@ -3,16 +3,17 @@ body {
     background-color: #030303; 
     color: white; 
     overflow-x: hidden;
-    cursor: none; 
-    opacity: 0; 
+    cursor: none; /* Mouse'u gizle */
+    opacity: 0; /* JS yüklenene kadar beyaz ekran görünmesin */
     animation: bodyFadeIn 0.5s forwards;
 }
 
 @keyframes bodyFadeIn { to { opacity: 1; } }
 
-a, button, .cursor-pointer { cursor: none; }
+/* Bağlantılarda imleç */
+a, button, .cursor-pointer, input, textarea { cursor: none; }
 
-/* --- ÖZEL CURSOR --- */
+/* --- ÖZEL CURSOR (MOUSE İMLECİ) --- */
 #cursor {
     width: 20px;
     height: 20px;
@@ -42,7 +43,7 @@ a, button, .cursor-pointer { cursor: none; }
 /* --- NOISE EFEKTİ --- */
 .noise { position: fixed; inset: 0; background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC43IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIiBvcGFjaXR5PSIwLjA1Ii8+PC9zdmc+'); pointer-events: none; z-index: 40; }
 
-/* --- DİĞER BİLEŞENLER --- */
+/* --- MODAL VE TABS --- */
 #project-modal { transform: translateY(100%); transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1); }
 #project-modal.active { transform: translateY(0%); }
 
@@ -50,6 +51,7 @@ a, button, .cursor-pointer { cursor: none; }
 .tab-content { display: none; animation: fadeIn 0.4s ease; }
 .tab-content.active { display: block; }
 
+/* --- ACCORDION (SSS) --- */
 .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
 .faq-item.active .faq-answer { max-height: 200px; }
 .faq-item.active .faq-icon { transform: rotate(180deg); color: #ccff00; }
