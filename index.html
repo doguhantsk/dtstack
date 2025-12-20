@@ -297,7 +297,25 @@
                         <p class="pt-4">Projenin kapsamına göre değişmekle birlikte; tek sayfalık vitrin siteleri 3-5 gün, kapsamlı kurumsal siteler 1-2 hafta, özel yazılım projeleri ise 3-4 hafta sürmektedir.</p>
                     </div>
                 </div>
+                 <div class="faq-item border border-white/10 rounded-lg p-6 cursor-pointer hover:border-white/30 transition-colors" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold">Ödeme koşulları nasıl?</h4>
+                        <i class="fa-solid fa-chevron-down faq-icon transition-transform"></i>
+                    </div>
+                    <div class="faq-answer text-gray-400 text-sm mt-0">
+                        <p class="pt-4">Genellikle iş başlangıcında %50 ön ödeme, proje tesliminde ve onayınızda kalan %50 şeklinde çalışıyorum. Güven ve şeffaflık esastır.</p>
+                    </div>
                 </div>
+                 <div class="faq-item border border-white/10 rounded-lg p-6 cursor-pointer hover:border-white/30 transition-colors" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold">Site bittikten sonra destek veriyor musunuz?</h4>
+                        <i class="fa-solid fa-chevron-down faq-icon transition-transform"></i>
+                    </div>
+                    <div class="faq-answer text-gray-400 text-sm mt-0">
+                        <p class="pt-4">Elbette. Proje tesliminden sonraki 1 ay boyunca teknik destek ücretsizdir. Sonrasında dilerseniz aylık bakım anlaşması yapabiliriz.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -365,13 +383,30 @@
     <script src="https://unpkg.com/split-type"></script>
 
     <script>
-        // --- PRELOADER ANIMATION ---
+        // --- 1. EMAILJS BAŞLATMA ---
+        (function(){
+            // Senin Public Key'in:
+            emailjs.init("-E1BQ3DQoMooRhu8e"); 
+        })();
+
+        // --- 2. PRELOADER & SİTE ANİMASYONLARI ---
         document.addEventListener("DOMContentLoaded", () => {
             const counter = document.getElementById("loader-text");
             const bar = document.getElementById("loader-bar");
             const preloader = document.getElementById("preloader");
             const cursor = document.getElementById("cursor");
 
+            // Mouse Cursor Takibi
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+            document.querySelectorAll('a, button, .cursor-pointer, .type-btn').forEach(link => {
+                link.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+                link.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+            });
+
+            // Yükleme Sayacı
             let count = 0;
             const interval = setInterval(() => {
                 count += Math.floor(Math.random() * 10) + 1; 
@@ -383,30 +418,19 @@
                 if (count === 100) {
                     clearInterval(interval);
                     
-                    // Preloader yukarı kaybolsun
+                    // Preloader Ekranını Yukarı Kaldır (GSAP)
                     gsap.to(preloader, {
                         yPercent: -100,
                         duration: 1.2,
                         ease: "power4.inOut",
                         delay: 0.5,
-                        onComplete: initSiteAnimations
+                        onComplete: initSiteAnimations // Bu fonksiyon bitince site animasyonları başlasın
                     });
                 }
-            }, 30); // Yükleme hızı (Daha küçük = daha hızlı)
-            
-            // Cursor Takibi
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            });
-
-            document.querySelectorAll('a, button, .cursor-pointer, .type-btn').forEach(link => {
-                link.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-                link.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-            });
+            }, 30);
         });
 
-        // --- SITE ICI ANIMASYONLAR (PRELOADER BITINCE) ---
+        // --- 3. SİTE İÇİ ANİMASYONLAR ---
         function initSiteAnimations() {
             gsap.registerPlugin(ScrollTrigger);
 
@@ -438,7 +462,7 @@
             });
         }
 
-        // --- TAB & MODAL FONKSİYONLARI ---
+        // --- 4. FORM VE TAB FONKSİYONLARI ---
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tab-content");
@@ -468,33 +492,36 @@
             document.body.style.overflow = 'auto';
         }
 
-        // --- FORM İŞLEMLERİ ---
-       // --- EMAILJS AYARLARI (TAMAMLANDI) ---
-        (function(){
-            // Senin Public Key'in:
-            emailjs.init("-E1BQ3DQoMooRhu8e"); 
-        })();
+        function selectType(btn, value) {
+            document.getElementById('project_type_input').value = value;
+            const buttons = document.querySelectorAll('.type-btn');
+            buttons.forEach(b => {
+                b.classList.remove('bg-neon', 'text-black', 'font-bold', 'border-neon');
+                b.classList.add('border-white/10', 'text-gray-400');
+            });
+            btn.classList.remove('border-white/10', 'text-gray-400');
+            btn.classList.add('bg-neon', 'text-black', 'font-bold', 'border-neon');
+        }
 
+        // --- 5. MAIL GÖNDERME İŞLEMİ (SENİN ANAHTARLARINLA) ---
         function sendEmail(e) {
             e.preventDefault(); 
             
             const btn = document.getElementById('submit-btn');
             const originalText = btn.innerText;
 
-            // Buton animasyonu: Gönderiliyor...
             btn.innerText = "GÖNDERİLİYOR...";
             btn.disabled = true;
             btn.classList.add('opacity-50', 'cursor-not-allowed');
 
-            // Senin Service ID ve Template ID'n:
+            // SENİN ID'LERİN BURADA:
             emailjs.sendForm('service_j96oxki', 'template_qaxd23b', '#contact-form')
                 .then(function() {
-                    // Başarılı olursa:
                     btn.innerText = "✅ MESAJINIZ ULAŞTI";
                     btn.classList.remove('bg-neon', 'text-black');
                     btn.classList.add('bg-green-500', 'text-white');
                     
-                    document.getElementById('contact-form').reset(); // Formu temizle
+                    document.getElementById('contact-form').reset();
                     
                     setTimeout(() => {
                         btn.innerText = originalText;
@@ -503,7 +530,6 @@
                         btn.classList.add('bg-neon', 'text-black');
                     }, 3000);
                 }, function(error) {
-                    // Hata olursa:
                     console.log('FAILED...', error);
                     btn.innerText = "❌ HATA OLUŞTU";
                     btn.classList.add('bg-red-500', 'text-white');
@@ -515,3 +541,6 @@
                     }, 3000);
                 });
         }
+    </script>
+</body>
+</html>
