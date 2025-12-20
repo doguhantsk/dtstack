@@ -575,5 +575,14 @@
                 });
         }
     </script>
+    <script>
+        // Force start at top on first load / refresh / bfcache restore
+        try {
+            if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        } catch (e) { /* ignore */ }
+
+        window.addEventListener('load', function() { window.scrollTo(0, 0); });
+        window.addEventListener('pageshow', function(e) { if (e.persisted) window.scrollTo(0, 0); });
+    </script>
 </body>
 </html>
