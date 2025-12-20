@@ -94,6 +94,15 @@
     </style>
 </head>
 <body class="selection:bg-neon selection:text-black">
+    <script>
+        try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e) {}
+        // Ensure we start at the very top on first paint / load / bfcache restore
+        window.scrollTo(0, 0);
+        window.addEventListener('DOMContentLoaded', () => { window.scrollTo(0, 0); });
+        window.addEventListener('pageshow', (e) => { if (e.persisted) window.scrollTo(0, 0); });
+        // Fallback in case browser scrolls after paint
+        setTimeout(() => window.scrollTo(0, 0), 50);
+    </script>
 
     <div id="preloader" class="fixed inset-0 z-[10000] bg-[#030303] flex flex-col items-center justify-center">
         <div class="font-mono text-neon text-4xl md:text-6xl font-bold tracking-tighter mb-4">
