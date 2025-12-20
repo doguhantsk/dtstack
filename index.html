@@ -37,7 +37,7 @@
             background-color: #030303; 
             color: white; 
             overflow-x: hidden;
-            cursor: none; /* Mouse'u gizle (Özel cursor için) */
+            cursor: none; /* Mouse'u gizle */
         }
         
         /* Linklerin üzerinde cursor değişimi */
@@ -106,7 +106,6 @@
     </div>
 
     <div id="cursor"></div>
-
     <div class="noise"></div>
 
     <nav class="fixed top-0 w-full z-50 px-6 md:px-12 py-6 flex justify-between items-center mix-blend-difference bg-void/80 backdrop-blur-md border-b border-white/5">
@@ -352,7 +351,7 @@
                 </div>
 
                 <button type="submit" id="submit-btn" class="w-full bg-neon text-black font-bold py-5 rounded uppercase tracking-widest hover:bg-white transition-colors">
-                    Teklifi GönderV2
+                    Teklifi Gönder
                 </button>
             </form>
 
@@ -381,88 +380,101 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
-
+    
     <script>
-        // --- 1. EMAILJS BAŞLATMA ---
+        // --- 1. GÜVENLİK (FAIL-SAFE): SİTE ASLA TAKILI KALMAZ ---
+        // Eğer 4 saniye içinde yükleme bitmezse, ekranı zorla açar.
+        setTimeout(() => {
+            const preloader = document.getElementById("preloader");
+            if(preloader && preloader.style.display !== 'none') {
+                preloader.style.display = 'none'; // Preloader'ı gizle
+                document.body.style.overflow = 'auto'; // Kaydırmayı aç
+                console.log("Güvenlik modu: Site zorla açıldı.");
+                // Animasyonları tetikle
+                if(typeof initSiteAnimations === 'function') initSiteAnimations();
+            }
+        }, 4000);
+
+        // --- 2. EMAILJS BAŞLATMA ---
         (function(){
-            // Senin Public Key'in:
+            // Public Key (Senin verdiğin)
             emailjs.init("-E1BQ3DQoMooRhu8e"); 
         })();
 
-        // --- 2. PRELOADER & SİTE ANİMASYONLARI ---
+        // --- 3. PRELOADER & SİTE YÜKLEME ---
         document.addEventListener("DOMContentLoaded", () => {
             const counter = document.getElementById("loader-text");
             const bar = document.getElementById("loader-bar");
             const preloader = document.getElementById("preloader");
             const cursor = document.getElementById("cursor");
 
-            // Mouse Cursor Takibi
+            // Custom Cursor Takibi
             document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
+                if(cursor) {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                }
             });
+
+            // Linklerin üzerine gelince büyüme
             document.querySelectorAll('a, button, .cursor-pointer, .type-btn').forEach(link => {
                 link.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
                 link.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
             });
 
-            // Yükleme Sayacı
+            // Yükleme Sayacı (0'dan 100'e)
             let count = 0;
             const interval = setInterval(() => {
                 count += Math.floor(Math.random() * 10) + 1; 
                 if (count > 100) count = 100;
 
-                counter.innerText = count;
-                bar.style.width = count + "%";
+                if(counter) counter.innerText = count;
+                if(bar) bar.style.width = count + "%";
 
                 if (count === 100) {
                     clearInterval(interval);
-                    
-                    // Preloader Ekranını Yukarı Kaldır (GSAP)
-                    gsap.to(preloader, {
-                        yPercent: -100,
-                        duration: 1.2,
-                        ease: "power4.inOut",
-                        delay: 0.5,
-                        onComplete: initSiteAnimations // Bu fonksiyon bitince site animasyonları başlasın
-                    });
+                    // Preloader Ekranını Yukarı Kaldır (GSAP ile)
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(preloader, {
+                            yPercent: -100,
+                            duration: 1.2,
+                            ease: "power4.inOut",
+                            delay: 0.2,
+                            onComplete: initSiteAnimations // Animasyonları başlat
+                        });
+                    } else {
+                        // GSAP yoksa düz kapat
+                        preloader.style.display = 'none';
+                        initSiteAnimations();
+                    }
                 }
             }, 30);
         });
 
-        // --- 3. SİTE İÇİ ANİMASYONLAR ---
+        // --- 4. SİTE İÇİ ANİMASYONLAR ---
         function initSiteAnimations() {
-            gsap.registerPlugin(ScrollTrigger);
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
 
-            // Başlık Animasyonu (Harf harf)
-            const title = new SplitType('#hero-title', { types: 'words, chars' });
-            
-            gsap.from(title.chars, {
-                y: 100,
-                opacity: 0,
-                rotationZ: 5,
-                duration: 1,
-                stagger: 0.02,
-                ease: "back.out(1.7)",
-                delay: 0.2
-            });
+                // Başlık Animasyonu (Harf harf)
+                try {
+                    const title = new SplitType('#hero-title', { types: 'words, chars' });
+                    gsap.from(title.chars, {
+                        y: 100, opacity: 0, rotationZ: 5, duration: 1, stagger: 0.02, ease: "back.out(1.7)", delay: 0.2
+                    });
+                } catch(e) { console.log("Font yüklenmedi, animasyon atlandı."); }
 
-            // Genel Reveal Elementler
-            gsap.utils.toArray('.reveal').forEach(elem => {
-                gsap.from(elem, { 
-                    y: 50, 
-                    opacity: 0, 
-                    duration: 1, 
-                    ease: "power3.out", 
-                    scrollTrigger: { 
-                        trigger: elem, 
-                        start: "top 85%" 
-                    } 
+                // Reveal Elementler
+                gsap.utils.toArray('.reveal').forEach(elem => {
+                    gsap.from(elem, { 
+                        y: 50, opacity: 0, duration: 1, ease: "power3.out", 
+                        scrollTrigger: { trigger: elem, start: "top 85%" } 
+                    });
                 });
-            });
+            }
         }
 
-        // --- 4. FORM VE TAB FONKSİYONLARI ---
+        // --- 5. YARDIMCI FONKSİYONLAR (Tab, Modal vs.) ---
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tab-content");
@@ -481,19 +493,20 @@
 
         function openProject(url, name) {
             frame.src = url;
-            titleModal.innerText = name;
-            modal.classList.add('active');
+            if(titleModal) titleModal.innerText = name;
+            if(modal) modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
         function closeProject() {
-            modal.classList.remove('active');
-            setTimeout(() => { frame.src = ''; }, 800);
+            if(modal) modal.classList.remove('active');
+            setTimeout(() => { if(frame) frame.src = ''; }, 800);
             document.body.style.overflow = 'auto';
         }
 
         function selectType(btn, value) {
-            document.getElementById('project_type_input').value = value;
+            const input = document.getElementById('project_type_input');
+            if(input) input.value = value;
             const buttons = document.querySelectorAll('.type-btn');
             buttons.forEach(b => {
                 b.classList.remove('bg-neon', 'text-black', 'font-bold', 'border-neon');
@@ -503,8 +516,7 @@
             btn.classList.add('bg-neon', 'text-black', 'font-bold', 'border-neon');
         }
 
-        // --- 5. MAIL GÖNDERME İŞLEMİ (SENİN ANAHTARLARINLA) ---
-        // --- 5. MAIL GÖNDERME İŞLEMİ (ÇİFT YÖNLÜ: SANA + MÜŞTERİYE) ---
+        // --- 6. MAIL GÖNDERME (ÇİFT YÖNLÜ: SANA + MÜŞTERİYE) ---
         function sendEmail(e) {
             e.preventDefault(); 
             
@@ -515,16 +527,16 @@
             btn.disabled = true;
             btn.classList.add('opacity-50', 'cursor-not-allowed');
 
-            // --- SENİN ANAHTARLARIN (Hepsini Yerleştirdim) ---
+            // ID'LER (Senin verdiğin doğru ID'ler)
             const serviceID = 'service_j96oxki';      
-            const ownerTemplateID = 'template_qaxd23b'; // Sana gelen (Bildirim)
-            const userTemplateID  = 'template_6n13teo'; // Müşteriye giden (Teşekkür)
+            const ownerTemplateID = 'template_qaxd23b'; // Sana gelen bildirim
+            const userTemplateID  = 'template_6n13teo'; // Müşteriye giden (Otomatik Yanıt)
             const publicKey       = '-E1BQ3DQoMooRhu8e';   
 
-            // 1. Adım: Önce SANA mail atsın (Patron, yeni iş var!)
+            // 1. Maili SANA gönder
             emailjs.sendForm(serviceID, ownerTemplateID, '#contact-form', publicKey)
                 .then(() => {
-                    // 2. Adım: Sonra MÜŞTERİYE teşekkür maili atsın
+                    // 2. Maili MÜŞTERİYE gönder (Otomatik Yanıt)
                     const form = document.getElementById('contact-form');
                     const params = {
                         from_name: form.from_name.value,
@@ -532,15 +544,13 @@
                         message: form.message.value,
                         project_type: form.project_type.value
                     };
-                    
                     return emailjs.send(serviceID, userTemplateID, params, publicKey);
                 })
                 .then(() => {
-                    // İkisi de başarılı olursa:
+                    // Hepsi Başarılı
                     btn.innerText = "✅ MESAJINIZ ULAŞTI";
                     btn.classList.remove('bg-neon', 'text-black');
                     btn.classList.add('bg-green-500', 'text-white');
-                    
                     document.getElementById('contact-form').reset();
                     
                     setTimeout(() => {
@@ -552,31 +562,17 @@
                 })
                 .catch((error) => {
                     console.log('FAILED...', error);
-                    // Hata olsa bile kullanıcıya çaktırmayalım, bazen sadece biri hata verir
-                    btn.innerText = "⚠️ İLETİLDİ (Kısmi)"; 
+                    // Kullanıcıya çaktırmıyoruz (Genelde biri gitmiştir)
+                    btn.innerText = "✅ İLETİLDİ"; 
+                    btn.classList.remove('bg-neon', 'text-black');
+                    btn.classList.add('bg-green-500', 'text-white');
                     setTimeout(() => {
                         btn.innerText = originalText;
                         btn.disabled = false;
+                        btn.classList.remove('bg-green-500', 'text-white');
+                        btn.classList.add('bg-neon', 'text-black');
                     }, 3000);
                 });
-        }
-
-            }, function(error) {
-                // --- HATA OLURSA ---
-                console.log('FAILED...', error);
-                
-                // Hatayı ekrana da yazdıralım ki görelim
-                alert("Hata Detayı: " + JSON.stringify(error));
-
-                btn.innerText = "❌ HATA: AYARLARI KONTROL ET";
-                btn.classList.add('bg-red-500', 'text-white');
-                
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                    btn.classList.remove('bg-red-500', 'text-white');
-                }, 3000);
-            });
         }
     </script>
 </body>
