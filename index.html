@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doğuhan Taşkın | Full Stack Architect</title>
     
+    <link rel="stylesheet" href="style.css">
+
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -30,68 +32,6 @@
             }
         }
     </script>
-
-    <style>
-        /* --- TEMEL AYARLAR --- */
-        body { 
-            background-color: #030303; 
-            color: white; 
-            overflow-x: hidden;
-            cursor: none; /* Mouse'u gizle */
-        }
-        
-        /* Linklerin üzerinde cursor değişimi */
-        a, button, .cursor-pointer { cursor: none; }
-
-        /* --- ÖZEL CURSOR (MOUSE İMLECİ) --- */
-        #cursor {
-            width: 20px;
-            height: 20px;
-            border: 1px solid #ccff00;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 99999;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
-            mix-blend-mode: difference;
-        }
-        #cursor.hovered {
-            width: 50px;
-            height: 50px;
-            background-color: #ccff00;
-            opacity: 0.5;
-            border: none;
-        }
-
-        /* --- SCROLLBAR --- */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #030303; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #ccff00; }
-        
-        /* --- NOISE EFEKTİ --- */
-        .noise { position: fixed; inset: 0; background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC43IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIiBvcGFjaXR5PSIwLjA1Ii8+PC9zdmc+'); pointer-events: none; z-index: 40; }
-
-        /* --- PROJECT MODAL --- */
-        #project-modal { transform: translateY(100%); transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1); }
-        #project-modal.active { transform: translateY(0%); }
-
-        /* --- TABS --- */
-        .tab-btn.active { background-color: #ccff00; color: black; border-color: #ccff00; }
-        .tab-content { display: none; animation: fadeIn 0.4s ease; }
-        .tab-content.active { display: block; }
-
-        /* --- ACCORDION --- */
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
-        .faq-item.active .faq-answer { max-height: 200px; }
-        .faq-item.active .faq-icon { transform: rotate(180deg); color: #ccff00; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        /* --- SPLIT TYPE (HARF HARF ANİMASYON İÇİN) --- */
-        .char { display: inline-block; }
-    </style>
 </head>
 <body class="selection:bg-neon selection:text-black">
 
@@ -123,46 +63,33 @@
 
     <section class="min-h-screen flex flex-col justify-center px-6 md:px-20 relative pt-20">
         <div class="absolute top-1/2 right-10 w-96 h-96 bg-neon/5 rounded-full blur-[120px] pointer-events-none"></div>
-        
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded border border-neon/20 bg-neon/5 text-neon text-xs font-mono mb-6 w-fit reveal">
             <span class="animate-pulse">●</span> MÜSAİT DURUMDA
         </div>
-
         <h1 id="hero-title" class="text-5xl md:text-8xl lg:text-9xl font-bold leading-[0.9] tracking-tighter mb-8">
-            DİJİTAL <br>
-            MİMARİ <br>
-            UZMANI.
+            DİJİTAL <br> MİMARİ <br> UZMANI.
         </h1>
         <p class="text-gray-400 max-w-2xl text-lg md:text-xl reveal leading-relaxed mb-10">
             İşletmeniz için sadece web sitesi değil; satış getiren, marka değerini artıran ve rakiplerinizin kıskanacağı dijital ekosistemler inşa ediyorum.
         </p>
-
         <div class="flex flex-col md:flex-row gap-6 reveal">
-            <a href="#projects" class="bg-neon text-black px-10 py-5 font-bold font-mono uppercase hover:scale-105 transition-transform text-center">
-                Canlı Projeleri Gör
-            </a>
-            <a href="#services" class="border border-white/20 px-10 py-5 font-bold font-mono uppercase hover:bg-white/10 transition-colors text-center">
-                Neler Yapıyorum?
-            </a>
+            <a href="#projects" class="bg-neon text-black px-10 py-5 font-bold font-mono uppercase hover:scale-105 transition-transform text-center">Canlı Projeleri Gör</a>
+            <a href="#services" class="border border-white/20 px-10 py-5 font-bold font-mono uppercase hover:bg-white/10 transition-colors text-center">Neler Yapıyorum?</a>
         </div>
     </section>
 
     <section id="services" class="py-32 px-6 md:px-20 border-t border-white/10 bg-dark-card">
         <h2 class="text-sm font-mono text-neon mb-10 tracking-widest uppercase reveal">/// HİZMET KAPASİTESİ</h2>
-        
         <div class="flex flex-col md:flex-row gap-12">
             <div class="flex flex-row md:flex-col gap-4 md:w-1/4 overflow-x-auto pb-4 md:pb-0 reveal">
                 <button onclick="openTab(event, 'design')" class="tab-btn active text-left px-6 py-4 border border-white/10 text-gray-400 font-mono text-sm hover:border-white transition-all">01. UI/UX TASARIM</button>
                 <button onclick="openTab(event, 'dev')" class="tab-btn text-left px-6 py-4 border border-white/10 text-gray-400 font-mono text-sm hover:border-white transition-all">02. YAZILIM & KOD</button>
                 <button onclick="openTab(event, 'growth')" class="tab-btn text-left px-6 py-4 border border-white/10 text-gray-400 font-mono text-sm hover:border-white transition-all">03. BÜYÜME & SEO</button>
             </div>
-
             <div class="md:w-3/4 min-h-[400px] reveal">
                 <div id="design" class="tab-content active space-y-8">
                     <h3 class="text-4xl md:text-6xl font-bold mb-6">İnsan Odaklı Estetik.</h3>
-                    <p class="text-gray-400 text-lg leading-relaxed max-w-2xl">
-                        Kullanıcıların sitenizde kaybolmasını değil, aşık olmasını sağlıyorum. Figma üzerinde milimetrik prototiplerle başlıyoruz.
-                    </p>
+                    <p class="text-gray-400 text-lg leading-relaxed max-w-2xl">Kullanıcıların sitenizde kaybolmasını değil, aşık olmasını sağlıyorum.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
                         <div class="border border-white/10 p-6 hover:border-neon transition-colors cursor-pointer">
                             <i class="fa-solid fa-pen-ruler text-neon text-2xl mb-4"></i>
@@ -176,12 +103,9 @@
                         </div>
                     </div>
                 </div>
-
                 <div id="dev" class="tab-content space-y-8">
                     <h3 class="text-4xl md:text-6xl font-bold mb-6">Kusursuz Mühendislik.</h3>
-                    <p class="text-gray-400 text-lg leading-relaxed max-w-2xl">
-                        Hazır şablonlar yok. İşletmenizin ihtiyaçlarına özel, sıfırdan yazılmış, ultra hızlı ve güvenli kod altyapısı.
-                    </p>
+                    <p class="text-gray-400 text-lg leading-relaxed max-w-2xl">Hazır şablonlar yok. Sıfırdan yazılmış, ultra hızlı kod altyapısı.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
                         <div class="border border-white/10 p-6 hover:border-neon transition-colors cursor-pointer">
                             <i class="fa-solid fa-code text-neon text-2xl mb-4"></i>
@@ -195,16 +119,13 @@
                         </div>
                     </div>
                 </div>
-
                 <div id="growth" class="tab-content space-y-8">
                     <h3 class="text-4xl md:text-6xl font-bold mb-6">Görünür Olun.</h3>
-                    <p class="text-gray-400 text-lg leading-relaxed max-w-2xl">
-                        Sitenizi yaptık ama kimse görmüyor mu? SEO optimizasyonu ve performans ayarlarıyla Google'da üst sıraları hedefliyoruz.
-                    </p>
+                    <p class="text-gray-400 text-lg leading-relaxed max-w-2xl">SEO optimizasyonu ve performans ayarlarıyla Google'da üst sıralar.</p>
                     <ul class="space-y-4 font-mono text-sm text-gray-400">
                         <li class="flex items-center gap-3"><span class="text-neon">✓</span> Teknik SEO Altyapısı</li>
-                        <li class="flex items-center gap-3"><span class="text-neon">✓</span> Google PageSpeed Optimizasyonu (90+ Puan)</li>
-                        <li class="flex items-center gap-3"><span class="text-neon">✓</span> Google Analytics Kurulumu</li>
+                        <li class="flex items-center gap-3"><span class="text-neon">✓</span> Google PageSpeed (90+ Puan)</li>
+                        <li class="flex items-center gap-3"><span class="text-neon">✓</span> Google Analytics</li>
                     </ul>
                 </div>
             </div>
@@ -214,39 +135,25 @@
     <section id="projects" class="py-32 px-6 md:px-20 border-t border-white/10">
         <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
             <h2 class="text-4xl md:text-6xl font-bold">REFERANSLAR</h2>
-            <p class="text-gray-500 font-mono text-sm max-w-sm text-right mt-4 md:mt-0">
-                Aşağıdaki projelere tıklayarak canlı demoları deneyimleyebilirsiniz.
-            </p>
+            <p class="text-gray-500 font-mono text-sm max-w-sm text-right mt-4 md:mt-0">Aşağıdaki projelere tıklayarak canlı demoları deneyimleyebilirsiniz.</p>
         </div>
-
         <div class="space-y-0 reveal">
             <div onclick="openProject('proje1.html', 'ATLAS COMMERCE')" class="group border-t border-white/20 py-12 cursor-pointer hover:bg-white/5 transition-colors relative overflow-hidden">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center relative z-10 px-4">
                     <h3 class="text-5xl md:text-7xl font-bold text-gray-500 group-hover:text-white transition-colors">01 ATLAS</h3>
-                    <div class="mt-4 md:mt-0 text-right">
-                        <span class="block text-neon font-mono text-xs mb-1">E-TİCARET</span>
-                        <span class="text-sm text-gray-400">Moda & Satış Arayüzü</span>
-                    </div>
+                    <div class="mt-4 md:mt-0 text-right"><span class="block text-neon font-mono text-xs mb-1">E-TİCARET</span><span class="text-sm text-gray-400">Moda & Satış Arayüzü</span></div>
                 </div>
             </div>
-
             <div onclick="openProject('proje2.html', 'VANGUARD CORP')" class="group border-t border-white/20 py-12 cursor-pointer hover:bg-white/5 transition-colors relative overflow-hidden">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center relative z-10 px-4">
                     <h3 class="text-5xl md:text-7xl font-bold text-gray-500 group-hover:text-white transition-colors">02 VANGUARD</h3>
-                    <div class="mt-4 md:mt-0 text-right">
-                        <span class="block text-neon font-mono text-xs mb-1">KURUMSAL</span>
-                        <span class="text-sm text-gray-400">Prestijli Şirket Kimliği</span>
-                    </div>
+                    <div class="mt-4 md:mt-0 text-right"><span class="block text-neon font-mono text-xs mb-1">KURUMSAL</span><span class="text-sm text-gray-400">Prestijli Şirket Kimliği</span></div>
                 </div>
             </div>
-
             <div onclick="openProject('proje3.html', 'NEXUS DASHBOARD')" class="group border-t border-white/20 border-b py-12 cursor-pointer hover:bg-white/5 transition-colors relative overflow-hidden">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center relative z-10 px-4">
                     <h3 class="text-5xl md:text-7xl font-bold text-gray-500 group-hover:text-white transition-colors">03 NEXUS</h3>
-                    <div class="mt-4 md:mt-0 text-right">
-                        <span class="block text-neon font-mono text-xs mb-1">YAZILIM</span>
-                        <span class="text-sm text-gray-400">Veri Yönetim Paneli</span>
-                    </div>
+                    <div class="mt-4 md:mt-0 text-right"><span class="block text-neon font-mono text-xs mb-1">YAZILIM</span><span class="text-sm text-gray-400">Veri Yönetim Paneli</span></div>
                 </div>
             </div>
         </div>
@@ -254,65 +161,29 @@
 
     <section id="process" class="py-32 px-6 md:px-20 bg-white text-black">
         <h2 class="text-4xl md:text-6xl font-bold mb-16 reveal">ÇALIŞMA PRENSİBİ</h2>
-        
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 reveal">
-            <div class="border-t-2 border-black pt-6">
-                <span class="font-mono text-sm font-bold block mb-4">01 / ANALİZ</span>
-                <p class="text-lg font-bold mb-2">Keşif & Strateji</p>
-                <p class="text-gray-600 text-sm">Hedef kitlenizi, rakiplerinizi ve ihtiyaçlarınızı analiz ederek en doğru yol haritasını çıkarıyoruz.</p>
-            </div>
-            <div class="border-t-2 border-black pt-6">
-                <span class="font-mono text-sm font-bold block mb-4">02 / TASARIM</span>
-                <p class="text-lg font-bold mb-2">UX & Görsel</p>
-                <p class="text-gray-600 text-sm">Kodlamadan önce sitenizin nasıl görüneceğini tasarlıyor ve onayınıza sunuyorum. Sürpriz yok.</p>
-            </div>
-            <div class="border-t-2 border-black pt-6">
-                <span class="font-mono text-sm font-bold block mb-4">03 / KODLAMA</span>
-                <p class="text-lg font-bold mb-2">Geliştirme</p>
-                <p class="text-gray-600 text-sm">En son teknolojilerle sitenizi kodluyor, mobil uyumluluk ve hız testlerini yapıyorum.</p>
-            </div>
-            <div class="border-t-2 border-black pt-6">
-                <span class="font-mono text-sm font-bold block mb-4">04 / YAYIN</span>
-                <p class="text-lg font-bold mb-2">Teslim & Destek</p>
-                <p class="text-gray-600 text-sm">Sitenizi yayına alıyor, gerekli eğitimleri veriyor ve teknik destek sağlamaya devam ediyorum.</p>
-            </div>
+            <div class="border-t-2 border-black pt-6"><span class="font-mono text-sm font-bold block mb-4">01 / ANALİZ</span><p class="text-lg font-bold mb-2">Keşif & Strateji</p><p class="text-gray-600 text-sm">Hedef kitle ve rakip analizi.</p></div>
+            <div class="border-t-2 border-black pt-6"><span class="font-mono text-sm font-bold block mb-4">02 / TASARIM</span><p class="text-lg font-bold mb-2">UX & Görsel</p><p class="text-gray-600 text-sm">Kodlamadan önce tasarım onayı.</p></div>
+            <div class="border-t-2 border-black pt-6"><span class="font-mono text-sm font-bold block mb-4">03 / KODLAMA</span><p class="text-lg font-bold mb-2">Geliştirme</p><p class="text-gray-600 text-sm">Modern, hızlı ve temiz kodlama.</p></div>
+            <div class="border-t-2 border-black pt-6"><span class="font-mono text-sm font-bold block mb-4">04 / YAYIN</span><p class="text-lg font-bold mb-2">Teslim & Destek</p><p class="text-gray-600 text-sm">Yayınlama ve teknik destek.</p></div>
         </div>
     </section>
 
     <section id="faq" class="py-32 px-6 md:px-20 border-t border-white/10">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 reveal">
-            <div>
-                <h2 class="text-4xl font-bold mb-6">MERAK EDİLENLER</h2>
-                <p class="text-gray-400">Aklınıza takılan soruların cevaplarını burada bulabilirsiniz.</p>
-            </div>
-            
+            <div><h2 class="text-4xl font-bold mb-6">MERAK EDİLENLER</h2><p class="text-gray-400">Sorularınızın cevapları burada.</p></div>
             <div class="space-y-4">
                 <div class="faq-item border border-white/10 rounded-lg p-6 cursor-pointer hover:border-white/30 transition-colors" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-bold">Proje süreci ne kadar sürer?</h4>
-                        <i class="fa-solid fa-chevron-down faq-icon transition-transform"></i>
-                    </div>
-                    <div class="faq-answer text-gray-400 text-sm mt-0">
-                        <p class="pt-4">Projenin kapsamına göre değişmekle birlikte; tek sayfalık vitrin siteleri 3-5 gün, kapsamlı kurumsal siteler 1-2 hafta, özel yazılım projeleri ise 3-4 hafta sürmektedir.</p>
-                    </div>
+                    <div class="flex justify-between items-center"><h4 class="font-bold">Proje süreci ne kadar sürer?</h4><i class="fa-solid fa-chevron-down faq-icon transition-transform"></i></div>
+                    <div class="faq-answer text-gray-400 text-sm mt-0"><p class="pt-4">Vitrin siteleri 3-5 gün, kurumsal siteler 1-2 hafta, özel projeler 3-4 hafta sürer.</p></div>
                 </div>
-                 <div class="faq-item border border-white/10 rounded-lg p-6 cursor-pointer hover:border-white/30 transition-colors" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-bold">Ödeme koşulları nasıl?</h4>
-                        <i class="fa-solid fa-chevron-down faq-icon transition-transform"></i>
-                    </div>
-                    <div class="faq-answer text-gray-400 text-sm mt-0">
-                        <p class="pt-4">Genellikle iş başlangıcında %50 ön ödeme, proje tesliminde ve onayınızda kalan %50 şeklinde çalışıyorum. Güven ve şeffaflık esastır.</p>
-                    </div>
+                <div class="faq-item border border-white/10 rounded-lg p-6 cursor-pointer hover:border-white/30 transition-colors" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center"><h4 class="font-bold">Ödeme koşulları nasıl?</h4><i class="fa-solid fa-chevron-down faq-icon transition-transform"></i></div>
+                    <div class="faq-answer text-gray-400 text-sm mt-0"><p class="pt-4">%50 iş başlangıcında, %50 teslimatta.</p></div>
                 </div>
-                 <div class="faq-item border border-white/10 rounded-lg p-6 cursor-pointer hover:border-white/30 transition-colors" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-bold">Site bittikten sonra destek veriyor musunuz?</h4>
-                        <i class="fa-solid fa-chevron-down faq-icon transition-transform"></i>
-                    </div>
-                    <div class="faq-answer text-gray-400 text-sm mt-0">
-                        <p class="pt-4">Elbette. Proje tesliminden sonraki 1 ay boyunca teknik destek ücretsizdir. Sonrasında dilerseniz aylık bakım anlaşması yapabiliriz.</p>
-                    </div>
+                <div class="faq-item border border-white/10 rounded-lg p-6 cursor-pointer hover:border-white/30 transition-colors" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center"><h4 class="font-bold">Destek veriyor musunuz?</h4><i class="fa-solid fa-chevron-down faq-icon transition-transform"></i></div>
+                    <div class="faq-answer text-gray-400 text-sm mt-0"><p class="pt-4">Teslim sonrası 1 ay ücretsiz destek sağlıyorum.</p></div>
                 </div>
             </div>
         </div>
@@ -321,19 +192,11 @@
     <footer id="contact" class="py-32 px-6 md:px-20 bg-[#050505] border-t border-white/10">
         <div class="max-w-4xl mx-auto reveal">
             <h2 class="text-4xl md:text-6xl font-bold mb-12 text-center">PROJENİZİ ANLATIN</h2>
-            
             <form id="contact-form" onsubmit="sendEmail(event)" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-2">
-                        <label class="text-xs font-mono text-neon uppercase">İsim Soyisim</label>
-                        <input type="text" name="from_name" required class="w-full bg-white/5 border border-white/10 p-4 rounded focus:border-neon focus:outline-none text-white transition-colors cursor-text" placeholder="Adınız">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-xs font-mono text-neon uppercase">E-Posta</label>
-                        <input type="email" name="reply_to" required class="w-full bg-white/5 border border-white/10 p-4 rounded focus:border-neon focus:outline-none text-white transition-colors cursor-text" placeholder="mail@ornek.com">
-                    </div>
+                    <div class="space-y-2"><label class="text-xs font-mono text-neon uppercase">İsim Soyisim</label><input type="text" name="from_name" required class="w-full bg-white/5 border border-white/10 p-4 rounded focus:border-neon focus:outline-none text-white transition-colors cursor-text" placeholder="Adınız"></div>
+                    <div class="space-y-2"><label class="text-xs font-mono text-neon uppercase">E-Posta</label><input type="email" name="reply_to" required class="w-full bg-white/5 border border-white/10 p-4 rounded focus:border-neon focus:outline-none text-white transition-colors cursor-text" placeholder="mail@ornek.com"></div>
                 </div>
-                
                 <div class="space-y-2">
                     <label class="text-xs font-mono text-neon uppercase">Proje Türü</label>
                     <input type="hidden" name="project_type" id="project_type_input" value="Web Sitesi">
@@ -344,265 +207,26 @@
                         <button type="button" onclick="selectType(this, 'Diğer')" class="type-btn border border-white/10 p-3 rounded hover:bg-neon hover:text-black transition-colors text-sm text-gray-400">Diğer</button>
                     </div>
                 </div>
-
-                <div class="space-y-2">
-                    <label class="text-xs font-mono text-neon uppercase">Mesajınız</label>
-                    <textarea name="message" rows="4" required class="w-full bg-white/5 border border-white/10 p-4 rounded focus:border-neon focus:outline-none text-white transition-colors cursor-text" placeholder="Projenizden kısaca bahsedin..."></textarea>
-                </div>
-
-                <button type="submit" id="submit-btn" class="w-full bg-neon text-black font-bold py-5 rounded uppercase tracking-widest hover:bg-white transition-colors">
-                    Teklifi Gönder
-                </button>
+                <div class="space-y-2"><label class="text-xs font-mono text-neon uppercase">Mesajınız</label><textarea name="message" rows="4" required class="w-full bg-white/5 border border-white/10 p-4 rounded focus:border-neon focus:outline-none text-white transition-colors cursor-text" placeholder="Projenizden kısaca bahsedin..."></textarea></div>
+                <button type="submit" id="submit-btn" class="w-full bg-neon text-black font-bold py-5 rounded uppercase tracking-widest hover:bg-white transition-colors">Teklifi Gönder</button>
             </form>
-
-            <div class="mt-20 text-center flex justify-center gap-8 text-gray-500 font-mono text-sm">
-                <a href="#" class="hover:text-neon">LINKEDIN</a>
-                <a href="#" class="hover:text-neon">GITHUB</a>
-                <a href="#" class="hover:text-neon">INSTAGRAM</a>
-            </div>
+            <div class="mt-20 text-center flex justify-center gap-8 text-gray-500 font-mono text-sm"><a href="#" class="hover:text-neon">LINKEDIN</a><a href="#" class="hover:text-neon">GITHUB</a><a href="#" class="hover:text-neon">INSTAGRAM</a></div>
             <p class="text-center text-xs text-gray-700 mt-8 font-mono">© 2025 DOĞUHAN TAŞKIN</p>
         </div>
     </footer>
 
     <div id="project-modal" class="fixed inset-0 z-[9990] bg-[#0a0a0a] flex flex-col">
         <div class="h-16 border-b border-white/10 flex justify-between items-center px-6 bg-[#0a0a0a]">
-            <div class="flex items-center gap-4">
-                <span id="modal-title" class="font-mono font-bold text-neon">PROJECT NAME</span>
-                <div class="px-2 py-0.5 bg-green-500/10 text-green-500 text-[10px] rounded font-mono animate-pulse">● LIVE</div>
-            </div>
+            <div class="flex items-center gap-4"><span id="modal-title" class="font-mono font-bold text-neon">PROJECT NAME</span><div class="px-2 py-0.5 bg-green-500/10 text-green-500 text-[10px] rounded font-mono animate-pulse">● LIVE</div></div>
             <button onclick="closeProject()" class="text-sm font-mono hover:text-neon transition-colors">[ KAPAT X ]</button>
         </div>
-        <div class="flex-1 w-full h-full relative">
-            <iframe id="project-frame" src="" class="w-full h-full border-0" title="Project Preview"></iframe>
-        </div>
+        <div class="flex-1 w-full h-full relative"><iframe id="project-frame" src="" class="w-full h-full border-0" title="Project Preview"></iframe></div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
-    
-    <script>
-        // --- 0. SAYFA YÜKLENİNCE EN BAŞA AL (FIX) ---
-        // Tarayıcının aşağıda başlama huyunu kapatır
-        if (history.scrollRestoration) {
-            history.scrollRestoration = 'manual';
-        }
-        window.scrollTo(0, 0);
 
-        // --- 1. GÜVENLİK (FAIL-SAFE): SİTE ASLA TAKILI KALMAZ ---
-        // Eğer 4 saniye içinde yükleme bitmezse, ekranı zorla açar.
-        setTimeout(() => {
-            const preloader = document.getElementById("preloader");
-            if(preloader && preloader.style.display !== 'none') {
-                preloader.style.display = 'none'; // Preloader'ı gizle
-                document.body.style.overflow = 'auto'; // Kaydırmayı aç
-                console.log("Güvenlik modu: Site zorla açıldı.");
-                // Animasyonları tetikle
-                if(typeof initSiteAnimations === 'function') initSiteAnimations();
-            }
-        }, 4000);
-
-        // --- 2. EMAILJS BAŞLATMA ---
-        (function(){
-            // Public Key (Senin verdiğin)
-            emailjs.init("-E1BQ3DQoMooRhu8e"); 
-        })();
-
-        // --- 3. PRELOADER & SİTE YÜKLEME (GÜNCELLENDİ: window.load) ---
-        // Artık DOMContentLoaded değil, "load" kullanıyoruz.
-        // Bu sayede tüm resimler yüklendikten sonra site açılır, kayma olmaz.
-        window.addEventListener("load", () => {
-            const counter = document.getElementById("loader-text");
-            const bar = document.getElementById("loader-bar");
-            const preloader = document.getElementById("preloader");
-            const cursor = document.getElementById("cursor");
-
-            // Custom Cursor Takibi
-            try {
-                document.addEventListener('mousemove', (e) => {
-                    if(cursor) {
-                        cursor.style.left = e.clientX + 'px';
-                        cursor.style.top = e.clientY + 'px';
-                    }
-                });
-
-                document.querySelectorAll('a, button, .cursor-pointer, .type-btn').forEach(link => {
-                    link.addEventListener('mouseenter', () => cursor?.classList.add('hovered'));
-                    link.addEventListener('mouseleave', () => cursor?.classList.remove('hovered'));
-                });
-            } catch(e) { console.log("Cursor init hatası (önemsiz)"); }
-
-            // Yükleme Sayacı (0'dan 100'e)
-            let count = 0;
-            const interval = setInterval(() => {
-                count += Math.floor(Math.random() * 10) + 1; 
-                if (count > 100) count = 100;
-
-                if(counter) counter.innerText = count;
-                if(bar) bar.style.width = count + "%";
-
-                if (count === 100) {
-                    clearInterval(interval);
-                    // Preloader Ekranını Yukarı Kaldır (GSAP ile)
-                    if (typeof gsap !== 'undefined') {
-                        gsap.to(preloader, {
-                            yPercent: -100,
-                            duration: 1.2,
-                            ease: "power4.inOut",
-                            delay: 0.2,
-                            onComplete: initSiteAnimations // Animasyonları başlat
-                        });
-                    } else {
-                        // GSAP yoksa düz kapat
-                        preloader.style.display = 'none';
-                        initSiteAnimations();
-                    }
-                }
-            }, 20); // Biraz hızlandırdık (30->20ms)
-        });
-
-        // --- 4. SİTE İÇİ ANİMASYONLAR (GÜNCELLENDİ: Refresh) ---
-        function initSiteAnimations() {
-            // Scroll kilidini garanti aç
-            document.body.style.overflow = 'auto';
-
-            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-                gsap.registerPlugin(ScrollTrigger);
-
-                // KRİTİK DÜZELTME: Tüm elementler yerleşince scroll yerlerini tekrar hesapla
-                ScrollTrigger.refresh();
-
-                // Başlık Animasyonu (Harf harf)
-                try {
-                    const title = new SplitType('#hero-title', { types: 'words, chars' });
-                    gsap.from(title.chars, {
-                        y: 100, opacity: 0, rotationZ: 5, duration: 1, stagger: 0.02, ease: "back.out(1.7)", delay: 0.2
-                    });
-                } catch(e) { console.log("Font yüklenmedi, animasyon atlandı."); }
-
-                // Reveal Elementler
-                gsap.utils.toArray('.reveal').forEach(elem => {
-                    gsap.from(elem, { 
-                        y: 50, opacity: 0, duration: 1, ease: "power3.out", 
-                        scrollTrigger: { 
-                            trigger: elem, 
-                            start: "top 90%", // Biraz daha erken tetikle (%90)
-                            toggleActions: "play none none reverse"
-                        } 
-                    });
-                });
-            }
-        }
-
-        // --- 5. YARDIMCI FONKSİYONLAR (Tab, Modal vs.) ---
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) { tabcontent[i].classList.remove("active"); }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-            
-            // Tab değişince sayfa boyu değişir, animasyonu yenile:
-            if(typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-        }
-
-        function toggleFaq(element) { 
-            element.classList.toggle("active");
-            // Accordion açılınca (transition süresi kadar bekle ve yenile)
-            setTimeout(() => { 
-                if(typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); 
-            }, 350);
-        }
-
-        const modal = document.getElementById('project-modal');
-        const frame = document.getElementById('project-frame');
-        const titleModal = document.getElementById('modal-title');
-
-        function openProject(url, name) {
-            frame.src = url;
-            if(titleModal) titleModal.innerText = name;
-            if(modal) modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeProject() {
-            if(modal) modal.classList.remove('active');
-            setTimeout(() => { if(frame) frame.src = ''; }, 800);
-            document.body.style.overflow = 'auto';
-        }
-
-        function selectType(btn, value) {
-            const input = document.getElementById('project_type_input');
-            if(input) input.value = value;
-            const buttons = document.querySelectorAll('.type-btn');
-            buttons.forEach(b => {
-                b.classList.remove('bg-neon', 'text-black', 'font-bold', 'border-neon');
-                b.classList.add('border-white/10', 'text-gray-400');
-            });
-            btn.classList.remove('border-white/10', 'text-gray-400');
-            btn.classList.add('bg-neon', 'text-black', 'font-bold', 'border-neon');
-        }
-
-        // --- 6. MAIL GÖNDERME (ÇİFT YÖNLÜ: SANA + MÜŞTERİYE) ---
-        function sendEmail(e) {
-            e.preventDefault(); 
-            
-            const btn = document.getElementById('submit-btn');
-            const originalText = btn.innerText;
-
-            btn.innerText = "GÖNDERİLİYOR...";
-            btn.disabled = true;
-            btn.classList.add('opacity-50', 'cursor-not-allowed');
-
-            // ID'LER (Senin verdiğin doğru ID'ler)
-            const serviceID = 'service_j96oxki';      
-            const ownerTemplateID = 'template_qaxd23b'; // Sana gelen bildirim
-            const userTemplateID  = 'template_6n13teo'; // Müşteriye giden (Otomatik Yanıt)
-            const publicKey       = '-E1BQ3DQoMooRhu8e';   
-
-            // 1. Maili SANA gönder
-            emailjs.sendForm(serviceID, ownerTemplateID, '#contact-form', publicKey)
-                .then(() => {
-                    // 2. Maili MÜŞTERİYE gönder (Otomatik Yanıt)
-                    const form = document.getElementById('contact-form');
-                    const params = {
-                        from_name: form.from_name.value,
-                        reply_to: form.reply_to.value,
-                        message: form.message.value,
-                        project_type: form.project_type.value
-                    };
-                    return emailjs.send(serviceID, userTemplateID, params, publicKey);
-                })
-                .then(() => {
-                    // Hepsi Başarılı
-                    btn.innerText = "✅ MESAJINIZ ULAŞTI";
-                    btn.classList.remove('bg-neon', 'text-black');
-                    btn.classList.add('bg-green-500', 'text-white');
-                    document.getElementById('contact-form').reset();
-                    
-                    setTimeout(() => {
-                        btn.innerText = originalText;
-                        btn.disabled = false;
-                        btn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-green-500', 'text-white');
-                        btn.classList.add('bg-neon', 'text-black');
-                    }, 3000);
-                })
-                .catch((error) => {
-                    console.log('FAILED...', error);
-                    // Kullanıcıya çaktırmıyoruz (Genelde biri gitmiştir)
-                    btn.innerText = "✅ İLETİLDİ"; 
-                    btn.classList.remove('bg-neon', 'text-black');
-                    btn.classList.add('bg-green-500', 'text-white');
-                    setTimeout(() => {
-                        btn.innerText = originalText;
-                        btn.disabled = false;
-                        btn.classList.remove('bg-green-500', 'text-white');
-                        btn.classList.add('bg-neon', 'text-black');
-                    }, 3000);
-                });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
