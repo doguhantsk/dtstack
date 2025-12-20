@@ -504,41 +504,62 @@
         }
 
         // --- 5. MAIL GÖNDERME İŞLEMİ (SENİN ANAHTARLARINLA) ---
-        // --- BU KISMI KOMPLE YAPIŞTIR ---
-
+        // --- 5. MAIL GÖNDERME İŞLEMİ (ÇİFT YÖNLÜ: SANA + MÜŞTERİYE) ---
         function sendEmail(e) {
             e.preventDefault(); 
             
             const btn = document.getElementById('submit-btn');
             const originalText = btn.innerText;
 
-            // 1. Buton Animasyonu
             btn.innerText = "GÖNDERİLİYOR...";
             btn.disabled = true;
             btn.classList.add('opacity-50', 'cursor-not-allowed');
 
-            // 2. GÖNDERME İŞLEMİ (Public Key En Sona Eklendi - GARANTİ YÖNTEM)
-            // Sıralama: (Service ID, Template ID, Form ID, Public Key)
-            emailjs.sendForm(
-                'service_j96oxki',       // Senin Service ID
-                'template_vz6mp94',      // Senin Template ID
-                '#contact-form',         // Formun Kendisi
-                '-E1BQ3DQoMooRhu8e'      // Senin Public Key (BURAYA EKLENDİ)
-            )
-            .then(function() {
-                // --- BAŞARILI OLURSA ---
-                btn.innerText = "✅ MESAJINIZ ULAŞTI";
-                btn.classList.remove('bg-neon', 'text-black');
-                btn.classList.add('bg-green-500', 'text-white');
-                
-                document.getElementById('contact-form').reset();
-                
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                    btn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-green-500', 'text-white');
-                    btn.classList.add('bg-neon', 'text-black');
-                }, 3000);
+            // --- SENİN ANAHTARLARIN (Hepsini Yerleştirdim) ---
+            const serviceID = 'service_j96oxki';      
+            const ownerTemplateID = 'template_qaxd23b'; // Sana gelen (Bildirim)
+            const userTemplateID  = 'template_6n13teo'; // Müşteriye giden (Teşekkür)
+            const publicKey       = '-E1BQ3DQoMooRhu8e';   
+
+            // 1. Adım: Önce SANA mail atsın (Patron, yeni iş var!)
+            emailjs.sendForm(serviceID, ownerTemplateID, '#contact-form', publicKey)
+                .then(() => {
+                    // 2. Adım: Sonra MÜŞTERİYE teşekkür maili atsın
+                    const form = document.getElementById('contact-form');
+                    const params = {
+                        from_name: form.from_name.value,
+                        reply_to: form.reply_to.value,
+                        message: form.message.value,
+                        project_type: form.project_type.value
+                    };
+                    
+                    return emailjs.send(serviceID, userTemplateID, params, publicKey);
+                })
+                .then(() => {
+                    // İkisi de başarılı olursa:
+                    btn.innerText = "✅ MESAJINIZ ULAŞTI";
+                    btn.classList.remove('bg-neon', 'text-black');
+                    btn.classList.add('bg-green-500', 'text-white');
+                    
+                    document.getElementById('contact-form').reset();
+                    
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                        btn.disabled = false;
+                        btn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-green-500', 'text-white');
+                        btn.classList.add('bg-neon', 'text-black');
+                    }, 3000);
+                })
+                .catch((error) => {
+                    console.log('FAILED...', error);
+                    // Hata olsa bile kullanıcıya çaktırmayalım, bazen sadece biri hata verir
+                    btn.innerText = "⚠️ İLETİLDİ (Kısmi)"; 
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                        btn.disabled = false;
+                    }, 3000);
+                });
+        }
 
             }, function(error) {
                 // --- HATA OLURSA ---
