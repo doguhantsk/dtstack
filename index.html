@@ -504,42 +504,58 @@
         }
 
         // --- 5. MAIL GÖNDERME İŞLEMİ (SENİN ANAHTARLARINLA) ---
+        // --- BU KISMI KOMPLE YAPIŞTIR ---
+
         function sendEmail(e) {
             e.preventDefault(); 
             
             const btn = document.getElementById('submit-btn');
             const originalText = btn.innerText;
 
+            // 1. Buton Animasyonu
             btn.innerText = "GÖNDERİLİYOR...";
             btn.disabled = true;
             btn.classList.add('opacity-50', 'cursor-not-allowed');
 
-            // SENİN ID'LERİN BURADA:
-            emailjs.sendForm('service_j96oxki', 'template_qaxd23b', '#contact-form')
-                .then(function() {
-                    btn.innerText = "✅ MESAJINIZ ULAŞTI";
-                    btn.classList.remove('bg-neon', 'text-black');
-                    btn.classList.add('bg-green-500', 'text-white');
-                    
-                    document.getElementById('contact-form').reset();
-                    
-                    setTimeout(() => {
-                        btn.innerText = originalText;
-                        btn.disabled = false;
-                        btn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-green-500', 'text-white');
-                        btn.classList.add('bg-neon', 'text-black');
-                    }, 3000);
-                }, function(error) {
-                    console.log('FAILED...', error);
-                    btn.innerText = "❌ HATA OLUŞTU";
-                    btn.classList.add('bg-red-500', 'text-white');
-                    
-                    setTimeout(() => {
-                        btn.innerText = originalText;
-                        btn.disabled = false;
-                        btn.classList.remove('bg-red-500', 'text-white');
-                    }, 3000);
-                });
+            // 2. GÖNDERME İŞLEMİ (Public Key En Sona Eklendi - GARANTİ YÖNTEM)
+            // Sıralama: (Service ID, Template ID, Form ID, Public Key)
+            emailjs.sendForm(
+                'service_j96oxki',       // Senin Service ID
+                'template_qaxd23b',      // Senin Template ID
+                '#contact-form',         // Formun Kendisi
+                '-E1BQ3DQoMooRhu8e'      // Senin Public Key (BURAYA EKLENDİ)
+            )
+            .then(function() {
+                // --- BAŞARILI OLURSA ---
+                btn.innerText = "✅ MESAJINIZ ULAŞTI";
+                btn.classList.remove('bg-neon', 'text-black');
+                btn.classList.add('bg-green-500', 'text-white');
+                
+                document.getElementById('contact-form').reset();
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-green-500', 'text-white');
+                    btn.classList.add('bg-neon', 'text-black');
+                }, 3000);
+
+            }, function(error) {
+                // --- HATA OLURSA ---
+                console.log('FAILED...', error);
+                
+                // Hatayı ekrana da yazdıralım ki görelim
+                alert("Hata Detayı: " + JSON.stringify(error));
+
+                btn.innerText = "❌ HATA: AYARLARI KONTROL ET";
+                btn.classList.add('bg-red-500', 'text-white');
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    btn.classList.remove('bg-red-500', 'text-white');
+                }, 3000);
+            });
         }
     </script>
 </body>
