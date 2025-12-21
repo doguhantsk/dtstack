@@ -1,253 +1,147 @@
-// --- 0. BAŞLANGIÇ AYARLARI ---
-// Sayfayı yenileyince en tepeye al (Tarayıcı hafızasını sil)
-if (history.scrollRestoration) {
-    history.scrollRestoration = 'manual';
-}
-window.scrollTo(0, 0);
-
-// --- 1. GÜVENLİK MODU (FAIL-SAFE) ---
-// Eğer site 4 saniye içinde açılmazsa (internet yavaşsa), zorla aç.
-setTimeout(() => {
-    const preloader = document.getElementById("preloader");
-    if(preloader && preloader.style.display !== 'none') {
-        preloader.style.display = 'none';
-        document.body.style.overflow = 'auto';
-        if(typeof initSiteAnimations === 'function') initSiteAnimations();
-    }
-}, 4000);
-
-// --- 2. EMAILJS BAŞLATMA ---
+// Clean and validated script.js
+// --- 0. BASLANGIC ---
 (function(){
-    // Senin Public Key'in
+    if (history && history.scrollRestoration) history.scrollRestoration = 'manual';
+    try { window.scrollTo(0,0); } catch(e) {}
+
+    // Fail-safe preloader hide
+    setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        if (preloader && preloader.style.display !== 'none') {
+            preloader.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            if (typeof initSiteAnimations === 'function') initSiteAnimations();
+        }
+    }, 4000);
+
+    // EmailJS init (safe)
     try {
         if (typeof emailjs !== 'undefined' && typeof emailjs.init === 'function') {
-            emailjs.init("-E1BQ3DQoMooRhu8e");
+            emailjs.init('-E1BQ3DQoMooRhu8e');
         } else {
-            console.warn('emailjs not loaded yet. Will attempt to init on load.');
             window.addEventListener('load', () => {
                 if (typeof emailjs !== 'undefined' && typeof emailjs.init === 'function') {
-                    emailjs.init("-E1BQ3DQoMooRhu8e");
+                    emailjs.init('-E1BQ3DQoMooRhu8e');
                 } else {
-                    console.error('emailjs still not available after load.');
+                    console.warn('emailjs not available after load');
                 }
             });
         }
-    } catch (e) {
-        console.error('emailjs init error', e);
+    } catch (err) {
+        console.error('emailjs init error', err);
     }
-})();
 
-// --- 3. SİTE YÜKLEME VE PRELOADER ---
-// window.load: Tüm resimler ve CSS yüklendikten sonra çalışır.
-window.addEventListener("load", () => {
-    const counter = document.getElementById("loader-text");
-    const bar = document.getElementById("loader-bar");
-    const preloader = document.getElementById("preloader");
-    const cursor = document.getElementById("cursor");
+    // Site load actions
+    window.addEventListener('load', () => {
+        const counter = document.getElementById('loader-text');
+        const bar = document.getElementById('loader-bar');
+        const preloader = document.getElementById('preloader');
+        const cursor = document.getElementById('cursor');
 
-    // Cursor Takibi
-    try {
-        document.addEventListener('mousemove', (e) => {
-            if(cursor) {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            }
-        });
-        document.querySelectorAll('a, button, .cursor-pointer, .type-btn, input, textarea').forEach(link => {
-            link.addEventListener('mouseenter', () => cursor?.classList.add('hovered'));
-            link.addEventListener('mouseleave', () => cursor?.classList.remove('hovered'));
-        });
-    } catch(e) {}
-
-    // Yükleme Sayacı
-    let count = 0;
-    const interval = setInterval(() => {
-        count += Math.floor(Math.random() * 10) + 1; 
-        if (count > 100) count = 100;
-
-        if(counter) counter.innerText = count;
-        if(bar) bar.style.width = count + "%";
-
-        if (count === 100) {
-            clearInterval(interval);
-            // Animasyonla Perdeyi Kaldır
-            if (typeof gsap !== 'undefined') {
-                gsap.to(preloader, {
-                    yPercent: -100,
-                    duration: 1.2,
-                    ease: "power4.inOut",
-                    delay: 0.2,
-                    onComplete: initSiteAnimations
-                });
-            } else {
-                preloader.style.display = 'none';
-                initSiteAnimations();
-            }
-        }
-    }, 20);
-});
-
-// --- 4. ANİMASYONLARI BAŞLAT ---
-function initSiteAnimations() {
-    document.body.style.overflow = 'auto'; // Scroll kilidini aç
-
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger);
-
-        // --- 🚨 KRİTİK BÖLÜM: GÖZCÜ KULELERİ (WATCHERS) 🚨 ---
-        // Tailwind CSS geç yüklense bile, bu kodlar yerleşimleri
-        // 0.5, 1 ve 2. saniyede tekrar hesaplayıp düzeltir.
-        ScrollTrigger.refresh();
-        setTimeout(() => ScrollTrigger.refresh(), 500);  
-        setTimeout(() => ScrollTrigger.refresh(), 1000); 
-        setTimeout(() => ScrollTrigger.refresh(), 2000); 
-
-        // Başlık Animasyonu
+        // cursor follow
         try {
-            const title = new SplitType('#hero-title', { types: 'words, chars' });
-            gsap.from(title.chars, {
-                y: 100, opacity: 0, rotationZ: 5, duration: 1, stagger: 0.02, ease: "back.out(1.7)", delay: 0.2
+            document.addEventListener('mousemove', (e) => {
+                if (cursor) {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                }
+            });
+            document.querySelectorAll('a, button, .cursor-pointer, .type-btn, input, textarea').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor && cursor.classList.add('hovered'));
+                el.addEventListener('mouseleave', () => cursor && cursor.classList.remove('hovered'));
             });
         } catch(e) {}
 
-        // Reveal (Yukarı Kayarak Gelme) Animasyonları
-        gsap.utils.toArray('.reveal').forEach(elem => {
-            gsap.from(elem, { 
-                y: 50, opacity: 0, duration: 1, ease: "power3.out", 
-                scrollTrigger: { 
-                    trigger: elem, 
-                    start: "top 90%", // Tetiklenme noktası
-                    toggleActions: "play none none reverse"
-                } 
-            });
-        });
-    }
-}
-
-// --- 5. ETKİLEŞİM FONKSİYONLARI ---
-
-// Tab (Sekme) Değiştirme
-function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tab-content");
-    for (i = 0; i < tabcontent.length; i++) { tabcontent[i].classList.remove("active"); }
-    tablinks = document.getElementsByClassName("tab-btn");
-    for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
-    document.getElementById(tabName).classList.add("active");
-    evt.currentTarget.classList.add("active");
-    
-    // Tab değişince boy değişir, hesabı yenile
-    if(typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-}
-
-// SSS (Accordion) Açma
-function toggleFaq(element) { 
-    element.classList.toggle("active");
-    setTimeout(() => { 
-        if(typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); 
-    }, 350);
-}
-
-// Proje Modalı
-const modal = document.getElementById('project-modal');
-const frame = document.getElementById('project-frame');
-const titleModal = document.getElementById('modal-title');
-
-function openProject(url, name) {
-    frame.src = url;
-    if(titleModal) titleModal.innerText = name;
-    if(modal) modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeProject() {
-    if(modal) modal.classList.remove('active');
-    setTimeout(() => { if(frame) frame.src = ''; }, 800);
-    document.body.style.overflow = 'auto';
-}
-
-// Formdaki Proje Türü Seçimi
-function selectType(btn, value) {
-    const input = document.getElementById('project_type_input');
-    if(input) input.value = value;
-    const buttons = document.querySelectorAll('.type-btn');
-    buttons.forEach(b => {
-        b.classList.remove('bg-neon', 'text-black', 'font-bold', 'border-neon');
-        b.classList.add('border-white/10', 'text-gray-400');
-    });
-    btn.classList.remove('border-white/10', 'text-gray-400');
-    btn.classList.add('bg-neon', 'text-black', 'font-bold', 'border-neon');
-}
-
-// --- 6. MAIL GÖNDERME ---
-function sendEmail(e) {
-    e.preventDefault();
-
-    const btn = document.getElementById('submit-btn');
-    const originalText = btn ? btn.innerText : 'GÖNDER';
-
-    if (btn) {
-        btn.innerText = "GÖNDERİLİYOR...";
-        btn.disabled = true;
-        btn.classList.add('opacity-50', 'cursor-not-allowed');
-    }
-
-    const serviceID = 'service_j96oxki';
-    const ownerTemplateID = 'template_qaxd23b';
-    const publicKey = '-E1BQ3DQoMooRhu8e';
-
-    const form = document.getElementById('contact-form');
-    if (!form) {
-        console.error('contact-form not found');
-        if (btn) {
-            btn.innerText = originalText;
-            btn.disabled = false;
-            btn.classList.remove('opacity-50', 'cursor-not-allowed');
-        }
-        return;
-    }
-
-    if (typeof emailjs === 'undefined' || typeof emailjs.sendForm !== 'function') {
-        console.error('emailjs is not loaded');
-        if (btn) {
-            btn.innerText = originalText;
-            btn.disabled = false;
-            btn.classList.remove('opacity-50', 'cursor-not-allowed');
-        }
-        return;
-    }
-
-    emailjs.sendForm(serviceID, ownerTemplateID, form, publicKey)
-        .then((result) => {
-            console.log('Email sent', result.status, result.text);
-            if (btn) {
-                btn.innerText = "✅ MESAJINIZ ULAŞTI";
-                btn.classList.remove('bg-neon', 'text-black');
-                btn.classList.add('bg-green-500', 'text-white');
-            }
-            form.reset();
-            setTimeout(() => {
-                if (btn) {
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                    btn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-green-500', 'text-white');
-                    btn.classList.add('bg-neon', 'text-black');
+        // fake loader
+        let count = 0;
+        const interval = setInterval(() => {
+            count += Math.floor(Math.random()*10) + 1;
+            if (count > 100) count = 100;
+            if (counter) counter.innerText = count;
+            if (bar) bar.style.width = count + '%';
+            if (count === 100) {
+                clearInterval(interval);
+                if (typeof gsap !== 'undefined') {
+                    try { gsap.to(preloader, { yPercent: -100, duration: 1.2, ease: 'power4.inOut', delay: 0.2, onComplete: initSiteAnimations }); } catch(e) { if (preloader) preloader.style.display = 'none'; initSiteAnimations(); }
+                } else {
+                    if (preloader) preloader.style.display = 'none';
+                    initSiteAnimations();
                 }
-            }, 3000);
-        })
-        .catch((error) => {
-            console.error('Email send failed', error);
-            if (btn) {
-                btn.innerText = "❌ HATA OLUŞTU";
-                btn.classList.remove('bg-neon', 'text-black');
-                btn.classList.add('bg-red-600', 'text-white');
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                    btn.classList.remove('bg-red-600', 'text-white');
-                    btn.classList.add('bg-neon', 'text-black');
-                }, 4000);
             }
-            alert('Mail Hatası: ' + (error && error.text ? error.text : JSON.stringify(error)));
-        });
-}
+        }, 20);
+    });
+
+    // Animations helper
+    window.initSiteAnimations = function() {
+        document.body.style.overflow = 'auto';
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            try { gsap.registerPlugin(ScrollTrigger); } catch(e) {}
+            ScrollTrigger.refresh();
+            setTimeout(() => ScrollTrigger.refresh(), 500);
+            setTimeout(() => ScrollTrigger.refresh(), 1000);
+            setTimeout(() => ScrollTrigger.refresh(), 2000);
+            try {
+                const title = new SplitType('#hero-title', { types: 'words, chars' });
+                gsap.from(title.chars, { y: 100, opacity: 0, rotationZ: 5, duration: 1, stagger: 0.02, ease: 'back.out(1.7)', delay: 0.2 });
+            } catch(e) {}
+            try {
+                gsap.utils.toArray('.reveal').forEach(elem => {
+                    gsap.from(elem, { y: 50, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: elem, start: 'top 90%', toggleActions: 'play none none reverse' } });
+                });
+            } catch(e) {}
+        }
+    };
+
+    // Interaction helpers
+    window.openTab = function(evt, tabName) {
+        const tabcontent = document.getElementsByClassName('tab-content');
+        for (let i=0;i<tabcontent.length;i++) tabcontent[i].classList.remove('active');
+        const tablinks = document.getElementsByClassName('tab-btn');
+        for (let i=0;i<tablinks.length;i++) tablinks[i].classList.remove('active');
+        const el = document.getElementById(tabName);
+        if (el) el.classList.add('active');
+        if (evt && evt.currentTarget) evt.currentTarget.classList.add('active');
+        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+    };
+
+    window.toggleFaq = function(element) { element.classList.toggle('active'); setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); }, 350); };
+
+    // Modal
+    const modal = document.getElementById('project-modal');
+    const frame = document.getElementById('project-frame');
+    const titleModal = document.getElementById('modal-title');
+    window.openProject = function(url,name){ if(frame) frame.src = url; if(titleModal) titleModal.innerText = name; if(modal) modal.classList.add('active'); document.body.style.overflow='hidden'; };
+    window.closeProject = function(){ if(modal) modal.classList.remove('active'); setTimeout(()=>{ if(frame) frame.src=''; },800); document.body.style.overflow='auto'; };
+
+    window.selectType = function(btn, value){ const input = document.getElementById('project_type_input'); if(input) input.value = value; const buttons = document.querySelectorAll('.type-btn'); buttons.forEach(b=>{ b.classList.remove('bg-neon','text-black','font-bold','border-neon'); b.classList.add('border-white/10','text-gray-400'); }); if(btn){ btn.classList.remove('border-white/10','text-gray-400'); btn.classList.add('bg-neon','text-black','font-bold','border-neon'); } };
+
+    // Send email
+    window.sendEmail = function(e) {
+        if (e && e.preventDefault) e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        const originalText = btn ? btn.innerText : 'GÖNDER';
+        if (btn) { btn.innerText = 'GÖNDERİLİYOR...'; btn.disabled = true; btn.classList.add('opacity-50','cursor-not-allowed'); }
+
+        const serviceID = 'service_j96oxki';
+        const ownerTemplateID = 'template_qaxd23b';
+        const publicKey = '-E1BQ3DQoMooRhu8e';
+
+        const form = document.getElementById('contact-form');
+        if (!form) { console.error('contact-form not found'); if(btn){ btn.innerText = originalText; btn.disabled = false; btn.classList.remove('opacity-50','cursor-not-allowed'); } return; }
+        if (typeof emailjs === 'undefined' || typeof emailjs.sendForm !== 'function') { console.error('emailjs is not loaded'); if(btn){ btn.innerText = originalText; btn.disabled = false; btn.classList.remove('opacity-50','cursor-not-allowed'); } return; }
+
+        emailjs.sendForm(serviceID, ownerTemplateID, form, publicKey)
+            .then(result => {
+                console.log('Email sent', result.status, result.text);
+                if (btn) { btn.innerText = '✅ MESAJINIZ ULAŞTI'; btn.classList.remove('bg-neon','text-black'); btn.classList.add('bg-green-500','text-white'); }
+                form.reset();
+                setTimeout(()=>{ if(btn){ btn.innerText = originalText; btn.disabled = false; btn.classList.remove('opacity-50','cursor-not-allowed','bg-green-500','text-white'); btn.classList.add('bg-neon','text-black'); } }, 3000);
+            })
+            .catch(error => {
+                console.error('Email send failed', error);
+                if (btn) { btn.innerText = '❌ HATA OLUŞTU'; btn.classList.remove('bg-neon','text-black'); btn.classList.add('bg-red-600','text-white'); setTimeout(()=>{ if(btn){ btn.innerText = originalText; btn.disabled = false; btn.classList.remove('bg-red-600','text-white'); btn.classList.add('bg-neon','text-black'); } },4000); }
+                alert('Mail Hatası: ' + (error && error.text ? error.text : JSON.stringify(error)));
+            });
+    };
+
+})();
