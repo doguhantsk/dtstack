@@ -81,22 +81,22 @@
                 
 
             <div class="form-wrapper">
-                <form>
+                <form id="contact-form" onsubmit="sendEmail(event)">
                     <div class="form-row">
                         <div class="input-group">
                             <label>Adınız Soyadınız</label>
-                            <input type="text" class="input-field" placeholder="Örn: Ahmet Yılmaz">
+                            <input type="text" name="from_name" class="input-field" placeholder="Örn: Ahmet Yılmaz">
                         </div>
                         <div class="input-group">
                             <label>E-Posta Adresi</label>
-                            <input type="email" class="input-field" placeholder="ornek@sirket.com">
+                            <input type="email" name="reply_to" class="input-field" placeholder="ornek@sirket.com">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="input-group">
                             <label>Hizmet Türü</label>
-                            <select class="input-field">
+                            <select name="project_type" id="project_type_input" class="input-field">
                                 <option>Web Tasarım</option>
                                 <option>Yazılım Geliştirme</option>
                                 <option>Mobil Uygulama</option>
@@ -105,7 +105,7 @@
                         </div>
                         <div class="input-group">
                             <label>Bütçe Aralığı</label>
-                            <select class="input-field">
+                            <select name="budget" class="input-field">
                                 <option>Belirtmek İstemiyorum</option>
                                 <option>50.000₺ - 100.000₺</option>
                                 <option>100.000₺ +</option>
@@ -115,10 +115,10 @@
 
                     <div class="input-group">
                         <label>Proje Detayları</label>
-                        <textarea class="input-field" rows="5" placeholder="Projenizden kısaca bahsedin..."></textarea>
+                        <textarea name="message" class="input-field" rows="5" placeholder="Projenizden kısaca bahsedin..."></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Projeyi Başlat →</button>
+                    <button id="submit-btn" type="submit" class="btn btn-primary" style="width: 100%;">Projeyi Başlat →</button>
                 </form>
             </div>
         </div>
