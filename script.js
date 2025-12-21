@@ -193,7 +193,7 @@ function sendEmail(e) {
 
     // SENİN ID BİLGİLERİN (Hepsini Kontrol Ettim)
     const serviceID = 'service_j96oxki';      
-    const ownerTemplateID = 'template_qaxd23b'; // Sana gelen
+    const ownerTemplateID = 'template_vz6mp94'; // Sana gelen
     const userTemplateID  = 'template_6n13teo'; // Müşteriye giden (Auto-Reply)
     const publicKey       = '-E1BQ3DQoMooRhu8e';   
 
