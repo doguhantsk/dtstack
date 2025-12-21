@@ -179,11 +179,12 @@ function selectType(btn, value) {
     btn.classList.add('bg-neon', 'text-black', 'font-bold', 'border-neon');
 }
 
-// --- 6. MAIL GÖNDERME (ÇİFT YÖNLÜ) ---
+// --- 6. MAIL GÖNDERME ---
 function sendEmail(e) {
     e.preventDefault();
+
     const btn = document.getElementById('submit-btn');
-    const originalText = btn ? btn.innerText : '';
+    const originalText = btn ? btn.innerText : 'GÖNDER';
 
     if (btn) {
         btn.innerText = "GÖNDERİLİYOR...";
@@ -191,11 +192,9 @@ function sendEmail(e) {
         btn.classList.add('opacity-50', 'cursor-not-allowed');
     }
 
-    // SENİN ID BİLGİLERİN (Hepsini Kontrol Ettim)
-    const serviceID = 'service_j96oxki';      
-    const ownerTemplateID = 'template_vz6mp94'; // Sana gelen
-    const userTemplateID  = 'template_6n13teo'; // Müşteriye giden (Auto-Reply)
-    const publicKey       = '-E1BQ3DQoMooRhu8e';   
+    const serviceID = 'service_j96oxki';
+    const ownerTemplateID = 'template_qaxd23b';
+    const publicKey = '-E1BQ3DQoMooRhu8e';
 
     const form = document.getElementById('contact-form');
     if (!form) {
@@ -218,50 +217,15 @@ function sendEmail(e) {
         return;
     }
 
-    const formData = new FormData(form);
-    const params = {
-        from_name: formData.get('from_name') || formData.get('name') || '',
-        reply_to: formData.get('reply_to') || formData.get('email') || '',
-        message: formData.get('message') || '',
-        project_type: formData.get('project_type') || formData.get('project_type_input') || ''
-    };
-
-    // 1. Önce SANA mail at (form element verisiyle)
-    // --- 6. MAIL GÖNDERME (TEK YÖNLÜ - SADECE SANA GELİR) ---
-function sendEmail(e) {
-    e.preventDefault(); // Sayfanın yenilenmesini engelle
-
-    const btn = document.getElementById('submit-btn');
-    const originalText = btn ? btn.innerText : 'GÖNDER';
-
-    // Butonu "Gönderiliyor" moduna al
-    if (btn) {
-        btn.innerText = "GÖNDERİLİYOR...";
-        btn.disabled = true;
-        btn.classList.add('opacity-50', 'cursor-not-allowed');
-    }
-
-    // EmailJS Ayarları
-    const serviceID = 'service_j96oxki';      
-    const ownerTemplateID = 'template_qaxd23b'; // <-- BURAYA KENDİ ÇALIŞAN TEMPLATE ID'Nİ YAZ
-    const publicKey       = '-E1BQ3DQoMooRhu8e';   
-
-    const form = document.getElementById('contact-form');
-
-    // Sadece TEK mail gönderimi (Zincir yok)
     emailjs.sendForm(serviceID, ownerTemplateID, form, publicKey)
         .then((result) => {
-            // --- BAŞARILI ---
-            console.log('SUCCESS!', result.status, result.text);
-            
+            console.log('Email sent', result.status, result.text);
             if (btn) {
                 btn.innerText = "✅ MESAJINIZ ULAŞTI";
                 btn.classList.remove('bg-neon', 'text-black');
                 btn.classList.add('bg-green-500', 'text-white');
             }
-            if (form) form.reset(); // Formu temizle
-            
-            // 3 saniye sonra butonu eski haline getir
+            form.reset();
             setTimeout(() => {
                 if (btn) {
                     btn.innerText = originalText;
@@ -270,16 +234,13 @@ function sendEmail(e) {
                     btn.classList.add('bg-neon', 'text-black');
                 }
             }, 3000);
-
-        }, (error) => {
-            // --- HATA ---
-            console.log('FAILED...', error);
-            
+        })
+        .catch((error) => {
+            console.error('Email send failed', error);
             if (btn) {
-                btn.innerText = "❌ HATA OLUŞTU"; 
+                btn.innerText = "❌ HATA OLUŞTU";
                 btn.classList.remove('bg-neon', 'text-black');
                 btn.classList.add('bg-red-600', 'text-white');
-                
                 setTimeout(() => {
                     btn.innerText = originalText;
                     btn.disabled = false;
@@ -287,6 +248,6 @@ function sendEmail(e) {
                     btn.classList.add('bg-neon', 'text-black');
                 }, 4000);
             }
-            alert("Mail Hatası: " + JSON.stringify(error));
+            alert('Mail Hatası: ' + (error && error.text ? error.text : JSON.stringify(error)));
         });
 }
