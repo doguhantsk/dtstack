@@ -257,60 +257,14 @@ function sendEmail(e) {
         btn.classList.remove('bg-neon', 'text-black');
         btn.classList.add('bg-red-500', 'text-white'); // Kırmızı renk yap
         
-       // --- 6. MAIL GÖNDERME (SADELEŞTİRİLMİŞ - SADECE SANA GELİR) ---
-function sendEmail(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submit-btn');
-    const originalText = btn ? btn.innerText : '';
-
-    if (btn) {
-        btn.innerText = "GÖNDERİLİYOR...";
-        btn.disabled = true;
-        btn.classList.add('opacity-50', 'cursor-not-allowed');
+        // 3 saniye sonra butonu eski haline getir
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.disabled = false;
+            btn.classList.remove('bg-red-500', 'text-white');
+            btn.classList.add('bg-neon', 'text-black');
+        }, 3000);
     }
-
-    // ID BİLGİLERİN
-    const serviceID = 'service_j96oxki';      
-    const ownerTemplateID = 'BURAYA_KENDI_TEMPLATE_ID_NI_YAZ'; // <-- Sadece bunu kontrol et
-    const publicKey       = '-E1BQ3DQoMooRhu8e';   
-
-    const form = document.getElementById('contact-form');
-
-    // Sadece tek bir mail atma işlemi (sendForm)
-    emailjs.sendForm(serviceID, ownerTemplateID, form, publicKey)
-        .then(() => {
-            // BAŞARILI OLURSA BURASI ÇALIŞIR
-            if (btn) {
-                btn.innerText = "✅ MESAJINIZ ULAŞTI";
-                btn.classList.remove('bg-neon', 'text-black');
-                btn.classList.add('bg-green-500', 'text-white');
-            }
-            form.reset();
-            
-            setTimeout(() => {
-                if (btn) {
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                    btn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-green-500', 'text-white');
-                    btn.classList.add('bg-neon', 'text-black');
-                }
-            }, 3000);
-        })
-        .catch((error) => {
-            // HATA OLURSA BURASI ÇALIŞIR
-            console.log('FAILED...', error);
-            if (btn) {
-                btn.innerText = "❌ HATA: " + error.text; 
-                btn.classList.remove('bg-neon', 'text-black');
-                btn.classList.add('bg-red-600', 'text-white');
-                
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                    btn.classList.remove('bg-red-600', 'text-white');
-                    btn.classList.add('bg-neon', 'text-black');
-                }, 5000);
-            }
-            alert("Hata: " + JSON.stringify(error));
-        });
+    alert("Hata Detayı: " + JSON.stringify(error)); // Telefondan deniyorsanız hatayı ekrana basar
+});
 }
