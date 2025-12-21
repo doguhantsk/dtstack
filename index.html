@@ -1,238 +1,75 @@
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Doğuhan Taşkın | Full Stack Architect</title>
-    <meta name="description" content="Doğuhan Taşkın - Modern web tasarımı, özel yazılım çözümleri ve dijital mimari uzmanı. İşletmeniz için satış odaklı, hızlı ve estetik çözümler.">
-    <meta name="keywords" content="web tasarım, yazılım, full stack developer, dijital mimar, doğuhan taşkın, frontend, backend, seo">
-    <meta name="author" content="Doğuhan Taşkın">
-    
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-
+    <title>Hakkımızda - DTStack</title>
     <link rel="stylesheet" href="style.css">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['"Space Grotesk"', 'monospace'],
-                    },
-                    colors: {
-                        'void': '#030303',
-                        'neon': '#ccff00',
-                        'glass': 'rgba(255, 255, 255, 0.05)',
-                        'dark-card': '#0a0a0a',
-                    }
-                }
-            }
+    <style>
+        /* Bu sayfaya özel ufak düzenlemeler */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 40px; }
+        .stat-box {
+            background: var(--primary-light); padding: 30px; border-radius: 20px;
+            text-align: center; border: 1px solid var(--border-color); transition: 0.3s;
         }
-    </script>
+        .stat-box:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 5px; }
+        .stat-label { color: var(--text-light); font-size: 0.9rem; }
+        @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+    </style>
 </head>
-<body class="selection:bg-neon selection:text-black">
+<body>
+    <div class="background-gradient"></div>
 
-    <div id="preloader" class="fixed inset-0 z-[10000] bg-[#030303] flex flex-col items-center justify-center">
-        <div class="font-mono text-neon text-4xl md:text-6xl font-bold tracking-tighter mb-4">
-            <span id="loader-text">0</span>%
-        </div>
-        <div class="w-64 h-1 bg-white/10 rounded-full overflow-hidden">
-            <div id="loader-bar" class="h-full bg-neon w-0 transition-all duration-75"></div>
-        </div>
-        <div class="mt-4 font-mono text-xs text-gray-500 animate-pulse">SYSTEM INITIALIZING...</div>
+    <div class="nav-wrapper">
+        <nav>
+            <a href="index.html" class="logo"><div class="logo-icon">⚡</div>DTStack</a>
+            <div class="nav-links">
+                <a href="hakkimizda.html" style="color:var(--accent)">Hakkımızda</a>
+                <a href="ornekler.html">Projeler</a>
+                <a href="referanslar.html">Referanslar</a>
+                <a href="proje.html" class="nav-cta">Proje Başlat</a>
+            </div>
+        </nav>
     </div>
 
-    <div id="cursor"></div>
-    <div class="noise"></div>
-
-    <nav class="fixed top-0 w-full z-50 px-6 md:px-12 py-6 flex justify-between items-center mix-blend-difference bg-void/80 backdrop-blur-md border-b border-white/5">
-        <div class="font-mono text-xl font-bold tracking-tighter cursor-pointer hover:text-neon transition-colors">DG<span class="text-neon">.OS</span> v2.5</div>
-        <div class="hidden md:flex gap-8 font-mono text-xs uppercase tracking-widest text-gray-400">
-            <a href="#services" class="hover:text-white transition-colors">Hizmetler</a>
-            <a href="#process" class="hover:text-white transition-colors">Süreç</a>
-            <a href="#projects" class="hover:text-white transition-colors">Referanslar</a>
-            <a href="#faq" class="hover:text-white transition-colors">SSS</a>
+    <section class="section" style="padding-top: 160px;">
+        <div class="section-header">
+            <div class="hero-badge fade-up">Biz Kimiz?</div>
+            <h1 class="hero-title fade-up delay-1" style="font-size: 3.5rem;">Dijital Mükemmelliğin <br> Kodlarını Yazıyoruz.</h1>
         </div>
-        <a href="#contact" class="bg-white text-black px-6 py-2 rounded-full font-mono text-xs font-bold uppercase hover:bg-neon transition-all">
-            Projeye Başla
-        </a>
-    </nav>
 
-    <section class="min-h-screen flex flex-col justify-center px-6 md:px-20 relative pt-20">
-        <div class="absolute top-1/2 right-10 w-96 h-96 bg-neon/5 rounded-full blur-[120px] pointer-events-none"></div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded border border-neon/20 bg-neon/5 text-neon text-xs font-mono mb-6 w-fit reveal">
-            <span class="animate-pulse">●</span> MÜSAİT DURUMDA
-        </div>
-        <h1 id="hero-title" class="text-5xl md:text-8xl lg:text-9xl font-bold leading-[0.9] tracking-tighter mb-8">
-            DİJİTAL <br> MİMARİ <br> UZMANI.
-        </h1>
-        <p class="text-gray-400 max-w-2xl text-lg md:text-xl reveal leading-relaxed mb-10">
-            İşletmeniz için sadece web sitesi değil; satış getiren, marka değerini artıran ve rakiplerinizin kıskanacağı dijital ekosistemler inşa ediyorum.
-        </p>
-        <div class="flex flex-col md:flex-row gap-6 reveal">
-            <a href="#projects" class="bg-neon text-black px-10 py-5 font-bold font-mono uppercase hover:scale-105 transition-transform text-center">Canlı Projeleri Gör</a>
-            <a href="#services" class="border border-white/20 px-10 py-5 font-bold font-mono uppercase hover:bg-white/10 transition-colors text-center">Neler Yapıyorum?</a>
-        </div>
-    </section>
-
-    <section id="services" class="py-32 px-6 md:px-20 border-t border-white/10 bg-dark-card">
-        <h2 class="text-sm font-mono text-neon mb-10 tracking-widest uppercase reveal">/// HİZMET KAPASİTESİ</h2>
-        <div class="flex flex-col md:flex-row gap-12">
-            <div class="flex flex-row md:flex-col gap-4 md:w-1/4 overflow-x-auto pb-4 md:pb-0 reveal">
-                <button onclick="openTab(event, 'design')" class="tab-btn active text-left px-6 py-4 border border-white/10 text-gray-400 font-mono text-sm hover:border-white transition-all">01. UI/UX TASARIM</button>
-                <button onclick="openTab(event, 'dev')" class="tab-btn text-left px-6 py-4 border border-white/10 text-gray-400 font-mono text-sm hover:border-white transition-all">02. YAZILIM & KOD</button>
-                <button onclick="openTab(event, 'growth')" class="tab-btn text-left px-6 py-4 border border-white/10 text-gray-400 font-mono text-sm hover:border-white transition-all">03. BÜYÜME & SEO</button>
+        <div class="about-grid fade-up delay-2">
+            <div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: white;">Vizyonumuz</h3>
+                <p style="color: var(--text-light); margin-bottom: 20px; font-size: 1.1rem;">
+                    DTStack olarak teknolojiyi sadece bir araç olarak görmüyor, onu işletmeleri dönüştüren bir güç olarak kullanıyoruz. Karmaşık veri yapılarını, anlaşılır ve estetik arayüzlere dönüştürme tutkusuyla yola çıktık.
+                </p>
+                <p style="color: var(--text-light); font-size: 1.1rem;">
+                    Sıradan olana meydan okuyor, her satır kodda ve her piksel tasarımda "mükemmeli" arıyoruz. Bizim için başarı, müşterimizin dijital dünyada parmakla gösterilmesidir.
+                </p>
             </div>
-            <div class="md:w-3/4 min-h-[400px] reveal">
-                <div id="design" class="tab-content active space-y-8">
-                    <h3 class="text-4xl md:text-6xl font-bold mb-6">İnsan Odaklı Estetik.</h3>
-                    <p class="text-gray-400 text-lg leading-relaxed max-w-2xl">Kullanıcıların sitenizde kaybolmasını değil, aşık olmasını sağlıyorum.</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                        <div class="border border-white/10 p-6 hover:border-neon transition-colors cursor-pointer">
-                            <i class="fa-solid fa-pen-ruler text-neon text-2xl mb-4"></i>
-                            <h4 class="font-bold mb-2">Arayüz Tasarımı</h4>
-                            <p class="text-sm text-gray-500">Modern, temiz ve marka kimliğinize uygun görsel dil.</p>
-                        </div>
-                        <div class="border border-white/10 p-6 hover:border-neon transition-colors cursor-pointer">
-                            <i class="fa-solid fa-mobile-screen text-neon text-2xl mb-4"></i>
-                            <h4 class="font-bold mb-2">Mobil Uyumluluk</h4>
-                            <p class="text-sm text-gray-500">Telefonda, tablette ve dev ekranlarda kusursuz görünüm.</p>
-                        </div>
-                    </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="stat-box">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Yıl Deneyim</div>
                 </div>
-                <div id="dev" class="tab-content space-y-8">
-                    <h3 class="text-4xl md:text-6xl font-bold mb-6">Kusursuz Mühendislik.</h3>
-                    <p class="text-gray-400 text-lg leading-relaxed max-w-2xl">Hazır şablonlar yok. Sıfırdan yazılmış, ultra hızlı kod altyapısı.</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                        <div class="border border-white/10 p-6 hover:border-neon transition-colors cursor-pointer">
-                            <i class="fa-solid fa-code text-neon text-2xl mb-4"></i>
-                            <h4 class="font-bold mb-2">Frontend Development</h4>
-                            <p class="text-sm text-gray-500">React, Tailwind ve HTML5 ile ışık hızında sayfalar.</p>
-                        </div>
-                        <div class="border border-white/10 p-6 hover:border-neon transition-colors cursor-pointer">
-                            <i class="fa-solid fa-database text-neon text-2xl mb-4"></i>
-                            <h4 class="font-bold mb-2">Backend & API</h4>
-                            <p class="text-sm text-gray-500">Veri yönetimi, yönetim panelleri ve entegrasyonlar.</p>
-                        </div>
-                    </div>
+                <div class="stat-box">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Mutlu Müşteri</div>
                 </div>
-                <div id="growth" class="tab-content space-y-8">
-                    <h3 class="text-4xl md:text-6xl font-bold mb-6">Görünür Olun.</h3>
-                    <p class="text-gray-400 text-lg leading-relaxed max-w-2xl">SEO optimizasyonu ve performans ayarlarıyla Google'da üst sıralar.</p>
-                    <ul class="space-y-4 font-mono text-sm text-gray-400">
-                        <li class="flex items-center gap-3"><span class="text-neon">✓</span> Teknik SEO Altyapısı</li>
-                        <li class="flex items-center gap-3"><span class="text-neon">✓</span> Google PageSpeed (90+ Puan)</li>
-                        <li class="flex items-center gap-3"><span class="text-neon">✓</span> Google Analytics</li>
-                    </ul>
+                <div class="stat-box">
+                    <div class="stat-number">%99</div>
+                    <div class="stat-label">Başarı Oranı</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Aktif Destek</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-32 px-6 md:px-20 border-t border-white/10">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
-            <h2 class="text-4xl md:text-6xl font-bold">REFERANSLAR</h2>
-            <p class="text-gray-500 font-mono text-sm max-w-sm text-right mt-4 md:mt-0">Aşağıdaki projelere tıklayarak canlı demoları deneyimleyebilirsiniz.</p>
-        </div>
-        <div class="space-y-0 reveal">
-            <div onclick="openProject('proje1.html', 'ATLAS COMMERCE')" class="group border-t border-white/20 py-12 cursor-pointer hover:bg-white/5 transition-colors relative overflow-hidden">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center relative z-10 px-4">
-                    <h3 class="text-5xl md:text-7xl font-bold text-gray-500 group-hover:text-white transition-colors">01 ATLAS</h3>
-                    <div class="mt-4 md:mt-0 text-right"><span class="block text-neon font-mono text-xs mb-1">E-TİCARET</span><span class="text-sm text-gray-400">Moda & Satış Arayüzü</span></div>
-                </div>
-            </div>
-            <div onclick="openProject('proje2.html', 'VANGUARD CORP')" class="group border-t border-white/20 py-12 cursor-pointer hover:bg-white/5 transition-colors relative overflow-hidden">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center relative z-10 px-4">
-                    <h3 class="text-5xl md:text-7xl font-bold text-gray-500 group-hover:text-white transition-colors">02 VANGUARD</h3>
-                    <div class="mt-4 md:mt-0 text-right"><span class="block text-neon font-mono text-xs mb-1">KURUMSAL</span><span class="text-sm text-gray-400">Prestijli Şirket Kimliği</span></div>
-                </div>
-            </div>
-            <div onclick="openProject('proje3.html', 'NEXUS DASHBOARD')" class="group border-t border-white/20 border-b py-12 cursor-pointer hover:bg-white/5 transition-colors relative overflow-hidden">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center relative z-10 px-4">
-                    <h3 class="text-5xl md:text-7xl font-bold text-gray-500 group-hover:text-white transition-colors">03 NEXUS</h3>
-                    <div class="mt-4 md:mt-0 text-right"><span class="block text-neon font-mono text-xs mb-1">YAZILIM</span><span class="text-sm text-gray-400">Veri Yönetim Paneli</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="process" class="py-32 px-6 md:px-20 bg-white text-black">
-        <h2 class="text-4xl md:text-6xl font-bold mb-16 reveal">ÇALIŞMA PRENSİBİ</h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 reveal">
-            <div class="border-t-2 border-black pt-6"><span class="font-mono text-sm font-bold block mb-4">01 / ANALİZ</span><p class="text-lg font-bold mb-2">Keşif & Strateji</p><p class="text-gray-600 text-sm">Hedef kitle ve rakip analizi.</p></div>
-            <div class="border-t-2 border-black pt-6"><span class="font-mono text-sm font-bold block mb-4">02 / TASARIM</span><p class="text-lg font-bold mb-2">UX & Görsel</p><p class="text-gray-600 text-sm">Kodlamadan önce tasarım onayı.</p></div>
-            <div class="border-t-2 border-black pt-6"><span class="font-mono text-sm font-bold block mb-4">03 / KODLAMA</span><p class="text-lg font-bold mb-2">Geliştirme</p><p class="text-gray-600 text-sm">Modern, hızlı ve temiz kodlama.</p></div>
-            <div class="border-t-2 border-black pt-6"><span class="font-mono text-sm font-bold block mb-4">04 / YAYIN</span><p class="text-lg font-bold mb-2">Teslim & Destek</p><p class="text-gray-600 text-sm">Yayınlama ve teknik destek.</p></div>
-        </div>
-    </section>
-
-    <section id="faq" class="py-32 px-6 md:px-20 border-t border-white/10">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 reveal">
-            <div><h2 class="text-4xl font-bold mb-6">MERAK EDİLENLER</h2><p class="text-gray-400">Sorularınızın cevapları burada.</p></div>
-            <div class="space-y-4">
-                <div class="faq-item border border-white/10 rounded-lg p-6 cursor-pointer hover:border-white/30 transition-colors" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center"><h4 class="font-bold">Proje süreci ne kadar sürer?</h4><i class="fa-solid fa-chevron-down faq-icon transition-transform"></i></div>
-                    <div class="faq-answer text-gray-400 text-sm mt-0"><p class="pt-4">Vitrin siteleri 3-5 gün, kurumsal siteler 1-2 hafta, özel projeler 3-4 hafta sürer.</p></div>
-                </div>
-                <div class="faq-item border border-white/10 rounded-lg p-6 cursor-pointer hover:border-white/30 transition-colors" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center"><h4 class="font-bold">Ödeme koşulları nasıl?</h4><i class="fa-solid fa-chevron-down faq-icon transition-transform"></i></div>
-                    <div class="faq-answer text-gray-400 text-sm mt-0"><p class="pt-4">%50 iş başlangıcında, %50 teslimatta.</p></div>
-                </div>
-                <div class="faq-item border border-white/10 rounded-lg p-6 cursor-pointer hover:border-white/30 transition-colors" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center"><h4 class="font-bold">Destek veriyor musunuz?</h4><i class="fa-solid fa-chevron-down faq-icon transition-transform"></i></div>
-                    <div class="faq-answer text-gray-400 text-sm mt-0"><p class="pt-4">Teslim sonrası 1 ay ücretsiz destek sağlıyorum.</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact" class="py-32 px-6 md:px-20 bg-[#050505] border-t border-white/10">
-        <div class="max-w-4xl mx-auto reveal">
-            <h2 class="text-4xl md:text-6xl font-bold mb-12 text-center">PROJENİZİ ANLATIN</h2>
-            <form id="contact-form" onsubmit="sendEmail(event)" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-2"><label class="text-xs font-mono text-neon uppercase">İsim Soyisim</label><input type="text" name="from_name" required class="w-full bg-white/5 border border-white/10 p-4 rounded focus:border-neon focus:outline-none text-white transition-colors cursor-text" placeholder="Adınız"></div>
-                    <div class="space-y-2"><label class="text-xs font-mono text-neon uppercase">E-Posta</label><input type="email" name="reply_to" required class="w-full bg-white/5 border border-white/10 p-4 rounded focus:border-neon focus:outline-none text-white transition-colors cursor-text" placeholder="mail@ornek.com"></div>
-                </div>
-                <div class="space-y-2">
-                    <label class="text-xs font-mono text-neon uppercase">Proje Türü</label>
-                    <input type="hidden" name="project_type" id="project_type_input" value="Web Sitesi">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <button type="button" onclick="selectType(this, 'Web Sitesi')" class="type-btn border border-neon bg-neon text-black p-3 rounded text-sm font-bold transition-colors">Web Sitesi</button>
-                        <button type="button" onclick="selectType(this, 'E-Ticaret')" class="type-btn border border-white/10 p-3 rounded hover:bg-neon hover:text-black transition-colors text-sm text-gray-400">E-Ticaret</button>
-                        <button type="button" onclick="selectType(this, 'Yazılım')" class="type-btn border border-white/10 p-3 rounded hover:bg-neon hover:text-black transition-colors text-sm text-gray-400">Yazılım</button>
-                        <button type="button" onclick="selectType(this, 'Diğer')" class="type-btn border border-white/10 p-3 rounded hover:bg-neon hover:text-black transition-colors text-sm text-gray-400">Diğer</button>
-                    </div>
-                </div>
-                <div class="space-y-2"><label class="text-xs font-mono text-neon uppercase">Mesajınız</label><textarea name="message" rows="4" required class="w-full bg-white/5 border border-white/10 p-4 rounded focus:border-neon focus:outline-none text-white transition-colors cursor-text" placeholder="Projenizden kısaca bahsedin..."></textarea></div>
-                <button type="submit" id="submit-btn" class="w-full bg-neon text-black font-bold py-5 rounded uppercase tracking-widest hover:bg-white transition-colors">Teklifi Gönder</button>
-            </form>
-            <div class="mt-20 text-center flex justify-center gap-8 text-gray-500 font-mono text-sm"><a href="#" class="hover:text-neon">LINKEDIN</a><a href="#" class="hover:text-neon">GITHUB</a><a href="#" class="hover:text-neon">INSTAGRAM</a></div>
-            <p class="text-center text-xs text-gray-700 mt-8 font-mono">© 2025 DOĞUHAN TAŞKIN</p>
-        </div>
-    </footer>
-
-    <div id="project-modal" class="fixed inset-0 z-[9990] bg-[#0a0a0a] flex flex-col">
-        <div class="h-16 border-b border-white/10 flex justify-between items-center px-6 bg-[#0a0a0a]">
-            <div class="flex items-center gap-4"><span id="modal-title" class="font-mono font-bold text-neon">PROJECT NAME</span><div class="px-2 py-0.5 bg-green-500/10 text-green-500 text-[10px] rounded font-mono animate-pulse">● LIVE</div></div>
-            <button onclick="closeProject()" class="text-sm font-mono hover:text-neon transition-colors">[ KAPAT X ]</button>
-        </div>
-        <div class="flex-1 w-full h-full relative"><iframe id="project-frame" src="" class="w-full h-full border-0" title="Project Preview"></iframe></div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/split-type"></script>
-
-    <script src="script.js"></script>
-</body>
+    </body>
 </html>
