@@ -250,19 +250,21 @@ function sendEmail(e) {
                 }
             }, 3000);
         })
-        .catch((error) => {
-            // HATA (Ama kullanıcıya çaktırma)
-            console.log('FAILED...', error);
-            if (btn) {
-                btn.innerText = "✅ İLETİLDİ"; 
-                btn.classList.remove('bg-neon', 'text-black');
-                btn.classList.add('bg-green-500', 'text-white');
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                    btn.classList.remove('bg-green-500', 'text-white');
-                    btn.classList.add('bg-neon', 'text-black');
-                }, 3000);
-            }
-        });
+    .catch((error) => {
+    console.log('FAILED...', error); // Tarayıcı konsoluna hatayı yazar
+    if (btn) {
+        btn.innerText = "❌ HATA OLUŞTU"; // Kullanıcıya hatayı göster
+        btn.classList.remove('bg-neon', 'text-black');
+        btn.classList.add('bg-red-500', 'text-white'); // Kırmızı renk yap
+        
+        // 3 saniye sonra butonu eski haline getir
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.disabled = false;
+            btn.classList.remove('bg-red-500', 'text-white');
+            btn.classList.add('bg-neon', 'text-black');
+        }, 3000);
+    }
+    alert("Hata Detayı: " + JSON.stringify(error)); // Telefondan deniyorsanız hatayı ekrana basar
+});
 }
