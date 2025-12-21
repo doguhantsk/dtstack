@@ -227,20 +227,41 @@ function sendEmail(e) {
     };
 
     // 1. Önce SANA mail at (form element verisiyle)
+    // --- 6. MAIL GÖNDERME (TEK YÖNLÜ - SADECE SANA GELİR) ---
+function sendEmail(e) {
+    e.preventDefault(); // Sayfanın yenilenmesini engelle
+
+    const btn = document.getElementById('submit-btn');
+    const originalText = btn ? btn.innerText : 'GÖNDER';
+
+    // Butonu "Gönderiliyor" moduna al
+    if (btn) {
+        btn.innerText = "GÖNDERİLİYOR...";
+        btn.disabled = true;
+        btn.classList.add('opacity-50', 'cursor-not-allowed');
+    }
+
+    // EmailJS Ayarları
+    const serviceID = 'service_j96oxki';      
+    const ownerTemplateID = 'template_qaxd23b'; // <-- BURAYA KENDİ ÇALIŞAN TEMPLATE ID'Nİ YAZ
+    const publicKey       = '-E1BQ3DQoMooRhu8e';   
+
+    const form = document.getElementById('contact-form');
+
+    // Sadece TEK mail gönderimi (Zincir yok)
     emailjs.sendForm(serviceID, ownerTemplateID, form, publicKey)
-        .then(() => {
-            // 2. Sonra MÜŞTERİYE mail at
-            return emailjs.send(serviceID, userTemplateID, params, publicKey);
-        })
-        .then(() => {
-            // BAŞARILI
+        .then((result) => {
+            // --- BAŞARILI ---
+            console.log('SUCCESS!', result.status, result.text);
+            
             if (btn) {
                 btn.innerText = "✅ MESAJINIZ ULAŞTI";
                 btn.classList.remove('bg-neon', 'text-black');
                 btn.classList.add('bg-green-500', 'text-white');
             }
-            form.reset();
+            if (form) form.reset(); // Formu temizle
             
+            // 3 saniye sonra butonu eski haline getir
             setTimeout(() => {
                 if (btn) {
                     btn.innerText = originalText;
@@ -249,22 +270,23 @@ function sendEmail(e) {
                     btn.classList.add('bg-neon', 'text-black');
                 }
             }, 3000);
-        })
-    .catch((error) => {
-    console.log('FAILED...', error); // Tarayıcı konsoluna hatayı yazar
-    if (btn) {
-        btn.innerText = "❌ HATA OLUŞTU"; // Kullanıcıya hatayı göster
-        btn.classList.remove('bg-neon', 'text-black');
-        btn.classList.add('bg-red-500', 'text-white'); // Kırmızı renk yap
-        
-        // 3 saniye sonra butonu eski haline getir
-        setTimeout(() => {
-            btn.innerText = originalText;
-            btn.disabled = false;
-            btn.classList.remove('bg-red-500', 'text-white');
-            btn.classList.add('bg-neon', 'text-black');
-        }, 3000);
-    }
-    alert("Hata Detayı: " + JSON.stringify(error)); // Telefondan deniyorsanız hatayı ekrana basar
-});
+
+        }, (error) => {
+            // --- HATA ---
+            console.log('FAILED...', error);
+            
+            if (btn) {
+                btn.innerText = "❌ HATA OLUŞTU"; 
+                btn.classList.remove('bg-neon', 'text-black');
+                btn.classList.add('bg-red-600', 'text-white');
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    btn.classList.remove('bg-red-600', 'text-white');
+                    btn.classList.add('bg-neon', 'text-black');
+                }, 4000);
+            }
+            alert("Mail Hatası: " + JSON.stringify(error));
+        });
 }
