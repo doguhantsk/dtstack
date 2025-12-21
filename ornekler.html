@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeler - DTStack</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Liste Görünümü İçin Dark Mode Ayarları */
+        .project-list { display: flex; flex-direction: column; margin-top: 40px; }
+        .project-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 40px 0; border-bottom: 1px solid var(--border-color);
+            text-decoration: none; transition: 0.4s; group;
+        }
+        .project-item:first-child { border-top: 1px solid var(--border-color); }
+        .project-name { font-size: 2.5rem; font-weight: 700; color: var(--text-main); transition: 0.3s; }
+        .project-meta { text-align: right; }
+        .project-cat { font-size: 0.9rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .project-year { color: var(--text-light); font-size: 0.9rem; }
+        .project-arrow {
+            font-size: 2rem; color: var(--text-main); opacity: 0; transform: translateX(-30px); transition: 0.4s;
+        }
+
+        /* Hover Efektleri */
+        .project-item:hover .project-name { color: var(--accent); padding-left: 20px; }
+        .project-item:hover .project-arrow { opacity: 1; transform: translateX(0); color: var(--accent); }
+        .project-item:hover { border-color: rgba(255,255,255,0.2); background: linear-gradient(90deg, transparent, rgba(59,130,246,0.05)); }
+        
+        @media (max-width: 768px) { .project-name { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+    <div class="background-gradient"></div>
+
+    <div class="nav-wrapper">
+        <nav>
+            <a href="index.html" class="logo"><div class="logo-icon">⚡</div>DTStack</a>
+            <div class="nav-links">
+                <a href="hakkimizda.html">Hakkımızda</a>
+                <a href="ornekler.html" style="color:var(--accent)">Projeler</a>
+                <a href="referanslar.html">Referanslar</a>
+                <a href="proje.html" class="nav-cta">Proje Başlat</a>
+            </div>
+        </nav>
+    </div>
+
+    <section class="section" style="padding-top: 160px;">
+        <div class="section-header">
+            <h1 class="hero-title fade-up">Seçilmiş İşler</h1>
+            <p style="color: var(--text-light); max-width: 600px; margin: 0 auto;" class="fade-up delay-1">
+                Yaratıcılık ve teknolojinin kesiştiği noktada ürettiğimiz bazı projeler. İncelemek için tıklayın.
+            </p>
+        </div>
+
+        <div class="project-list fade-up delay-2">
+            <a href="https://www.google.com" target="_blank" class="project-item">
+                <div>
+                    <div class="project-name">Finans Paneli UI</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:40px;">
+                    <div class="project-meta">
+                        <div class="project-cat">Dashboard / React</div>
+                        <div class="project-year">2024</div>
+                    </div>
+                    <div class="project-arrow">→</div>
+                </div>
+            </a>
+
+            <a href="#" class="project-item">
+                <div>
+                    <div class="project-name">Lojistik CRM</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:40px;">
+                    <div class="project-meta">
+                        <div class="project-cat">SaaS Platform</div>
+                        <div class="project-year">2023</div>
+                    </div>
+                    <div class="project-arrow">→</div>
+                </div>
+            </a>
+
+            <a href="#" class="project-item">
+                <div>
+                    <div class="project-name">E-Ticaret Altyapısı</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:40px;">
+                    <div class="project-meta">
+                        <div class="project-cat">Next.js / Stripe</div>
+                        <div class="project-year">2023</div>
+                    </div>
+                    <div class="project-arrow">→</div>
+                </div>
+            </a>
+        </div>
+    </section>
+</body>
+</html>

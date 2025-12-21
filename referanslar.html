@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referanslar - DTStack</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .ref-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px; margin-top: 60px;
+        }
+        .ref-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            height: 120px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; font-weight: 700; color: var(--text-light);
+            transition: 0.3s;
+        }
+        .ref-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--accent);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="background-gradient"></div>
+
+    <div class="nav-wrapper">
+        <nav>
+            <a href="index.html" class="logo"><div class="logo-icon">⚡</div>DTStack</a>
+            <div class="nav-links">
+                <a href="hakkimizda.html">Hakkımızda</a>
+                <a href="ornekler.html">Projeler</a>
+                <a href="referanslar.html" style="color:var(--accent)">Referanslar</a>
+                <a href="proje.html" class="nav-cta">Proje Başlat</a>
+            </div>
+        </nav>
+    </div>
+
+    <section class="section" style="padding-top: 160px;">
+        <div class="section-header">
+            <h1 class="hero-title fade-up">Güven İnşa Ediyoruz</h1>
+            <p style="color: var(--text-light); max-width: 600px; margin: 0 auto;" class="fade-up delay-1">
+                Küresel markalardan yenilikçi startup'lara kadar sektör liderleri dijital dönüşümde bize güveniyor.
+            </p>
+        </div>
+
+        <div class="ref-grid fade-up delay-2">
+            <div class="ref-card">GOOGLE</div>
+            <div class="ref-card">AMAZON</div>
+            <div class="ref-card">TRENDYOL</div>
+            <div class="ref-card">GETİR</div>
+            <div class="ref-card">ASELSAN</div>
+            <div class="ref-card">THY</div>
+            <div class="ref-card">MICROSOFT</div>
+            <div class="ref-card">SPOTIFY</div>
+        </div>
+
+        <div style="text-align: center; margin-top: 80px;" class="fade-up delay-3">
+            <a href="proje.html" class="btn btn-primary">Siz de Bize Katılın →</a>
+        </div>
+    </section>
+</body>
+</html>
