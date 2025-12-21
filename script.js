@@ -19,7 +19,22 @@ setTimeout(() => {
 // --- 2. EMAILJS BAŞLATMA ---
 (function(){
     // Senin Public Key'in
-    emailjs.init("-E1BQ3DQoMooRhu8e"); 
+    try {
+        if (typeof emailjs !== 'undefined' && typeof emailjs.init === 'function') {
+            emailjs.init("-E1BQ3DQoMooRhu8e");
+        } else {
+            console.warn('emailjs not loaded yet. Will attempt to init on load.');
+            window.addEventListener('load', () => {
+                if (typeof emailjs !== 'undefined' && typeof emailjs.init === 'function') {
+                    emailjs.init("-E1BQ3DQoMooRhu8e");
+                } else {
+                    console.error('emailjs still not available after load.');
+                }
+            });
+        }
+    } catch (e) {
+        console.error('emailjs init error', e);
+    }
 })();
 
 // --- 3. SİTE YÜKLEME VE PRELOADER ---
@@ -166,13 +181,15 @@ function selectType(btn, value) {
 
 // --- 6. MAIL GÖNDERME (ÇİFT YÖNLÜ) ---
 function sendEmail(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     const btn = document.getElementById('submit-btn');
-    const originalText = btn.innerText;
+    const originalText = btn ? btn.innerText : '';
 
-    btn.innerText = "GÖNDERİLİYOR...";
-    btn.disabled = true;
-    btn.classList.add('opacity-50', 'cursor-not-allowed');
+    if (btn) {
+        btn.innerText = "GÖNDERİLİYOR...";
+        btn.disabled = true;
+        btn.classList.add('opacity-50', 'cursor-not-allowed');
+    }
 
     // SENİN ID BİLGİLERİN (Hepsini Kontrol Ettim)
     const serviceID = 'service_j96oxki';      
@@ -180,44 +197,72 @@ function sendEmail(e) {
     const userTemplateID  = 'template_6n13teo'; // Müşteriye giden (Auto-Reply)
     const publicKey       = '-E1BQ3DQoMooRhu8e';   
 
-    // 1. Önce SANA mail at
-    emailjs.sendForm(serviceID, ownerTemplateID, '#contact-form', publicKey)
+    const form = document.getElementById('contact-form');
+    if (!form) {
+        console.error('contact-form not found');
+        if (btn) {
+            btn.innerText = originalText;
+            btn.disabled = false;
+            btn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+        return;
+    }
+
+    if (typeof emailjs === 'undefined' || typeof emailjs.sendForm !== 'function') {
+        console.error('emailjs is not loaded');
+        if (btn) {
+            btn.innerText = originalText;
+            btn.disabled = false;
+            btn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+        return;
+    }
+
+    const formData = new FormData(form);
+    const params = {
+        from_name: formData.get('from_name') || formData.get('name') || '',
+        reply_to: formData.get('reply_to') || formData.get('email') || '',
+        message: formData.get('message') || '',
+        project_type: formData.get('project_type') || formData.get('project_type_input') || ''
+    };
+
+    // 1. Önce SANA mail at (form element verisiyle)
+    emailjs.sendForm(serviceID, ownerTemplateID, form, publicKey)
         .then(() => {
             // 2. Sonra MÜŞTERİYE mail at
-            const form = document.getElementById('contact-form');
-            const params = {
-                from_name: form.from_name.value,
-                reply_to: form.reply_to.value,
-                message: form.message.value,
-                project_type: form.project_type.value
-            };
             return emailjs.send(serviceID, userTemplateID, params, publicKey);
         })
         .then(() => {
             // BAŞARILI
-            btn.innerText = "✅ MESAJINIZ ULAŞTI";
-            btn.classList.remove('bg-neon', 'text-black');
-            btn.classList.add('bg-green-500', 'text-white');
-            document.getElementById('contact-form').reset();
+            if (btn) {
+                btn.innerText = "✅ MESAJINIZ ULAŞTI";
+                btn.classList.remove('bg-neon', 'text-black');
+                btn.classList.add('bg-green-500', 'text-white');
+            }
+            form.reset();
             
             setTimeout(() => {
-                btn.innerText = originalText;
-                btn.disabled = false;
-                btn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-green-500', 'text-white');
-                btn.classList.add('bg-neon', 'text-black');
+                if (btn) {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-green-500', 'text-white');
+                    btn.classList.add('bg-neon', 'text-black');
+                }
             }, 3000);
         })
         .catch((error) => {
             // HATA (Ama kullanıcıya çaktırma)
             console.log('FAILED...', error);
-            btn.innerText = "✅ İLETİLDİ"; 
-            btn.classList.remove('bg-neon', 'text-black');
-            btn.classList.add('bg-green-500', 'text-white');
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.disabled = false;
-                btn.classList.remove('bg-green-500', 'text-white');
-                btn.classList.add('bg-neon', 'text-black');
-            }, 3000);
+            if (btn) {
+                btn.innerText = "✅ İLETİLDİ"; 
+                btn.classList.remove('bg-neon', 'text-black');
+                btn.classList.add('bg-green-500', 'text-white');
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    btn.classList.remove('bg-green-500', 'text-white');
+                    btn.classList.add('bg-neon', 'text-black');
+                }, 3000);
+            }
         });
 }
