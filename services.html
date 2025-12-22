@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hizmetler | DTStack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* --- ORTAK CSS --- */
+        :root { --primary: #0f172a; --secondary: #3b82f6; --accent: #f8fafc; --text-dark: #1e293b; --text-light: #64748b; --white: #ffffff; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--white); color: var(--text-dark); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        
+        .top-bar { background-color: var(--primary); color: rgba(255,255,255,0.8); padding: 10px 5%; font-size: 0.85rem; display: flex; justify-content: space-between; }
+        header { background: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; max-width: 1400px; margin: 0 auto; }
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+        .logo span { color: var(--secondary); }
+        .nav-menu { display: flex; gap: 30px; }
+        .nav-menu a { font-weight: 500; color: var(--text-dark); font-size: 0.95rem; }
+        .nav-menu a:hover, .nav-menu a.active { color: var(--secondary); }
+        .btn-quote { background-color: var(--secondary); color: var(--white); padding: 12px 25px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; }
+
+        /* --- SAYFAYA ÖZEL --- */
+        .page-header { background: var(--primary); color: var(--white); padding: 80px 5%; text-align: center; }
+        
+        .services-wrapper { max-width: 1200px; margin: 60px auto; padding: 0 5%; }
+        
+        .service-row { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-bottom: 80px; }
+        .service-row:nth-child(even) .text-box { order: 2; } /* Zigzag görünüm */
+        
+        .text-box h2 { font-size: 2rem; color: var(--primary); margin-bottom: 15px; }
+        .text-box p { color: var(--text-light); margin-bottom: 20px; }
+        .feature-list li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .feature-list i { color: var(--secondary); }
+        
+        .img-box { background: var(--accent); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #cbd5e1; }
+
+        /* Footer */
+        footer { background: #0b1120; color: #94a3b8; padding: 50px 5% 20px; text-align: center; }
+        
+        @media (max-width: 768px) { .service-row { grid-template-columns: 1fr; } .service-row:nth-child(even) .text-box { order: 0; } .nav-menu { display: none; } }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <span><i class="fas fa-envelope"></i> info@dtstack.com</span>
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">DT<span>STACK</span></div>
+            <nav class="nav-menu">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="about.html">Kurumsal</a>
+                <a href="services.html" class="active">Hizmetler</a>
+                <a href="portfolio.html">Portfolyo</a>
+                <a href="proje-baslat.html">İletişim</a>
+            </nav>
+            <a href="proje-baslat.html" class="btn-quote">PROJE BAŞLAT</a>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Uzmanlık Alanlarımız</h1>
+        <p>İhtiyacınıza uygun teknolojik çözümler.</p>
+    </div>
+
+    <div class="services-wrapper">
+        
+        <div class="service-row">
+            <div class="text-box">
+                <h2>Özel Web Yazılımları</h2>
+                <p>Hazır paketler yerine, işletmenizin iş akışına tam uyum sağlayan, %100 size özel web tabanlı yazılımlar geliştiriyoruz.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> CRM ve ERP Modülleri</li>
+                    <li><i class="fas fa-check-circle"></i> Stok & Depo Yönetimi</li>
+                    <li><i class="fas fa-check-circle"></i> Bayi Yönetim Sistemleri</li>
+                </ul>
+            </div>
+            <div class="img-box"><i class="fas fa-code"></i></div>
+        </div>
+
+        <div class="service-row">
+            <div class="text-box">
+                <h2>E-Ticaret Geliştirme</h2>
+                <p>Sadece ürün sergileyen değil, satışa odaklanan modern e-ticaret siteleri. Ödeme sistemleri entegrasyonu dahil anahtar teslim.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> İyzico / Stripe Entegrasyonu</li>
+                    <li><i class="fas fa-check-circle"></i> Sepet ve Sipariş Yönetimi</li>
+                    <li><i class="fas fa-check-circle"></i> SEO Uyumlu Ürün Sayfaları</li>
+                </ul>
+            </div>
+            <div class="img-box"><i class="fas fa-shopping-cart"></i></div>
+        </div>
+
+        <div class="service-row">
+            <div class="text-box">
+                <h2>Kurumsal Web Siteleri</h2>
+                <p>Markanızın dijital kartviziti. Prestijli, mobil uyumlu ve yönetim paneli sayesinde içeriğini kolayca güncelleyebileceğiniz siteler.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Responsive (Mobil Uyumlu)</li>
+                    <li><i class="fas fa-check-circle"></i> Blog ve Haber Yönetimi</li>
+                    <li><i class="fas fa-check-circle"></i> Çoklu Dil Desteği</li>
+                </ul>
+            </div>
+            <div class="img-box"><i class="fas fa-laptop"></i></div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="logo" style="margin-bottom: 20px; color: #fff;">DT<span>STACK</span></div>
+        <p>&copy; 2025 DTStack Yazılım. Tüm Hakları Saklıdır.</p>
+    </footer>
+</body>
+</html>

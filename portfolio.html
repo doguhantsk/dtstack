@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolyo | DTStack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* --- ORTAK CSS --- */
+        :root { --primary: #0f172a; --secondary: #3b82f6; --accent: #f8fafc; --text-dark: #1e293b; --text-light: #64748b; --white: #ffffff; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--accent); color: var(--text-dark); line-height: 1.6; } /* Zemin hafif gri */
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        
+        .top-bar { background-color: var(--primary); color: rgba(255,255,255,0.8); padding: 10px 5%; font-size: 0.85rem; display: flex; justify-content: space-between; }
+        header { background: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; max-width: 1400px; margin: 0 auto; }
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+        .logo span { color: var(--secondary); }
+        .nav-menu { display: flex; gap: 30px; }
+        .nav-menu a { font-weight: 500; color: var(--text-dark); font-size: 0.95rem; }
+        .nav-menu a:hover, .nav-menu a.active { color: var(--secondary); }
+        .btn-quote { background-color: var(--secondary); color: var(--white); padding: 12px 25px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; }
+
+        /* --- SAYFAYA ÖZEL --- */
+        .page-header { background: var(--primary); color: var(--white); padding: 80px 5%; text-align: center; }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 5%;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+        .project-img {
+            height: 250px;
+            background-color: #cbd5e1;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-light);
+            font-size: 3rem;
+            position: relative;
+        }
+        
+        .project-info { padding: 25px; }
+        .project-category { color: var(--secondary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .project-info h3 { margin: 10px 0; color: var(--primary); }
+        .project-info p { color: var(--text-light); font-size: 0.9rem; margin-bottom: 20px; }
+        
+        .project-link {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 600;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 2px;
+        }
+
+        /* Footer */
+        footer { background: #0b1120; color: #94a3b8; padding: 50px 5% 20px; text-align: center; }
+        
+        @media (max-width: 768px) { .nav-menu { display: none; } }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <span><i class="fas fa-envelope"></i> info@dtstack.com</span>
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">DT<span>STACK</span></div>
+            <nav class="nav-menu">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="about.html">Kurumsal</a>
+                <a href="services.html">Hizmetler</a>
+                <a href="portfolio.html" class="active">Portfolyo</a>
+                <a href="proje-baslat.html">İletişim</a>
+            </nav>
+            <a href="proje-baslat.html" class="btn-quote">PROJE BAŞLAT</a>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Projelerimiz</h1>
+        <p>Kalitemizin kanıtı, bitirdiğimiz işlerdir.</p>
+    </div>
+
+    <div class="portfolio-grid">
+        
+        <div class="project-card">
+            <div class="project-img"><i class="fas fa-shopping-bag"></i></div>
+            <div class="project-info">
+                <span class="project-category">E-Ticaret</span>
+                <h3>DS Store Online Mağaza</h3>
+                <p>Giyim sektörü için geliştirilen, yüksek trafik kapasiteli ve hızlı e-ticaret altyapısı.</p>
+                <a href="#" class="project-link">İncele <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-img"><i class="fas fa-building"></i></div>
+            <div class="project-info">
+                <span class="project-category">Kurumsal</span>
+                <h3>Vriano İnşaat</h3>
+                <p>İnşaat firması için proje vitrini ve katalog özellikli kurumsal web sitesi.</p>
+                <a href="#" class="project-link">İncele <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-img"><i class="fas fa-utensils"></i></div>
+            <div class="project-info">
+                <span class="project-category">Web Uygulama</span>
+                <h3>GastroRez Sistemi</h3>
+                <p>Restoranlar için QR menü ve online masa rezervasyon yönetim sistemi.</p>
+                <a href="#" class="project-link">İncele <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-img"><i class="fas fa-chart-line"></i></div>
+            <div class="project-info">
+                <span class="project-category">SaaS</span>
+                <h3>Admin Dashboard</h3>
+                <p>Büyük veri analizi için geliştirilmiş özel yönetim paneli arayüzü.</p>
+                <a href="#" class="project-link">İncele <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="logo" style="margin-bottom: 20px; color: #fff;">DT<span>STACK</span></div>
+        <p>&copy; 2025 DTStack Yazılım. Tüm Hakları Saklıdır.</p>
+    </footer>
+</body>
+</html>

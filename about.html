@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkımızda | DTStack Kurumsal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* --- ORTAK CSS --- */
+        :root { --primary: #0f172a; --secondary: #3b82f6; --accent: #f8fafc; --text-dark: #1e293b; --text-light: #64748b; --white: #ffffff; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--white); color: var(--text-dark); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        
+        /* Header & Top Bar */
+        .top-bar { background-color: var(--primary); color: rgba(255,255,255,0.8); padding: 10px 5%; font-size: 0.85rem; display: flex; justify-content: space-between; }
+        header { background: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; max-width: 1400px; margin: 0 auto; }
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+        .logo span { color: var(--secondary); }
+        .nav-menu { display: flex; gap: 30px; }
+        .nav-menu a { font-weight: 500; color: var(--text-dark); font-size: 0.95rem; }
+        .nav-menu a:hover, .nav-menu a.active { color: var(--secondary); }
+        .btn-quote { background-color: var(--secondary); color: var(--white); padding: 12px 25px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; }
+
+        /* --- SAYFAYA ÖZEL --- */
+        .page-header { background: var(--primary); color: var(--white); padding: 80px 5%; text-align: center; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 15px; }
+        
+        .content-section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .text-col h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 20px; line-height: 1.2; }
+        .text-col p { color: var(--text-light); margin-bottom: 20px; font-size: 1.05rem; }
+        
+        .img-col img { width: 100%; border-radius: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 80px 5%; background: var(--accent); }
+        .value-card { background: var(--white); padding: 30px; border-radius: 8px; border: 1px solid var(--border); text-align: center; }
+        .value-icon { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; }
+        
+        /* Footer */
+        footer { background: #0b1120; color: #94a3b8; padding: 50px 5% 20px; text-align: center; }
+
+        @media (max-width: 768px) { .content-section, .values-grid { grid-template-columns: 1fr; } .nav-menu { display: none; } }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <span><i class="fas fa-envelope"></i> info@dtstack.com</span>
+        <span>Ankara, Türkiye</span>
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">DT<span>STACK</span></div>
+            <nav class="nav-menu">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="about.html" class="active">Kurumsal</a>
+                <a href="services.html">Hizmetler</a>
+                <a href="portfolio.html">Portfolyo</a>
+                <a href="proje-baslat.html">İletişim</a>
+            </nav>
+            <a href="proje-baslat.html" class="btn-quote">PROJE BAŞLAT</a>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Biz Kimiz?</h1>
+        <p>Teknolojiye yön veren tutkulu bir ekip.</p>
+    </div>
+
+    <section class="content-section">
+        <div class="text-col">
+            <h2>Dijital Dönüşümün <br>Ankara'daki Adresi.</h2>
+            <p>DTStack, Ankara Bilim Üniversitesi bünyesinde filizlenen, modern web teknolojilerini kurumsal iş disipliniyle birleştiren bir yazılım ajansıdır.</p>
+            <p>Amacımız sadece kod yazmak değil; işletmelerin dijital dünyadaki varlıklarını güçlendirmek, satışlarını artırmak ve operasyonel süreçlerini otomatize etmektir. Her projeye bir "iş ortağı" gözüyle yaklaşırız.</p>
+        </div>
+        <div class="img-col">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="DTStack Ekibi">
+        </div>
+    </section>
+
+    <div class="values-grid">
+        <div class="value-card">
+            <div class="value-icon"><i class="fas fa-rocket"></i></div>
+            <h3>Hız ve Performans</h3>
+            <p>Web sitelerimiz Google standartlarında en yüksek hız skorlarını hedefler. Yavaş sitelere tahammülümüz yok.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3>Güvenlik</h3>
+            <p>Verileriniz bizim için kutsaldır. En güncel güvenlik protokolleri ve SSL şifreleme ile çalışıyoruz.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon"><i class="fas fa-code"></i></div>
+            <h3>Temiz Kod</h3>
+            <p>Geliştirilebilir, modüler ve temiz kod yapısı sayesinde projeleriniz gelecekte de güncel kalır.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="logo" style="margin-bottom: 20px; color: #fff;">DT<span>STACK</span></div>
+        <p>&copy; 2025 DTStack Yazılım. Tüm Hakları Saklıdır.</p>
+    </footer>
+</body>
+</html>

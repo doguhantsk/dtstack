@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTStack | Kurumsal Yazılım ve Web Çözümleri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a; /* Kurumsal Lacivert */
+            --secondary: #3b82f6; /* Güven Mavisi */
+            --accent: #f8fafc; /* Açık Gri Zemin */
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { background-color: var(--white); color: var(--text-dark); line-height: 1.6; }
+        
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- ÜST BİLGİ ÇUBUĞU (Top Bar) --- */
+        .top-bar {
+            background-color: var(--primary);
+            color: rgba(255,255,255,0.8);
+            padding: 10px 5%;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .top-contact i { margin-right: 8px; color: var(--secondary); }
+        .top-contact span { margin-right: 20px; }
+
+        /* --- NAVİGASYON (Kurumsal Yapı) --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+        .logo span { color: var(--secondary); }
+
+        .nav-menu { display: flex; gap: 30px; }
+        .nav-menu a {
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            position: relative;
+        }
+        .nav-menu a:hover { color: var(--secondary); }
+        .nav-menu a.active { color: var(--secondary); font-weight: 600; }
+
+        .btn-quote {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+        .btn-quote:hover { background-color: #2563eb; transform: translateY(-1px); }
+
+        /* --- HERO BÖLÜMÜ --- */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 100px 5%;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content { max-width: 800px; margin: 0 auto; text-align: center; }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-btns { display: flex; gap: 20px; justify-content: center; }
+        
+        .btn-outline {
+            border: 2px solid rgba(255,255,255,0.3);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .btn-outline:hover { background: var(--white); color: var(--primary); }
+
+        /* --- İSTATİSTİK BANDI (Güven Sinyali) --- */
+        .stats-bar {
+            background: var(--white);
+            padding: 40px 5%;
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid var(--border);
+            max-width: 1200px;
+            margin: -40px auto 0; /* Hero'nun üstüne binmesi için */
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .stat-item { text-align: center; }
+        .stat-item h3 { font-size: 2rem; color: var(--primary); font-weight: 800; }
+        .stat-item p { color: var(--text-light); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- HİZMETLERİMİZ --- */
+        .section { padding: 80px 5%; }
+        .bg-light { background-color: var(--accent); }
+
+        .section-header { text-align: center; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .section-header h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
+        .section-header p { color: var(--text-light); font-size: 1.1rem; }
+        .section-line { width: 60px; height: 4px; background: var(--secondary); margin: 20px auto 0; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        }
+
+        .icon-box {
+            width: 60px; height: 60px;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--secondary);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 { margin-bottom: 15px; color: var(--primary); }
+        .service-card p { color: var(--text-light); font-size: 0.95rem; margin-bottom: 20px; }
+        .link-text { color: var(--secondary); font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; }
+        .link-text i { margin-left: 5px; font-size: 0.8rem; transition: 0.3s; }
+        .service-card:hover .link-text i { margin-left: 10px; }
+
+        /* --- SÜREÇ --- */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .step-item { position: relative; }
+        .step-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(0,0,0,0.03);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+        .step-content { position: relative; z-index: 1; }
+        .step-content h4 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; }
+        .step-content p { color: var(--text-light); font-size: 0.9rem; }
+
+        /* --- CTA BANNER --- */
+        .cta-section {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 5%;
+        }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .cta-section p { max-width: 600px; margin: 0 auto 40px; color: rgba(255,255,255,0.7); }
+
+        /* --- FOOTER (Kurumsal) --- */
+        footer {
+            background: #0b1120;
+            color: #94a3b8;
+            padding: 70px 5% 20px;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 50px;
+        }
+
+        .footer-col h4 { color: var(--white); margin-bottom: 25px; font-weight: 600; }
+        .footer-col p { font-size: 0.9rem; line-height: 1.7; margin-bottom: 20px; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a:hover { color: var(--secondary); padding-left: 5px; }
+        
+        .contact-info li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 15px; font-size: 0.9rem; }
+        .contact-info i { color: var(--secondary); margin-top: 4px; }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #1e293b;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-menu { display: none; } /* Mobile menu toggle eklenebilir */
+            .stats-bar { flex-direction: column; margin-top: 0; }
+            .process-steps { grid-template-columns: 1fr; gap: 50px; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-info">
+            <span class="top-contact"><i class="fas fa-envelope"></i> info@dtstack.com</span>
+            <span class="top-contact"><i class="fas fa-phone"></i> +90 (555) 000 00 00</span>
+        </div>
+        <div class="top-social">
+            <span>Ankara Ofisimizde Sizi Bekliyoruz</span>
+        </div>
+    </div>
+
+    <header>
+     <header>
+        <div class="nav-container">
+            <div class="logo">DT<span>STACK</span></div>
+            <nav class="nav-menu">
+                <a href="index.html" class="active">Ana Sayfa</a>
+                <a href="about.html">Kurumsal</a>
+                <a href="services.html">Hizmetler</a>
+                <a href="portfolio.html">Portfolyo</a>
+                <a href="proje-baslat.html">İletişim</a>
+            </nav>
+            <a href="proje-baslat.html" class="btn-quote">PROJE BAŞLAT</a>
+        </div>
+    </header>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>İşinizi Dijital Dünyada Büyütüyoruz</h1>
+            <p>DTStack olarak, işletmenizin ihtiyaçlarına özel, ölçülebilir ve sürdürülebilir yazılım çözümleri üretiyoruz. Hazır şablonlar değil, stratejik mühendislik.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn-quote">Hizmetlerimiz</a>
+                <a href="#" class="btn-outline">Referanslar</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-bar">
+        <div class="stat-item">
+            <h3>50+</h3>
+            <p>Başarılı Proje</p>
+        </div>
+        <div class="stat-item">
+            <h3>%100</h3>
+            <p>Zamanında Teslim</p>
+        </div>
+        <div class="stat-item">
+            <h3>7/24</h3>
+            <p>Teknik Destek</p>
+        </div>
+        <div class="stat-item">
+            <h3>4.9</h3>
+            <p>Müşteri Puanı</p>
+        </div>
+    </div>
+
+    <section class="section bg-light">
+        <div class="section-header">
+            <h2>Hizmet Alanlarımız</h2>
+            <p>Modern teknolojilerle işletmenize değer katıyoruz.</p>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
+                <h3>Kurumsal Web Geliştirme</h3>
+                <p>Şirketinizin kimliğini yansıtan, hızlı, güvenli ve mobil uyumlu kurumsal web siteleri tasarlıyoruz.</p>
+                <a href="#" class="link-text">Detaylı Bilgi <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-shopping-cart"></i></div>
+                <h3>E-Ticaret Çözümleri</h3>
+                <p>Ürünlerinizi 7/24 satabileceğiniz, güvenli ödeme altyapısına sahip ölçeklenebilir e-ticaret sistemleri.</p>
+                <a href="#" class="link-text">Detaylı Bilgi <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Özel Yazılım & CRM</h3>
+                <p>İş süreçlerinizi yönetebileceğiniz, size özel yönetim panelleri, CRM ve otomasyon sistemleri.</p>
+                <a href="#" class="link-text">Detaylı Bilgi <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Çalışma Sürecimiz</h2>
+            <p>Şeffaf ve planlı bir geliştirme süreci yürütüyoruz.</p>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="process-steps">
+            <div class="step-item">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h4>Analiz & Planlama</h4>
+                    <p>İhtiyaçlarınızı dinliyor, sektör analizi yapıyor ve en doğru yol haritasını çıkarıyoruz.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h4>Tasarım & UI/UX</h4>
+                    <p>Markanıza uygun, kullanıcı deneyimi yüksek, modern arayüz tasarımları hazırlıyoruz.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h4>Kodlama & Test</h4>
+                    <p>Clean Code prensiplerine uygun geliştirme yapıyor, tüm cihazlarda test ediyoruz.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">04</div>
+                <div class="step-content">
+                    <h4>Teslim & Destek</h4>
+                    <p>Projeyi canlıya alıyor, eğitim veriyor ve sonrasında teknik destek sağlıyoruz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Projenizi Hayata Geçirelim</h2>
+        <p>Aklınızdaki proje için en doğru zaman şimdi. Profesyonel ekibimizle tanışın, işinizi dijitale taşıyın.</p>
+        <a href="proje-baslat.html" class="btn-quote" style="background: #fff; color: var(--primary);">HEMEN TEKLİF ALIN</a>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo" style="margin-bottom: 20px;">DT<span>STACK</span></div>
+                <p>DTStack, Ankara merkezli bir yazılım ve teknoloji ajansıdır. İşletmelerin dijital dönüşüm süreçlerinde stratejik ortak olarak rol alıyoruz.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Hızlı Menü</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Ana Sayfa</a></li>
+                    <li><a href="#">Hakkımızda</a></li>
+                    <li><a href="#">Hizmetler</a></li>
+                    <li><a href="#">Referanslar</a></li>
+                    <li><a href="#">Kariyer</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Hizmetler</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Web Tasarım</a></li>
+                    <li><a href="#">E-Ticaret</a></li>
+                    <li><a href="#">SEO Optimizasyonu</a></li>
+                    <li><a href="#">Sosyal Medya</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>İletişim</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> Ankara Bilim Üniversitesi Teknokent, Ankara</li>
+                    <li><i class="fas fa-phone"></i> +90 (555) 000 00 00</li>
+                    <li><i class="fas fa-envelope"></i> info@dtstack.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 DTStack Yazılım Çözümleri. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
