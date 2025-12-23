@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referanslarımız | Bizimle Çalışanlar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--dark);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* --- LOGO GRID (Markalar) --- */
+        .brands-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 3px;
+            background: var(--primary);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 40px;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .client-logo {
+            width: 140px;
+            height: 80px;
+            object-fit: contain;
+            filter: grayscale(100%); /* Siyah-Beyaz yapar */
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Mouse üzerine gelince renklenir */
+        .client-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* --- MÜŞTERİ YORUMLARI (Testimonials) --- */
+        .testimonials {
+            background-color: white;
+            padding: 80px 20px;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .testimonial-card i {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            opacity: 0.2;
+        }
+
+        .quote-text {
+            font-style: italic;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .client-name h4 { font-size: 0.95rem; font-weight: 700; }
+        .client-name span { font-size: 0.8rem; color: var(--gray); }
+
+        /* --- İSTATİSTİKLER (Güven Bandı) --- */
+        .stats {
+            background: var(--primary);
+            color: white;
+            padding: 50px 20px;
+        }
+
+        .stats-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item h3 { font-size: 2.5rem; margin-bottom: 5px; }
+        .stat-item p { opacity: 0.8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- CTA (Eylem Çağrısı) --- */
+        .cta {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--dark);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .btn:hover { background: var(--primary); transform: translateY(-3px); }
+
+        @media (max-width: 768px) {
+            .stats-grid { flex-direction: column; gap: 40px; }
+            header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Referanslarımız</h1>
+        <p>Sektörün öncü markalarıyla geliştirdiğimiz başarılı iş ortaklıkları ve mutlu müşterilerimiz.</p>
+    </header>
+
+    <section class="brands-section">
+        <h2 class="section-title">Bize Güvenen Markalar</h2>
+        <div class="logo-grid">
+            <img src="https://placehold.co/200x100/png?text=LOGO+1" alt="Marka 1" class="client-logo">
+            <img src="https://placehold.co/200x100/png?text=TEKNO+A.S." alt="Marka 2" class="client-logo">
+            <img src="https://placehold.co/200x100/png?text=GLOBAL+YAPI" alt="Marka 3" class="client-logo">
+            <img src="https://placehold.co/200x100/png?text=STARTUP+X" alt="Marka 4" class="client-logo">
+            <img src="https://placehold.co/200x100/png?text=FINANS+GROUP" alt="Marka 5" class="client-logo">
+            <img src="https://placehold.co/200x100/png?text=E-TICARET" alt="Marka 6" class="client-logo">
+            <img src="https://placehold.co/200x100/png?text=MEDYA+CORP" alt="Marka 7" class="client-logo">
+            <img src="https://placehold.co/200x100/png?text=LOJISTIK" alt="Marka 8" class="client-logo">
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>150+</h3>
+                <p>Tamamlanan Proje</p>
+            </div>
+            <div class="stat-item">
+                <h3>85</h3>
+                <p>Mutlu Müşteri</p>
+            </div>
+            <div class="stat-item">
+                <h3>10</h3>
+                <p>Yıllık Tecrübe</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2 class="section-title">Müşterilerimiz Ne Diyor?</h2>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p class="quote-text">"Projemizi zamanında ve beklediğimizden çok daha kaliteli bir şekilde teslim ettiler. İletişimleri harikaydı."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Müşteri" class="client-avatar">
+                        <div class="client-name">
+                            <h4>Ahmet Yılmaz</h4>
+                            <span>CEO, Tekno A.Ş.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p class="quote-text">"E-Ticaret altyapımız için çalıştık ve satışlarımız %40 arttı. Teknik destekleri sayesinde hiç sorun yaşamadık."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Müşteri" class="client-avatar">
+                        <div class="client-name">
+                            <h4>Ayşe Demir</h4>
+                            <span>Pazarlama Müdürü, ModaLife</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p class="quote-text">"Yaratıcı çözümleri ve profesyonel yaklaşımları ile sektörde fark yaratmamızı sağladılar. Kesinlikle tavsiye ediyorum."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Müşteri" class="client-avatar">
+                        <div class="client-name">
+                            <h4>Caner Erkin</h4>
+                            <span>Kurucu, StartUp X</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Siz de Başarı Hikayemizin Bir Parçası Olun</h2>
+        <p style="margin-top:10px; color:#64748b;">Projelerinizi hayata geçirmek için buradayız.</p>
+        <a href="iletisim.html" class="btn">Bizimle İletişime Geçin</a>
+    </section>
+
+</body>
+</html>
