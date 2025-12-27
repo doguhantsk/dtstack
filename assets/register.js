@@ -14,6 +14,17 @@ form.addEventListener('submit', async (e) => {
   try {
     const { data, error } = await supabase.auth.signUp({ email, password }, { data: { full_name } });
     if (error) throw error;
+
+    // If a user row was created, try to update the profiles table's full_name
+    try {
+      const userId = data?.user?.id;
+      if (userId && full_name) {
+        await supabase.from('profiles').update({ full_name }).eq('id', userId);
+      }
+    } catch (uErr) {
+      console.warn('Profile update skipped or failed', uErr);
+    }
+
     msg.style.color = 'green';
     msg.textContent = 'Kayıt başarılı. Lütfen e-postanızı doğrulayın (eğer gerekiyorsa).';
     form.reset();
