@@ -25,8 +25,16 @@ form.addEventListener('submit', async (e) => {
       console.warn('Profile update skipped or failed', uErr);
     }
 
+    // Ensure the user is not left logged in as admin by signing out immediately.
+    // This prevents accidental access to admin panel for newly registered users.
+    try {
+      await supabase.auth.signOut();
+    } catch (sErr) {
+      console.warn('Sign out after register failed', sErr);
+    }
+
     msg.style.color = 'green';
-    msg.textContent = 'Kayıt başarılı. Lütfen e-postanızı doğrulayın (eğer gerekiyorsa).';
+    msg.textContent = 'Kayıt başarılı. Lütfen e-postanızı doğrulayın ve ardından giriş yapın.';
     form.reset();
   } catch (err) {
     msg.style.color = '#d00';
