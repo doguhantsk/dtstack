@@ -1,14 +1,14 @@
-// assets/js/supabase-config.js
+// Supabase client wrapper
+// WARNING: Do NOT commit real keys to source control. Use the helper script
+// `scripts/set-supabase-keys.js` or fill these values locally before deploying.
 
-// 1. Supabase'den kopyaladığın URL'i buraya yapıştır:
-const SUPABASE_URL = 'https://hbmlopptzxsatcmebzcx.supabase.co';
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
 
-// 2. Supabase'den kopyaladığın "anon public" key'i buraya yapıştır:
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhibWxvcHB0enhzYXRjbWViemN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY3NzgzMjAsImV4cCI6MjA4MjM1NDMyMH0.hLtEuKvfenwzzjkmpCz1xgzF_9yXitCVsy6CVS0cWpY';
-
-// Supabase İstemcisini Başlat
-// (Global _supabase değişkeni oluşturuyoruz ki her yerde kullanalım)
+// This file expects the Supabase JS lib to be loaded (e.g. via CDN in your HTML)
+// so that `supabase.createClient` is available. It exports `supabase` and
+// also sets a global `_supabase` for inline scripts that reference it.
 const { createClient } = supabase;
-const _supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
-console.log("Supabase Bağlantısı Hazır 🚀");
+const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+export const supabase = supabaseClient;
+window._supabase = supabaseClient;
