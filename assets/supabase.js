@@ -1,15 +1,14 @@
-// assets/supabase.js (template)
-// Fill SUPABASE_URL and SUPABASE_ANON_KEY with your project's values.
+// assets/js/supabase-config.js
 
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+// 1. Supabase'den kopyaladığın URL'i buraya yapıştır:
+const SUPABASE_URL = 'https://hbmlopptzxsatcmebzcx.supabase.co';
 
-// --- REPLACE THESE ---
-const SUPABASE_URL = 'https://YOUR_SUPABASE_PROJECT.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';
-// ----------------------
+// 2. Supabase'den kopyaladığın "anon public" key'i buraya yapıştır:
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhibWxvcHB0enhzYXRjbWViemN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY3NzgzMjAsImV4cCI6MjA4MjM1NDMyMH0.hLtEuKvfenwzzjkmpCz1xgzF_9yXitCVsy6CVS0cWpY';
 
-if (SUPABASE_URL.includes('YOUR_SUPABASE_PROJECT') || SUPABASE_ANON_KEY.includes('YOUR_SUPABASE_ANON_KEY')) {
-  console.warn('assets/supabase.js: please set SUPABASE_URL and SUPABASE_ANON_KEY');
-}
+// Supabase İstemcisini Başlat
+// (Global _supabase değişkeni oluşturuyoruz ki her yerde kullanalım)
+const { createClient } = supabase;
+const _supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+console.log("Supabase Bağlantısı Hazır 🚀");

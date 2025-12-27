@@ -316,4 +316,63 @@
     </script>
     <script type="module" src="assets/portfolio.js"></script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/supbase.js"></script>
+
+<script>
+    async function loadProjects() {
+        console.log("Veriler çekiliyor...");
+        
+        // 1. Veritabanından projeleri çek
+        const { data: projects, error } = await _supabase
+            .from('projects')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            console.error('Hata oluştu:', error);
+            alert("Veri çekilemedi! Konsola bak.");
+            return;
+        }
+
+        console.log("Gelen Projeler:", projects);
+
+        // 2. HTML'i oluştur
+        const grid = document.querySelector('.projects-grid');
+        grid.innerHTML = ''; // Mevcut statik kartları temizle
+
+        if (projects.length === 0) {
+            grid.innerHTML = '<p style="color:white; text-align:center;">Henüz proje eklenmemiş.</p>';
+            return;
+        }
+
+        projects.forEach(project => {
+            // Etiketleri (Tags) oluştur
+            let tagsHtml = '';
+            if (project.tags) {
+                project.tags.forEach(tag => {
+                    tagsHtml += `<span style="font-size:0.7rem; border:1px solid rgba(255,255,255,0.2); padding:2px 8px; border-radius:10px; margin-right:5px; color:#ccc;">${tag}</span>`;
+                });
+            }
+
+            const html = `
+            <div class="project-card">
+                <div class="project-img" style="background-image: url('${project.image_url}'); background-size: cover; background-position: center;">
+                </div>
+                <div class="project-info">
+                    <span class="project-tag">${project.category.toUpperCase()}</span>
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-desc">${project.description}</p>
+                    <div style="margin-bottom:15px;">${tagsHtml}</div>
+                    <a href="#" class="project-link">Projeyi İncele <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            `;
+            grid.innerHTML += html;
+        });
+    }
+
+    // Sayfa açılınca yükle
+    document.addEventListener('DOMContentLoaded', loadProjects);
+</script>
 </html>
