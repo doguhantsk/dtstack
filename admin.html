@@ -58,6 +58,7 @@
         <div class="menu-item active" onclick="switchTab('dashboard')"><i class="fas fa-home"></i> Genel Bakış</div>
         <div class="menu-item" onclick="switchTab('projects')"><i class="fas fa-project-diagram"></i> Proje Yönetimi</div>
         <div class="menu-item" onclick="switchTab('inbox')"><i class="fas fa-envelope"></i> Gelen Kutusu</div>
+        <div class="menu-item" onclick="switchTab('users')"><i class="fas fa-users"></i> Kullanıcılar</div>
         
         <a href="index.html" class="menu-item logout"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a>
     </div>
@@ -123,6 +124,16 @@
             </div>
         </div>
 
+        <div id="users" class="tab-content">
+            <div class="header">
+                <h2>Kullanıcı Yönetimi</h2>
+            </div>
+            <div class="admin-section">
+                <h3 class="section-title">Sistem Kullanıcıları</h3>
+                <div id="userListContainer">Yükleniyor...</div>
+            </div>
+        </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -137,12 +148,14 @@
             document.getElementById(tabId).classList.add('active');
             
             // Menüyü güncelle (Basit mantık)
-            const menuIndex = {'dashboard':0, 'projects':1, 'inbox':2}[tabId];
-            document.querySelectorAll('.menu-item')[menuIndex].classList.add('active');
+            const menuIndex = {'dashboard':0, 'projects':1, 'inbox':2, 'users':3}[tabId];
+            const menuItems = document.querySelectorAll('.menu-item');
+            if (menuItems[menuIndex]) menuItems[menuIndex].classList.add('active');
 
             // Verileri tazele
             if(tabId === 'projects') fetchProjectsList();
             if(tabId === 'inbox') fetchMessages();
+            if(tabId === 'users' && typeof fetchUsers === 'function') fetchUsers();
         }
 
         // --- 2. İSTATİSTİKLERİ ÇEK ---
@@ -232,5 +245,6 @@
         loadStats();
         fetchProjectsList();
     </script>
+    <script src="assets/admin_users.js"></script>
 </body>
 </html>

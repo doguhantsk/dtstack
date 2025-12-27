@@ -9,14 +9,24 @@ async function checkSession() {
       return;
     }
     const uid = session.user.id;
-    // fetch profile
-    const { data: profile, error } = await supabase.from('profiles').select('full_name').eq('id', uid).single();
+    // fetch profile with role
+    const { data: profile, error } = await supabase.from('profiles').select('full_name, role').eq('id', uid).single();
     if (error) {
       console.warn('Profile fetch failed', error);
-    } else {
-      const el = document.querySelector('.admin-username');
-      if (el) el.textContent = profile.full_name || session.user.email;
+      window.location.href = 'login.html';
+      return;
     }
+
+    // check admin role
+    if (!profile || profile.role !== 'admin') {
+      // Not an admin -> kick out
+      await supabase.auth.signOut();
+      window.location.href = 'login.html';
+      return;
+    }
+
+    const el = document.querySelector('.admin-username');
+    if (el) el.textContent = profile.full_name || session.user.email;
   } catch (err) {
     console.error(err);
     window.location.href = 'login.html';
