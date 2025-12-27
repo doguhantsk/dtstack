@@ -33,7 +33,8 @@ if (form) {
           if (role === 'admin') {
             window.location.href = 'admin.html';
           } else {
-            window.location.href = 'account.html';
+            // Non-admin users go to the homepage (no account page)
+            window.location.href = 'index.html';
           }
           return;
         } catch (fetchErr) {
