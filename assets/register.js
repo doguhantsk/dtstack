@@ -33,9 +33,17 @@ form.addEventListener('submit', async (e) => {
       console.warn('Sign out after register failed', sErr);
     }
 
-    msg.style.color = 'green';
-    msg.textContent = 'Kayıt başarılı. Lütfen e-postanızı doğrulayın ve ardından giriş yapın.';
+    // Redirect user to homepage after successful registration
     form.reset();
+    try {
+      // small delay to ensure signOut completed
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 400);
+    } catch (redirErr) {
+      msg.style.color = 'green';
+      msg.textContent = 'Kayıt başarılı. Lütfen e-postanızı doğrulayın ve ardından giriş yapın.';
+    }
   } catch (err) {
     msg.style.color = '#d00';
     msg.textContent = err.message || 'Kayıt sırasında hata oluştu.';
