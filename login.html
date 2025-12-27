@@ -121,6 +121,8 @@
             </button>
         </form>
 
+        <div id="loginMessage" aria-live="polite" style="margin-top:12px;color:#d00"></div>
+
         <div style="margin-top: 20px; font-size: 0.9rem; color: var(--text-muted);">
             Hesabınız yok mu? <a href="register.html" style="color: var(--accent); text-decoration: none; font-weight: 600;">Hemen Kayıt Olun</a>
         </div>
@@ -128,6 +130,8 @@
         <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Ana Sayfaya Dön</a>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="assets/supabase.js"></script>
     <script type="module" src="assets/login.js"></script>
 
 </body>
