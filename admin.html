@@ -8,9 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
-        :root {
-            --bg-body: #000205; --glass-border: rgba(255, 255, 255, 0.08); --accent: #a855f7; --text-main: #fff;
-        }
+        :root { --bg-body: #000205; --glass-border: rgba(255, 255, 255, 0.08); --accent: #a855f7; --text-main: #fff; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--bg-body); color: var(--text-main); font-family: 'Inter Tight', sans-serif; display: flex; height: 100vh; overflow: hidden; }
 
@@ -18,31 +16,38 @@
         .sidebar { width: 260px; background: rgba(255,255,255,0.02); border-right: 1px solid var(--glass-border); padding: 30px; display: flex; flex-direction: column; }
         .logo { font-family: 'Space Grotesk'; font-size: 1.5rem; font-weight: 700; margin-bottom: 50px; display: block; text-decoration: none; color: white; }
         .logo span { color: var(--accent); }
-        
-        .menu-item { padding: 12px 15px; color: #9ca3af; text-decoration: none; display: flex; align-items: center; gap: 12px; border-radius: 10px; margin-bottom: 5px; transition: 0.3s; }
+        .menu-item { padding: 12px 15px; color: #9ca3af; text-decoration: none; display: flex; align-items: center; gap: 12px; border-radius: 10px; margin-bottom: 5px; transition: 0.3s; cursor: pointer; }
         .menu-item:hover, .menu-item.active { background: rgba(168, 85, 247, 0.1); color: white; }
-        .menu-item i { width: 20px; }
-
         .logout { margin-top: auto; color: #ef4444; }
-        .logout:hover { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
-
+        
         /* Main Content */
-        .main-content { flex: 1; padding: 40px; overflow-y: auto; position: relative; }
+        .main-content { flex: 1; padding: 40px; overflow-y: auto; }
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .header h2 { font-family: 'Space Grotesk'; font-size: 2rem; }
-        .user-info { display: flex; align-items: center; gap: 10px; }
-        .avatar { width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
 
-        /* Cards */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        /* Kartlar */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px; }
         .card { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 25px; border-radius: 16px; }
-        .card h3 { color: #9ca3af; font-size: 0.9rem; margin-bottom: 10px; text-transform: uppercase; }
         .card .value { font-size: 2.5rem; font-family: 'Space Grotesk'; font-weight: 700; }
 
-        /* Project Status */
-        .status-card { margin-top: 30px; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 30px; border-radius: 20px; }
-        .progress-bar { width: 100%; height: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-top: 15px; overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--accent); width: 65%; border-radius: 10px; }
+        /* Form Alanı */
+        .admin-section { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 30px; border-radius: 20px; margin-bottom: 30px; }
+        .section-title { font-size: 1.2rem; margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; color: var(--accent); }
+        
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 15px; }
+        .form-control { width: 100%; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); border-radius: 8px; color: white; margin-bottom: 15px; }
+        .btn-add { background: var(--accent); color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: 600; width: 100%; }
+        .btn-add:hover { opacity: 0.9; }
+
+        /* Proje Listesi */
+        .project-list-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid var(--glass-border); }
+        .project-list-item:last-child { border-bottom: none; }
+        .btn-delete { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+        .btn-delete:hover { background: #ef4444; color: white; }
+
+        /* Tab Kontrol */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
     </style>
 </head>
 <body>
@@ -50,93 +55,182 @@
     <div class="sidebar">
         <a href="index.html" class="logo">DT<span>STACK</span></a>
         
-        <a href="#" class="menu-item active"><i class="fas fa-home"></i> Genel Bakış</a>
-        <a href="#" class="menu-item"><i class="fas fa-project-diagram"></i> Projelerim</a>
-        <a href="#" class="menu-item"><i class="fas fa-file-invoice-dollar"></i> Faturalar</a>
-        <a href="#" class="menu-item"><i class="fas fa-ticket-alt"></i> Destek Talebi</a>
+        <div class="menu-item active" onclick="switchTab('dashboard')"><i class="fas fa-home"></i> Genel Bakış</div>
+        <div class="menu-item" onclick="switchTab('projects')"><i class="fas fa-project-diagram"></i> Proje Yönetimi</div>
+        <div class="menu-item" onclick="switchTab('inbox')"><i class="fas fa-envelope"></i> Gelen Kutusu</div>
         
-        <a href="#" class="menu-item logout"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a>
+        <a href="index.html" class="menu-item logout"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a>
     </div>
 
     <div class="main-content">
-        <div class="header">
-            <div>
-                <h2>Hoşgeldin, <span class="admin-username">...</span> 👋</h2>
-                <p style="color: #9ca3af;">İşte projenin son durumu.</p>
+        
+        <div id="dashboard" class="tab-content active">
+            <div class="header">
+                <h2>Panel Özeti</h2>
             </div>
-            <div class="user-info">
-                <div style="text-align: right; font-size: 0.9rem;">
-                    <div>Ahmet Yılmaz</div>
-                    <div style="color: #9ca3af; font-size: 0.8rem;">Yılmaz Holding</div>
+            <div class="grid">
+                <div class="card">
+                    <h3>Yayındaki Projeler</h3>
+                    <div class="value" id="projectCount">-</div>
                 </div>
-                <div class="avatar">AY</div>
-            </div>
-        </div>
-
-        <div class="grid">
-            <div class="card">
-                <h3>Toplam Proje</h3>
-                <div class="value">1</div>
-            </div>
-            <div class="card">
-                <h3>Bekleyen Ödeme</h3>
-                <div class="value">₺0</div>
-            </div>
-            <div class="card">
-                <h3>Destek Talebi</h3>
-                <div class="value">0</div>
-            </div>
-        </div>
-
-        <div class="status-card">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <h3 style="font-family: 'Space Grotesk'; font-size: 1.5rem; color: white;">Web Sitesi Yenileme Projesi</h3>
-                <span style="background: rgba(168, 85, 247, 0.2); color: #d8b4fe; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem;">Kodlama Aşamasında</span>
-            </div>
-            <div style="margin-top: 20px; display: flex; justify-content: space-between; color: #9ca3af; font-size: 0.9rem;">
-                <span>İlerleme Durumu</span>
-                <span>%65</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
-            </div>
-            <p style="margin-top: 15px; font-size: 0.9rem; color: #9ca3af;">Frontend tasarımları onaylandı. Backend entegrasyonu devam ediyor. Tahmini bitiş: 15 Şubat 2025</p>
-        </div>
-
-        <!-- Projects management -->
-        <div style="margin-top:30px">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                <h3 style="margin:0;">Projeler</h3>
-                <button id="btnAddProject" style="padding:10px 14px;border-radius:8px;background:#10b981;color:#fff;border:none;cursor:pointer;">Yeni Proje Ekle</button>
-            </div>
-            <div class="projects-list"></div>
-        </div>
-
-        <!-- Project Modal -->
-        <div id="projectModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;padding:24px;">
-            <div style="background:#0f172a;padding:20px;border-radius:12px;max-width:760px;width:100%;">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-                    <h4 style="margin:0;color:#fff">Proje Ekle / Düzenle</h4>
-                    <button class="close-modal" style="background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer">✕</button>
+                <div class="card">
+                    <h3>Gelen Mesajlar</h3>
+                    <div class="value" id="messageCount">-</div>
                 </div>
-                <form id="projectForm">
-                    <input type="hidden" name="project_id">
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px;">
-                        <input name="title" placeholder="Başlık" style="padding:10px;border-radius:8px;border:1px solid #1f2937;background:#071022;color:#fff;">
-                        <input name="image_url" placeholder="Resim URL" style="padding:10px;border-radius:8px;border:1px solid #1f2937;background:#071022;color:#fff;">
+            </div>
+        </div>
+
+        <div id="projects" class="tab-content">
+            <div class="header">
+                <h2>Proje Yönetimi</h2>
+            </div>
+
+            <div class="admin-section">
+                <h3 class="section-title">Yeni Proje Ekle</h3>
+                <form id="addProjectForm">
+                    <div class="form-row">
+                        <input type="text" id="p_title" class="form-control" placeholder="Proje Başlığı (Örn: DS Store)" required>
+                        <select id="p_category" class="form-control">
+                            <option value="Web Yazılım">Web Yazılım</option>
+                            <option value="E-Ticaret">E-Ticaret</option>
+                            <option value="Mobil Uygulama">Mobil Uygulama</option>
+                            <option value="Kurumsal">Kurumsal</option>
+                        </select>
                     </div>
-                    <input name="category" placeholder="Kategori" style="padding:10px;border-radius:8px;border:1px solid #1f2937;background:#071022;color:#fff;margin-bottom:8px;">
-                    <input name="tags" placeholder="Etiketler (virgülle ayır)" style="padding:10px;border-radius:8px;border:1px solid #1f2937;background:#071022;color:#fff;margin-bottom:8px;">
-                    <textarea name="description" placeholder="Açıklama" rows="4" style="padding:10px;border-radius:8px;border:1px solid #1f2937;background:#071022;color:#fff;width:100%;margin-bottom:12px;"></textarea>
-                    <div style="display:flex;gap:8px;justify-content:flex-end;">
-                        <button type="button" class="close-modal" style="padding:8px 12px;border-radius:8px;background:#374151;color:#fff;border:none;">İptal</button>
-                        <button type="submit" style="padding:8px 12px;border-radius:8px;background:#2563eb;color:#fff;border:none;">Kaydet</button>
-                    </div>
+                    <input type="text" id="p_desc" class="form-control" placeholder="Kısa Açıklama" required>
+                    <input type="text" id="p_image" class="form-control" placeholder="Resim URL (https://...)" required>
+                    <input type="text" id="p_tags" class="form-control" placeholder="Etiketler (Virgülle ayır: React, Node.js)">
+                    
+                    <button type="submit" class="btn-add">PROJEYİ YAYINLA</button>
                 </form>
             </div>
+
+            <div class="admin-section">
+                <h3 class="section-title">Mevcut Projeler</h3>
+                <div id="projectListContainer">
+                    <p style="color:#666;">Yükleniyor...</p>
+                </div>
+            </div>
         </div>
+
+        <div id="inbox" class="tab-content">
+            <div class="header">
+                <h2>Gelen Kutusu</h2>
+            </div>
+            <div class="admin-section">
+                <div id="messageListContainer">
+                    </div>
+            </div>
+        </div>
+
     </div>
-    <script type="module" src="assets/admin.js"></script>
-    <script type="module" src="assets/admin_crud.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/supbase.js"></script> <script>
+        // --- 1. TAB GEÇİŞLERİ ---
+        function switchTab(tabId) {
+            // Tüm içerikleri gizle
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+            
+            // Seçileni göster
+            document.getElementById(tabId).classList.add('active');
+            
+            // Menüyü güncelle (Basit mantık)
+            const menuIndex = {'dashboard':0, 'projects':1, 'inbox':2}[tabId];
+            document.querySelectorAll('.menu-item')[menuIndex].classList.add('active');
+
+            // Verileri tazele
+            if(tabId === 'projects') fetchProjectsList();
+            if(tabId === 'inbox') fetchMessages();
+        }
+
+        // --- 2. İSTATİSTİKLERİ ÇEK ---
+        async function loadStats() {
+            const { count: pCount } = await _supabase.from('projects').select('*', { count: 'exact', head: true });
+            const { count: mCount } = await _supabase.from('contacts').select('*', { count: 'exact', head: true });
+            
+            document.getElementById('projectCount').innerText = pCount || 0;
+            document.getElementById('messageCount').innerText = mCount || 0;
+        }
+
+        // --- 3. PROJE EKLEME ---
+        document.getElementById('addProjectForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.querySelector('.btn-add');
+            btn.innerHTML = 'EKLENİYOR...';
+
+            const newProject = {
+                title: document.getElementById('p_title').value,
+                category: document.getElementById('p_category').value,
+                description: document.getElementById('p_desc').value,
+                image_url: document.getElementById('p_image').value,
+                tags: document.getElementById('p_tags').value.split(',').map(s => s.trim()) // Virgülle ayırıp dizi yap
+            };
+
+            const { error } = await _supabase.from('projects').insert([newProject]);
+
+            if(error) {
+                alert("Hata: " + error.message);
+            } else {
+                alert("Proje Başarıyla Eklendi! 🚀");
+                document.getElementById('addProjectForm').reset();
+                fetchProjectsList(); // Listeyi güncelle
+                loadStats(); // Sayıyı güncelle
+            }
+            btn.innerHTML = 'PROJEYİ YAYINLA';
+        });
+
+        // --- 4. PROJELERİ LİSTELE & SİL ---
+        async function fetchProjectsList() {
+            const container = document.getElementById('projectListContainer');
+            const { data: projects } = await _supabase.from('projects').select('*').order('created_at', { ascending: false });
+
+            container.innerHTML = '';
+            projects.forEach(p => {
+                container.innerHTML += `
+                <div class="project-list-item">
+                    <div>
+                        <strong style="color:white;">${p.title}</strong>
+                        <span style="color:#666; font-size:0.9rem; margin-left:10px;">${p.category}</span>
+                    </div>
+                    <button class="btn-delete" onclick="deleteProject(${p.id})"><i class="fas fa-trash"></i> Sil</button>
+                </div>`;
+            });
+        }
+
+        async function deleteProject(id) {
+            if(confirm("Bu projeyi silmek istediğine emin misin?")) {
+                await _supabase.from('projects').delete().eq('id', id);
+                fetchProjectsList(); // Listeyi yenile
+                loadStats();
+            }
+        }
+
+        // --- 5. MESAJLARI LİSTELE ---
+        async function fetchMessages() {
+            const container = document.getElementById('messageListContainer');
+            const { data: messages } = await _supabase.from('contacts').select('*').order('created_at', { ascending: false });
+
+            container.innerHTML = '';
+            if(messages.length === 0) container.innerHTML = '<p>Henüz mesaj yok.</p>';
+
+            messages.forEach(m => {
+                container.innerHTML += `
+                <div style="background:rgba(0,0,0,0.3); padding:15px; border-radius:10px; margin-bottom:10px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                        <strong style="color:white;">${m.full_name}</strong>
+                        <span style="color:#666; font-size:0.8rem;">${new Date(m.created_at).toLocaleDateString()}</span>
+                    </div>
+                    <div style="color:#a855f7; font-size:0.9rem;">${m.email} | ${m.phone}</div>
+                    <p style="color:#ccc; font-size:0.95rem; margin-top:10px;">${m.message}</p>
+                </div>`;
+            });
+        }
+
+        // Sayfa açılınca çalıştır
+        loadStats();
+        fetchProjectsList();
+    </script>
 </body>
 </html>
