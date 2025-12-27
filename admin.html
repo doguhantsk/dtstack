@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetim Paneli | DTStack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-body: #000205; --glass-border: rgba(255, 255, 255, 0.08); --accent: #a855f7; --text-main: #fff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-body); color: var(--text-main); font-family: 'Inter Tight', sans-serif; display: flex; height: 100vh; overflow: hidden; }
+
+        /* Sidebar */
+        .sidebar { width: 260px; background: rgba(255,255,255,0.02); border-right: 1px solid var(--glass-border); padding: 30px; display: flex; flex-direction: column; }
+        .logo { font-family: 'Space Grotesk'; font-size: 1.5rem; font-weight: 700; margin-bottom: 50px; display: block; text-decoration: none; color: white; }
+        .logo span { color: var(--accent); }
+        
+        .menu-item { padding: 12px 15px; color: #9ca3af; text-decoration: none; display: flex; align-items: center; gap: 12px; border-radius: 10px; margin-bottom: 5px; transition: 0.3s; }
+        .menu-item:hover, .menu-item.active { background: rgba(168, 85, 247, 0.1); color: white; }
+        .menu-item i { width: 20px; }
+
+        .logout { margin-top: auto; color: #ef4444; }
+        .logout:hover { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+
+        /* Main Content */
+        .main-content { flex: 1; padding: 40px; overflow-y: auto; position: relative; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .header h2 { font-family: 'Space Grotesk'; font-size: 2rem; }
+        .user-info { display: flex; align-items: center; gap: 10px; }
+        .avatar { width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+
+        /* Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 25px; border-radius: 16px; }
+        .card h3 { color: #9ca3af; font-size: 0.9rem; margin-bottom: 10px; text-transform: uppercase; }
+        .card .value { font-size: 2.5rem; font-family: 'Space Grotesk'; font-weight: 700; }
+
+        /* Project Status */
+        .status-card { margin-top: 30px; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 30px; border-radius: 20px; }
+        .progress-bar { width: 100%; height: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-top: 15px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--accent); width: 65%; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <a href="index.html" class="logo">DT<span>STACK</span></a>
+        
+        <a href="#" class="menu-item active"><i class="fas fa-home"></i> Genel Bakış</a>
+        <a href="#" class="menu-item"><i class="fas fa-project-diagram"></i> Projelerim</a>
+        <a href="#" class="menu-item"><i class="fas fa-file-invoice-dollar"></i> Faturalar</a>
+        <a href="#" class="menu-item"><i class="fas fa-ticket-alt"></i> Destek Talebi</a>
+        
+        <a href="#" class="menu-item logout"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div>
+                <h2>Hoşgeldin, <span class="admin-username">...</span> 👋</h2>
+                <p style="color: #9ca3af;">İşte projenin son durumu.</p>
+            </div>
+            <div class="user-info">
+                <div style="text-align: right; font-size: 0.9rem;">
+                    <div>Ahmet Yılmaz</div>
+                    <div style="color: #9ca3af; font-size: 0.8rem;">Yılmaz Holding</div>
+                </div>
+                <div class="avatar">AY</div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Toplam Proje</h3>
+                <div class="value">1</div>
+            </div>
+            <div class="card">
+                <h3>Bekleyen Ödeme</h3>
+                <div class="value">₺0</div>
+            </div>
+            <div class="card">
+                <h3>Destek Talebi</h3>
+                <div class="value">0</div>
+            </div>
+        </div>
+
+        <div class="status-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="font-family: 'Space Grotesk'; font-size: 1.5rem; color: white;">Web Sitesi Yenileme Projesi</h3>
+                <span style="background: rgba(168, 85, 247, 0.2); color: #d8b4fe; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem;">Kodlama Aşamasında</span>
+            </div>
+            <div style="margin-top: 20px; display: flex; justify-content: space-between; color: #9ca3af; font-size: 0.9rem;">
+                <span>İlerleme Durumu</span>
+                <span>%65</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #9ca3af;">Frontend tasarımları onaylandı. Backend entegrasyonu devam ediyor. Tahmini bitiş: 15 Şubat 2025</p>
+        </div>
+
+        <!-- Projects management -->
+        <div style="margin-top:30px">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h3 style="margin:0;">Projeler</h3>
+                <button id="btnAddProject" style="padding:10px 14px;border-radius:8px;background:#10b981;color:#fff;border:none;cursor:pointer;">Yeni Proje Ekle</button>
+            </div>
+            <div class="projects-list"></div>
+        </div>
+
+        <!-- Project Modal -->
+        <div id="projectModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;padding:24px;">
+            <div style="background:#0f172a;padding:20px;border-radius:12px;max-width:760px;width:100%;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                    <h4 style="margin:0;color:#fff">Proje Ekle / Düzenle</h4>
+                    <button class="close-modal" style="background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer">✕</button>
+                </div>
+                <form id="projectForm">
+                    <input type="hidden" name="project_id">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px;">
+                        <input name="title" placeholder="Başlık" style="padding:10px;border-radius:8px;border:1px solid #1f2937;background:#071022;color:#fff;">
+                        <input name="image_url" placeholder="Resim URL" style="padding:10px;border-radius:8px;border:1px solid #1f2937;background:#071022;color:#fff;">
+                    </div>
+                    <input name="category" placeholder="Kategori" style="padding:10px;border-radius:8px;border:1px solid #1f2937;background:#071022;color:#fff;margin-bottom:8px;">
+                    <input name="tags" placeholder="Etiketler (virgülle ayır)" style="padding:10px;border-radius:8px;border:1px solid #1f2937;background:#071022;color:#fff;margin-bottom:8px;">
+                    <textarea name="description" placeholder="Açıklama" rows="4" style="padding:10px;border-radius:8px;border:1px solid #1f2937;background:#071022;color:#fff;width:100%;margin-bottom:12px;"></textarea>
+                    <div style="display:flex;gap:8px;justify-content:flex-end;">
+                        <button type="button" class="close-modal" style="padding:8px 12px;border-radius:8px;background:#374151;color:#fff;border:none;">İptal</button>
+                        <button type="submit" style="padding:8px 12px;border-radius:8px;background:#2563eb;color:#fff;border:none;">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="assets/admin.js"></script>
+    <script type="module" src="assets/admin_crud.js"></script>
+</body>
+</html>

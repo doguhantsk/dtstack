@@ -1,245 +1,316 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Referanslarımız | Bizimle Çalışanlar</title>
-        <meta name="description" content="DTStack referansları: birlikte çalıştığımız markalar ve başarı hikayelerimiz hakkında bilgi alın.">
-        <meta name="robots" content="index, follow">
-        <link rel="canonical" href="https://dtstack.com.tr/refercane.html">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="Referanslarımız | Bizimle Çalışanlar">
-        <meta property="og:description" content="DTStack referansları: birlikte çalıştığımız markalar ve başarı hikayelerimiz hakkında bilgi alın.">
-        <meta property="og:url" content="https://dtstack.com.tr/refercane.html">
-        <meta property="og:image" content="https://dtstack.com.tr/assets/og-image.svg">
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Referanslarımız | Bizimle Çalışanlar">
-        <meta name="twitter:description" content="DTStack referansları: birlikte çalıştığımız markalar ve başarı hikayelerimiz hakkında bilgi alın.">
-        <meta name="twitter:image" content="https://dtstack.com.tr/assets/og-image.svg">
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@graph": [
-                { "@type": "Organization", "name": "DTStack", "url": "https://dtstack.com.tr", "logo": "https://dtstack.com.tr/assets/logo.svg" }
-            ]
-        }
-        </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <title>Referanslar & Başarı Hikayeleri | DTStack</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
     <style>
+        /* --- ORTAK AYARLAR --- */
         :root {
-            --primary: #2563eb;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --gray: #64748b;
+            --bg-body: #000205;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-surface: rgba(255, 255, 255, 0.03);
+            --accent: #a855f7;
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter Tight', sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
-
-        /* --- HEADER --- */
-        header {
-            background: var(--dark);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        header p { color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        /* Arka Plan Efektleri */
+        .aurora { position: fixed; top: -20%; left: -20%; width: 140%; height: 140%; background: radial-gradient(circle at 50% 50%, rgba(76, 29, 149, 0.15), transparent 50%), radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.1), transparent 40%), radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.1), transparent 40%); filter: blur(60px); z-index: -1; animation: auroraMove 20s infinite alternate; }
+        @keyframes auroraMove { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+        .grid-bg { position: fixed; inset: 0; z-index: -1; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(circle at center, black 40%, transparent 80%); }
 
-        /* --- LOGO GRID (Markalar) --- */
-        .brands-section {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
+        /* Navbar */
+        header { position: fixed; top: 0; width: 100%; z-index: 100; padding: 20px 0; transition: transform 0.3s ease, background 0.3s; }
+        header.glass { background: rgba(0, 2, 5, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--glass-border); padding: 15px 0; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: white; letter-spacing: -0.02em; text-decoration: none; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-link { color: var(--text-muted); font-size: 0.95rem; font-weight: 500; text-decoration: none; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: white; }
+        .btn-glow { padding: 10px 24px; background: white; color: black; border-radius: 100px; font-weight: 600; text-decoration: none; transition: 0.3s; }
+        .btn-glow:hover { transform: scale(1.05); }
 
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 40px;
-            position: relative;
-            display: inline-block;
+        /* --- SAYFA İÇERİĞİ --- */
+        .page-header { padding: 160px 0 60px; text-align: center; }
+        .page-header h1 { font-family: var(--font-display); font-size: 4rem; margin-bottom: 20px; line-height: 1.1; }
+        .page-header p { color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
+
+        /* 1. INFINITE LOGO MARQUEE */
+        .marquee-container {
+            width: 100%; overflow: hidden; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);
+            padding: 40px 0; background: rgba(0,0,0,0.2); margin-bottom: 100px;
         }
+        .marquee-track { display: flex; gap: 60px; width: max-content; animation: scroll 25s linear infinite; }
+        .marquee-item { 
+            display: flex; align-items: center; justify-content: center; 
+            font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: rgba(255,255,255,0.4); 
+            gap: 10px; opacity: 0.7; transition: 0.3s;
+        }
+        .marquee-item:hover { opacity: 1; color: white; transform: scale(1.05); }
+        .marquee-item img { height: 40px; filter: grayscale(100%); opacity: 0.6; } /* Resim varsa */
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* 2. SUCCESS STORIES (CASE STUDIES) */
+        .case-studies { margin-bottom: 120px; }
+        .section-label { color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; margin-bottom: 20px; display: block; }
         
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50%;
-            height: 3px;
-            background: var(--primary);
-            margin: 10px auto 0;
-            border-radius: 2px;
+        .story-card {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: var(--glass-surface);
+            border: 1px solid var(--glass-border); border-radius: 30px; overflow: hidden; margin-bottom: 40px;
+            transition: 0.4s;
         }
-
-        .logo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 40px;
-            align-items: center;
-            justify-items: center;
+        .story-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-5px); }
+        
+        .story-content { padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+        .story-img {
+            background: rgba(255,255,255,0.05); min-height: 300px; display: flex; align-items: center; justify-content: center;
+            font-size: 4rem; color: rgba(255,255,255,0.1); position: relative;
         }
+        /* Işıltı efekti */
+        .story-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.05) 50%, transparent 60%); }
 
-        .client-logo {
-            width: 140px;
-            height: 80px;
-            object-fit: contain;
-            filter: grayscale(100%); /* Siyah-Beyaz yapar */
-            opacity: 0.6;
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .metric-grid { display: flex; gap: 30px; margin-top: 30px; }
+        .metric h4 { font-family: var(--font-display); font-size: 2rem; color: var(--accent); margin-bottom: 5px; }
+        .metric span { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; }
+
+        /* 3. TESTIMONIALS (BENTO GRID) */
+        .testimonials-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
         }
-
-        /* Mouse üzerine gelince renklenir */
-        .client-logo:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-            transform: scale(1.1);
+        .review-card {
+            background: var(--glass-surface); border: 1px solid var(--glass-border); padding: 30px;
+            border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between;
         }
+        .review-card.large { grid-column: span 2; background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(0,0,0,0)); }
+        
+        .stars { color: #fbbf24; margin-bottom: 15px; font-size: 0.9rem; }
+        .review-text { font-size: 1.05rem; color: rgba(255,255,255,0.9); margin-bottom: 25px; line-height: 1.6; }
+        .client-profile { display: flex; align-items: center; gap: 12px; }
+        .avatar { width: 40px; height: 40px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem; }
+        .client-details h5 { font-size: 0.95rem; font-weight: 700; }
+        .client-details span { font-size: 0.8rem; color: var(--text-muted); }
 
-        /* --- MÜŞTERİ YORUMLARI (Testimonials) --- */
-        .testimonials {
-            background-color: white;
-            padding: 80px 20px;
-        }
+        footer { padding: 80px 0 40px; border-top: 1px solid var(--glass-border); text-align: center; color: var(--text-muted); }
 
-        .container { max-width: 1200px; margin: 0 auto; }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .testimonial-card {
-            background: var(--light);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            position: relative;
-        }
-
-        .testimonial-card i {
-            color: var(--primary);
-            font-size: 2rem;
-            margin-bottom: 15px;
-            opacity: 0.2;
-        }
-
-        .quote-text {
-            font-style: italic;
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-
-        .client-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .client-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .client-name h4 { font-size: 0.95rem; font-weight: 700; }
-        .client-name span { font-size: 0.8rem; color: var(--gray); }
-
-        /* --- İSTATİSTİKLER (Güven Bandı) --- */
-        .stats {
-            background: var(--primary);
-            color: white;
-            padding: 50px 20px;
-        }
-
-        .stats-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-            text-align: center;
-        }
-
-        .stat-item h3 { font-size: 2.5rem; margin-bottom: 5px; }
-        .stat-item p { opacity: 0.8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* --- CTA (Eylem Çağrısı) --- */
-        .cta {
-            text-align: center;
-            padding: 80px 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--dark);
-            color: white;
-            padding: 15px 35px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-
-        .btn:hover { background: var(--primary); transform: translateY(-3px); }
-
-        @media (max-width: 768px) {
-            .stats-grid { flex-direction: column; gap: 40px; }
-            header h1 { font-size: 2rem; }
+        @media (max-width: 1024px) {
+            .story-card { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .review-card.large { grid-column: span 1; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Referanslarımız</h1>
-        <p>Sektörün öncü markalarıyla geliştirdiğimiz başarılı iş ortaklıkları ve mutlu müşterilerimiz.</p>
+    <div class="aurora"></div>
+    <div class="grid-bg"></div>
+
+<header id="navbar">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo">DT<span>STACK</span></a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link active">Ana Sayfa</a>
+                <a href="about.html" class="nav-link">Kurumsal</a>
+                <a href="services.html" class="nav-link">Hizmetler</a>
+                <a href="portfolio.html" class="nav-link">Portfolyo</a>
+                <a href="refercane.html" class="nav-link">Referanslar</a>
+            </nav>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="login.html" class="btn-outline" style="padding: 10px; width: 45px; height: 45px; justify-content: center; border-radius: 50%;" title="Müşteri Paneli">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="proje-baslat.html" class="btn-glow">Proje Başlat</a>
+            </div>
+        </div>
     </header>
 
-    <section class="brands-section">
-        <h2 class="section-title">Bize Güvenen Markalar</h2>
-        <div class="logo-grid">
-            <img src="https://placehold.co/200x100/png?text=LOGO+1" alt="Marka 1" class="client-logo">
-            <img src="https://placehold.co/200x100/png?text=TEKNO+A.S." alt="Marka 2" class="client-logo">
-            <img src="https://placehold.co/200x100/png?text=GLOBAL+YAPI" alt="Marka 3" class="client-logo">
-            <img src="https://placehold.co/200x100/png?text=STARTUP+X" alt="Marka 4" class="client-logo">
-            <img src="https://placehold.co/200x100/png?text=FINANS+GROUP" alt="Marka 5" class="client-logo">
-            <img src="https://placehold.co/200x100/png?text=E-TICARET" alt="Marka 6" class="client-logo">
-            <img src="https://placehold.co/200x100/png?text=MEDYA+CORP" alt="Marka 7" class="client-logo">
-            <img src="https://placehold.co/200x100/png?text=LOJISTIK" alt="Marka 8" class="client-logo">
+    <div class="container">
+        <div class="page-header">
+            <span style="color: var(--accent); font-weight: 600; margin-bottom: 10px; display: block;">MÜŞTERİ HİKAYELERİ</span>
+            <h1>Güveninizi Boşa Çıkarmıyoruz.</h1>
+            <p>Küçük girişimlerden global markalara kadar, iş ortaklarımızın dijital dönüşüm yolculuğunda yanlarındayız.</p>
         </div>
-    </section>
+    </div>
 
-    <section class="stats">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <h3>35+</h3>
-                <p>Tamamlanan Proje</p>
+    <div class="marquee-container">
+        <div class="marquee-track">
+            <div class="marquee-item"><i class="fas fa-cube"></i> TEKNO YAPI</div>
+            <div class="marquee-item"><i class="fas fa-leaf"></i> GREEN ENERGY</div>
+            <div class="marquee-item"><i class="fas fa-shopping-bag"></i> DS STORE</div>
+            <div class="marquee-item"><i class="fas fa-building"></i> VRIANO</div>
+            <div class="marquee-item"><i class="fas fa-utensils"></i> GASTRO REZ</div>
+            <div class="marquee-item"><i class="fas fa-chart-pie"></i> DATA CORP</div>
+            <div class="marquee-item"><i class="fas fa-bolt"></i> FAST LOGISTIC</div>
+            <div class="marquee-item"><i class="fas fa-cube"></i> TEKNO YAPI</div>
+            <div class="marquee-item"><i class="fas fa-leaf"></i> GREEN ENERGY</div>
+            <div class="marquee-item"><i class="fas fa-shopping-bag"></i> DS STORE</div>
+            <div class="marquee-item"><i class="fas fa-building"></i> VRIANO</div>
+            <div class="marquee-item"><i class="fas fa-utensils"></i> GASTRO REZ</div>
+        </div>
+    </div>
+
+    <div class="container case-studies">
+        <span class="section-label">ÖNE ÇIKAN BAŞARI HİKAYELERİ</span>
+        
+        <div class="story-card">
+            <div class="story-content">
+                <div style="margin-bottom: 15px; color: var(--accent); font-weight: 700;">E-TİCARET DÖNÜŞÜMÜ</div>
+                <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 20px;">DS Store: Satışlarda Rekor Artış</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">
+                    Geleneksel mağazacılık yapan DS Store için, kullanıcı deneyimi odaklı, hızlı ve tamamen özel bir e-ticaret altyapısı geliştirdik. SEO optimizasyonu ile organik trafikte ciddi artış sağladık.
+                </p>
+                <div class="metric-grid">
+                    <div class="metric">
+                        <h4>%250</h4>
+                        <span>Online Satış Artışı</span>
+                    </div>
+                    <div class="metric">
+                        <h4>3.5sn</h4>
+                        <span>Sayfa Yüklenme</span>
+                    </div>
+                </div>
             </div>
-            <div class="stat-item">
-                <h3>50+</h3>
-                <p>Mutlu Müşteri</p>
-            </div>
-            <div class="stat-item">
-                <h3>5</h3>
-                <p>Yıllık Tecrübe</p>
+            <div class="story-img">
+                <i class="fas fa-shopping-cart"></i>
             </div>
         </div>
-    </section>
-    <section class="cta">
-        <h2>Siz de Başarı Hikayemizin Bir Parçası Olun</h2>
-        <p style="margin-top:10px; color:#64748b;">Projelerinizi hayata geçirmek için buradayız.</p>
-        <a href="proje-baslat.html" class="btn">Bizimle İletişime Geçin</a>
-    </section>
 
+        <div class="story-card">
+            <div class="story-img">
+                <i class="fas fa-city"></i>
+            </div>
+            <div class="story-content">
+                <div style="margin-bottom: 15px; color: var(--accent); font-weight: 700;">KURUMSAL DİJİTAL KİMLİK</div>
+                <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 20px;">Vriano: Prestijli Bir Vitrin</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">
+                    İnşaat sektörünün devi Vriano için, projelerini sergileyebilecekleri interaktif ve modern bir katalog sitesi tasarladık. Mobil uyumluluk ve premium tasarım dili ile marka algısını güçlendirdik.
+                </p>
+                <div class="metric-grid">
+                    <div class="metric">
+                        <h4>40+</h4>
+                        <span>Ülkeden Ziyaret</span>
+                    </div>
+                    <div class="metric">
+                        <h4>%90</h4>
+                        <span>Mobil Uyumluluk</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <span class="section-label" style="text-align: center; margin-bottom: 40px;">MÜŞTERİ YORUMLARI</span>
+        <div class="testimonials-grid">
+            
+            <div class="review-card large">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">"DTStack ekibiyle çalışmak, bir ajansla değil, kendi şirketimizin bir departmanıyla çalışmak gibiydi. İletişimleri, hızları ve teknik bilgileri gerçekten etkileyici. Projemizi hayal ettiğimizden daha iyi bir noktaya taşıdılar."</p>
+                <div class="client-profile">
+                    <div class="avatar">AY</div>
+                    <div class="client-details">
+                        <h5>Ahmet Yılmaz</h5>
+                        <span>Genel Müdür, Tekno Yapı</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">"Web sitemiz artık çok daha hızlı ve güvenli. SEO çalışmalarından sonra gelen müşteri sayısında gözle görülür bir artış oldu."</p>
+                <div class="client-profile">
+                    <div class="avatar">SD</div>
+                    <div class="client-details">
+                        <h5>Selin Demir</h5>
+                        <span>Pazarlama, DS Store</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">"Teknik destek konusunda 7/24 ulaşılabilir olmaları bizim için çok değerli. Kesinlikle tavsiye ederim."</p>
+                <div class="client-profile">
+                    <div class="avatar">MK</div>
+                    <div class="client-details">
+                        <h5>Mert Kaya</h5>
+                        <span>Kurucu, StartUp X</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card large" style="grid-column: auto;">
+                 <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">"GastroRez sistemi sayesinde rezervasyon süreçlerimiz tamamen otomatize oldu. İş yükümüz azaldı, müşteri memnuniyeti arttı."</p>
+                <div class="client-profile">
+                    <div class="avatar">EO</div>
+                    <div class="client-details">
+                        <h5>Elif Öztürk</h5>
+                        <span>Restoran Müdürü</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card large" style="background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(0,0,0,0));">
+                 <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">"Tasarım vizyonları çok modern. Bize sundukları arayüz tasarımı, sektördeki rakiplerimizin çok önünde."</p>
+                <div class="client-profile">
+                    <div class="avatar">CK</div>
+                    <div class="client-details">
+                        <h5>Caner Kurt</h5>
+                        <span>CEO, Vriano</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container" style="margin-bottom: 100px;">
+        <div style="background: var(--accent); border-radius: 30px; padding: 60px; text-align: center; position: relative; overflow: hidden;">
+            <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: url('https://www.transparenttextures.com/patterns/cubes.png'); opacity: 0.1;"></div>
+            <h2 style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 20px; color: white; position: relative; z-index: 1;">Sıradaki Başarı Hikayesi Siz Olun</h2>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; position: relative; z-index: 1;">
+                İşletmenizi dijital dünyada büyütmek için gereken teknolojiye ve vizyona sahibiz.
+            </p>
+            <a href="proje-baslat.html" class="btn-glow" style="background: white; color: var(--accent); position: relative; z-index: 1;">Hemen Başlayın</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="margin-bottom: 20px; display: inline-block;">DT<span>STACK</span></div>
+            <p>&copy; 2025 DTStack Yazılım. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        const header = document.getElementById("navbar");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) header.classList.add("glass");
+            else header.classList.remove("glass");
+        });
+    </script>
 </body>
 </html>

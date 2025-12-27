@@ -1,170 +1,319 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Portfolyo | DTStack</title>
-        <meta name="description" content="DTStack portfolyosunu keşfedin — tamamladığımız e-ticaret, kurumsal ve özel yazılım projeleri örnekleri.">
-        <meta name="robots" content="index, follow">
-        <link rel="canonical" href="https://dtstack.com.tr/portfolio.html">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="Portfolyo | DTStack">
-        <meta property="og:description" content="DTStack portfolyosunu keşfedin — tamamladığımız e-ticaret, kurumsal ve özel yazılım projeleri örnekleri.">
-        <meta property="og:url" content="https://dtstack.com.tr/portfolio.html">
-        <meta property="og:image" content="https://dtstack.com.tr/assets/og-image.svg">
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Portfolyo | DTStack">
-        <meta name="twitter:description" content="DTStack portfolyosunu keşfedin — tamamladığımız e-ticaret, kurumsal ve özel yazılım projeleri örnekleri.">
-        <meta name="twitter:image" content="https://dtstack.com.tr/assets/og-image.svg">
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@graph": [
-                { "@type": "Organization", "name": "DTStack", "url": "https://dtstack.com.tr", "logo": "https://dtstack.com.tr/assets/logo.svg" }
-            ]
-        }
-        </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Kurumsal | DTStack</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        /* --- ORTAK CSS --- */
-        :root { --primary: #0f172a; --secondary: #3b82f6; --accent: #f8fafc; --text-dark: #1e293b; --text-light: #64748b; --white: #ffffff; --border: #e2e8f0; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--accent); color: var(--text-dark); line-height: 1.6; } /* Zemin hafif gri */
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
-        
-        .top-bar { background-color: var(--primary); color: rgba(255,255,255,0.8); padding: 10px 5%; font-size: 0.85rem; display: flex; justify-content: space-between; }
-        header { background: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; max-width: 1400px; margin: 0 auto; }
-        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
-        .logo span { color: var(--secondary); }
-        .nav-menu { display: flex; gap: 30px; }
-        .nav-menu a { font-weight: 500; color: var(--text-dark); font-size: 0.95rem; }
-        .nav-menu a:hover, .nav-menu a.active { color: var(--secondary); }
-        .btn-quote { background-color: var(--secondary); color: var(--white); padding: 12px 25px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; }
-
-        /* --- SAYFAYA ÖZEL --- */
-        .page-header { background: var(--primary); color: var(--white); padding: 80px 5%; text-align: center; }
-        
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 5%;
+        /* --- ORTAK AYARLAR --- */
+        :root {
+            --bg-body: #000205;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-surface: rgba(255, 255, 255, 0.03);
+            --accent: #a855f7;
+            --accent-glow: rgba(168, 85, 247, 0.4);
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter Tight', sans-serif;
         }
 
-        .project-card {
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: 0.3s;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        /* Arka Plan */
+        .aurora { position: fixed; top: -20%; left: -20%; width: 140%; height: 140%; background: radial-gradient(circle at 50% 50%, rgba(76, 29, 149, 0.15), transparent 50%), radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.1), transparent 40%), radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.1), transparent 40%); filter: blur(60px); z-index: -1; animation: auroraMove 20s infinite alternate; }
+        @keyframes auroraMove { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+        .grid-bg { position: fixed; inset: 0; z-index: -1; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(circle at center, black 40%, transparent 80%); }
 
-        .project-img {
-            height: 250px;
-            background-color: #cbd5e1;
+        /* Navbar */
+        header { position: fixed; top: 0; width: 100%; z-index: 100; padding: 20px 0; transition: transform 0.3s ease, background 0.3s; }
+        header.glass { background: rgba(0, 2, 5, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--glass-border); padding: 15px 0; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: white; letter-spacing: -0.02em; text-decoration: none; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-link { color: var(--text-muted); font-size: 0.95rem; font-weight: 500; text-decoration: none; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: white; }
+        .btn-glow { padding: 10px 24px; background: white; color: black; border-radius: 100px; font-weight: 600; text-decoration: none; transition: 0.3s; }
+        .btn-glow:hover { transform: scale(1.05); }
+
+        /* --- KURUMSAL SAYFA STİLLERİ --- */
+
+        /* 1. HERO BÖLÜMÜ */
+        .about-hero { padding: 180px 0 100px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
+        .about-hero h1 { font-family: var(--font-display); font-size: 3.5rem; line-height: 1.1; margin-bottom: 30px; }
+        .about-hero p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 20px; }
+        .about-hero-img { 
+            position: relative; height: 400px; border-radius: 30px; overflow: hidden; border: 1px solid var(--glass-border);
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(0,0,0,0));
             display: flex; align-items: center; justify-content: center;
-            color: var(--text-light);
-            font-size: 3rem;
-            position: relative;
         }
-        
-        .project-info { padding: 25px; }
-        .project-category { color: var(--secondary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .project-info h3 { margin: 10px 0; color: var(--primary); }
-        .project-info p { color: var(--text-light); font-size: 0.9rem; margin-bottom: 20px; }
-        
-        .project-link {
-            display: inline-block;
-            color: var(--primary);
-            font-weight: 600;
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 2px;
+        .about-hero-img i { font-size: 8rem; color: rgba(255,255,255,0.1); }
+        .floating-badge {
+            position: absolute; bottom: 30px; left: -20px; background: var(--bg-body); border: 1px solid var(--glass-border);
+            padding: 15px 25px; border-radius: 12px; display: flex; align-items: center; gap: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
+        .floating-badge i { font-size: 1.5rem; color: var(--accent); }
 
-        /* Footer */
-        footer { background: #0b1120; color: #94a3b8; padding: 50px 5% 20px; text-align: center; }
+        /* 2. MİSYON & VİZYON (BENTO) */
+        .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 120px; }
+        .mv-card { background: var(--glass-surface); border: 1px solid var(--glass-border); padding: 50px; border-radius: 24px; position: relative; overflow: hidden; transition: 0.3s; }
+        .mv-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-5px); }
+        .mv-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
+        .mv-card h3 { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 15px; color: white; }
+        .mv-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.7; }
         
-        @media (max-width: 768px) { .nav-menu { display: none; } }
+        /* 3. TIMELINE (YOLCULUK) */
+        .timeline-section { margin-bottom: 120px; position: relative; }
+        .section-title { text-align: center; font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 60px; }
+        
+        .timeline-container { max-width: 800px; margin: 0 auto; padding-left: 30px; border-left: 2px solid rgba(255,255,255,0.1); position: relative; }
+        .timeline-item { position: relative; margin-bottom: 60px; padding-left: 40px; }
+        .timeline-dot {
+            position: absolute; left: -39px; top: 0; width: 20px; height: 20px; background: var(--bg-body);
+            border: 2px solid var(--accent); border-radius: 50%; box-shadow: 0 0 15px var(--accent-glow);
+        }
+        .timeline-year { font-family: var(--font-display); font-weight: 700; color: var(--accent); font-size: 1.2rem; margin-bottom: 10px; display: block; }
+        .timeline-item h4 { font-size: 1.4rem; color: white; margin-bottom: 10px; }
+        .timeline-item p { color: var(--text-muted); }
+
+        /* 4. TEAM SECTION */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .team-card { background: var(--glass-surface); border: 1px solid var(--glass-border); border-radius: 20px; overflow: hidden; transition: 0.4s; text-align: center; }
+        .team-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        
+        .team-img { 
+            height: 300px; background: #111; position: relative; overflow: hidden; 
+            display: flex; align-items: flex-end; justify-content: center;
+        }
+        .team-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.4s; }
+        .team-card:hover .team-img img { filter: grayscale(0%); transform: scale(1.05); }
+        
+        .team-info { padding: 25px; }
+        .team-info h4 { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 5px; color: white; }
+        .team-info span { color: var(--accent); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 15px; }
+        
+        .team-social { display: flex; justify-content: center; gap: 15px; }
+        .team-social a { color: var(--text-muted); transition: 0.3s; }
+        .team-social a:hover { color: white; }
+
+        footer { padding: 80px 0 40px; border-top: 1px solid var(--glass-border); text-align: center; color: var(--text-muted); }
+        
+        @media (max-width: 900px) {
+            .about-hero { grid-template-columns: 1fr; padding-top: 120px; }
+            .mv-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .floating-badge { display: none; }
+        }
     </style>
 </head>
 <body>
-    <div class="top-bar">
-        <span><i class="fas fa-envelope"></i> doguhantskn06@gmail.com</span>
-    </div>
 
-    <header>
-        <div class="nav-container">
-            <div class="logo">DT<span>STACK</span></div>
-            <nav class="nav-menu">
-                <a href="index.html">Ana Sayfa</a>
-                <a href="about.html">Kurumsal</a>
-                <a href="services.html">Hizmetler</a>
-                <a href="portfolio.html" class="active">Portfolyo</a>
-                <a href="proje-baslat.html">İletişim</a>
+    <div class="aurora"></div>
+    <div class="grid-bg"></div>
+
+    <header id="navbar">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo">DT<span>STACK</span></a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link active">Ana Sayfa</a>
+                <a href="about.html" class="nav-link">Kurumsal</a>
+                <a href="services.html" class="nav-link">Hizmetler</a>
+                <a href="portfolio.html" class="nav-link">Portfolyo</a>
+                <a href="refercane.html" class="nav-link">Referanslar</a>
             </nav>
-            <a href="proje-baslat.html" class="btn-quote">PROJE BAŞLAT</a>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="login.html" class="btn-outline" style="padding: 10px; width: 45px; height: 45px; justify-content: center; border-radius: 50%;" title="Müşteri Paneli">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="proje-baslat.html" class="btn-glow">Proje Başlat</a>
+            </div>
         </div>
     </header>
 
-    <div class="page-header">
-        <h1>Projelerimiz</h1>
-        <p>Kalitemizin kanıtı, bitirdiğimiz işlerdir.</p>
+    <div class="container about-hero">
+        <div class="about-content">
+            <span style="color: var(--accent); font-weight: 600; letter-spacing: 1px; margin-bottom: 15px; display: block;">HAKKIMIZDA</span>
+            <h1>Kodun Arkasındaki <br><span style="color: var(--text-muted);">Tutkulu Güç.</span></h1>
+            <p>DTStack, Ankara Bilim Üniversitesi bünyesinde filizlenen, teknolojiyi sadece bir araç olarak değil, bir sanat olarak gören yeni nesil mühendislerin kurduğu bir yazılım ajansıdır.</p>
+            <p>Standart çözümlerle yetinmiyoruz. Her projede "daha hızlı, daha güvenli ve daha estetik" olanı arıyoruz. Çünkü dijital dünyada "iyi" olmak yetmez, "en iyi" olmak gerekir.</p>
+            <div style="margin-top: 30px; display: flex; gap: 40px;">
+                <div>
+                    <h4 style="font-size: 2rem; font-family: var(--font-display); margin-bottom: 0;">2023</h4>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">KURULUŞ</span>
+                </div>
+                <div>
+                    <h4 style="font-size: 2rem; font-family: var(--font-display); margin-bottom: 0;">50+</h4>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">PROJE</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="about-hero-img">
+            <i class="fas fa-layer-group"></i> <div class="floating-badge">
+                <i class="fas fa-check-circle"></i>
+                <div>
+                    <strong style="display: block; color: white;">%100 Yerli</strong>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">Yazılım ve Tasarım</span>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="portfolio-grid">
-        
-        <div class="project-card">
-            <div class="project-img"><i class="fas fa-shopping-bag"></i></div>
-            <div class="project-info">
-                <span class="project-category">E-Ticaret</span>
-                <h3>DS Store Online Mağaza</h3>
-                <p>Giyim sektörü için geliştirilen, yüksek trafik kapasiteli ve hızlı e-ticaret altyapısı.</p>
-                <a href="#" class="project-link">İncele <i class="fas fa-arrow-right"></i></a>
+    <div class="container" style="margin-bottom: 80px;">
+        <h2 class="section-title">Projelerimiz</h2>
+        <div class="portfolio-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:24px; max-width:1200px; margin:0 auto; padding:0 24px;">
+            <!-- Dynamic project cards will be rendered here by assets/portfolio.js -->
+        </div>
+    </div>
+
+    <div class="container mv-grid">
+        <div class="mv-card">
+            <div class="mv-icon"><i class="fas fa-compass"></i></div>
+            <h3>Misyonumuz</h3>
+            <p>İşletmeleri dijital dönüşümün karmaşasından kurtarıp, onlara en güncel teknolojilerle (React, AI, Cloud) güçlendirilmiş, ölçülebilir ve sürdürülebilir büyüme sağlayan dijital varlıklar kazandırmak.</p>
+        </div>
+        <div class="mv-card">
+            <div class="mv-icon"><i class="fas fa-eye"></i></div>
+            <h3>Vizyonumuz</h3>
+            <p>Ankara'dan doğan bu kıvılcımı globale taşıyarak, Türkiye'nin yazılım ihracatında öncü rol oynayan, kodu ve tasarımı kusursuz birleştiren global bir teknoloji markası olmak.</p>
+        </div>
+    </div>
+
+    <div class="container timeline-section">
+        <h2 class="section-title">Yolculuğumuz</h2>
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-year">2023</span>
+                <h4>Başlangıç Noktası</h4>
+                <p>Ankara'da küçük bir ofiste, 3 kişilik çekirdek bir ekiple yola çıktık. İlk hedefimiz yerel işletmelere modern web çözümleri sunmaktı.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-year">2024</span>
+                <h4>Hızlı Büyüme & E-Ticaret</h4>
+                <p>Ekibimizi genişlettik ve uzmanlığımızı E-Ticaret altyapılarına kaydırdık. İlk büyük ölçekli kurumsal projemizi başarıyla teslim ettik.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-year">2025</span>
+                <h4>Global Hedefler</h4>
+                <p>Artık sadece web sitesi değil; SaaS projeleri, mobil uygulamalar ve yapay zeka entegrasyonlu çözümler üreterek globale açılıyoruz.</p>
             </div>
         </div>
+    </div>
 
-        <div class="project-card">
-            <div class="project-img"><i class="fas fa-building"></i></div>
-            <div class="project-info">
-                <span class="project-category">Kurumsal</span>
-                <h3>Vriano İnşaat</h3>
-                <p>İnşaat firması için proje vitrini ve katalog özellikli kurumsal web sitesi.</p>
-                <a href="#" class="project-link">İncele <i class="fas fa-arrow-right"></i></a>
+    <div class="container" style="margin-bottom: 100px;">
+        <h2 class="section-title">Çekirdek Ekip</h2>
+        <div class="team-grid">
+            
+            <div class="team-card">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member">
+                </div>
+                <div class="team-info">
+                    <h4>Doğuhan Taşkın</h4>
+                    <span>Kurucu & Full Stack Dev</span>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="project-card">
-            <div class="project-img"><i class="fas fa-utensils"></i></div>
-            <div class="project-info">
-                <span class="project-category">Web Uygulama</span>
-                <h3>GastroRez Sistemi</h3>
-                <p>Restoranlar için QR menü ve online masa rezervasyon yönetim sistemi.</p>
-                <a href="#" class="project-link">İncele <i class="fas fa-arrow-right"></i></a>
+            <div class="team-card">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member">
+                </div>
+                <div class="team-info">
+                    <h4>Elif Yılmaz</h4>
+                    <span>Lead UI/UX Designer</span>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="project-card">
-            <div class="project-img"><i class="fas fa-chart-line"></i></div>
-            <div class="project-info">
-                <span class="project-category">SaaS</span>
-                <h3>Admin Dashboard</h3>
-                <p>Büyük veri analizi için geliştirilmiş özel yönetim paneli arayüzü.</p>
-                <a href="#" class="project-link">İncele <i class="fas fa-arrow-right"></i></a>
+            <div class="team-card">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member">
+                </div>
+                <div class="team-info">
+                    <h4>Mert Demir</h4>
+                    <span>Backend Developer</span>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
             </div>
-        </div>
 
+             <div class="team-card">
+                <div class="team-img">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member">
+                </div>
+                <div class="team-info">
+                    <h4>Selin Kaya</h4>
+                    <span>Proje Yöneticisi</span>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container" style="text-align: center; margin-bottom: 80px;">
+        <div style="padding: 60px; border: 1px solid var(--glass-border); border-radius: 30px; background: linear-gradient(to right, rgba(255,255,255,0.02), rgba(255,255,255,0.05));">
+            <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 20px;">Bizimle Çalışmak İster Misiniz?</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">Ekibimizle tanışmak ve projenizi konuşmak için bir kahveye bekleriz.</p>
+            <a href="proje-baslat.html" class="btn-glow">İletişime Geçin</a>
+        </div>
     </div>
 
     <footer>
-        <div class="logo" style="margin-bottom: 20px; color: #fff;">DT<span>STACK</span></div>
-        <p>&copy; 2025 DTStack Yazılım. Tüm Hakları Saklıdır.</p>
+        <div class="container">
+            <div class="logo" style="margin-bottom: 20px; display: inline-block;">DT<span>STACK</span></div>
+            <p>&copy; 2025 DTStack Yazılım. Tüm Hakları Saklıdır.</p>
+        </div>
     </footer>
+
+    <script>
+        const header = document.getElementById("navbar");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) header.classList.add("glass");
+            else header.classList.remove("glass");
+        });
+    </script>
+    <script type="module" src="assets/portfolio.js"></script>
+    <script>
+        const header = document.getElementById("navbar");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) header.classList.add("glass");
+            else header.classList.remove("glass");
+        });
+    </script>
+    <script type="module" src="assets/portfolio.js"></script>
 </body>
 </html>
