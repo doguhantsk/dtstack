@@ -287,6 +287,10 @@
                     TEKLİF İSTEĞİNİ GÖNDER <i class="fas fa-paper-plane"></i>
                 </button>
             </form>
+            <p style="color:#9ca3af;margin-top:12px;">Form gönderimi veritabanı bağlantısı kaldırıldı. Aşağıdaki buton ile talebinizi e-posta olarak iletebilirsiniz.</p>
+            <div style="margin-top:12px">
+                <button id="mailtoBtn" class="submit-btn">Talebimi E-Postayla Gönder</button>
+            </div>
         </div>
 
         <div class="sidebar">
@@ -350,6 +354,30 @@
         </div>
 
     </div>
+
+        <script>
+            // Simple mailto fallback: gather form fields and open mail client
+            document.addEventListener('DOMContentLoaded', () => {
+                const form = document.getElementById('offerForm');
+                const btn = document.getElementById('mailtoBtn');
+                if (!form || !btn) return;
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const data = new FormData(form);
+                    const name = encodeURIComponent(data.get('name') || '');
+                    const company = encodeURIComponent(data.get('company') || '');
+                    const email = encodeURIComponent(data.get('email') || '');
+                    const phone = encodeURIComponent(data.get('phone') || '');
+                    const services = encodeURIComponent((data.getAll('service') || []).join(', '));
+                    const budget = encodeURIComponent(data.get('budget') || '');
+                    const message = encodeURIComponent(data.get('message') || '');
+
+                    const subject = encodeURIComponent('DTStack - Proje Talebi');
+                    const body = `İsim: ${name}%0D%0AŞirket: ${company}%0D%0AE-Posta: ${email}%0D%0ATel: ${phone}%0D%0AHizmetler: ${services}%0D%0ABütçe: ${budget}%0D%0AMesaj:%0D%0A${message}`;
+                    window.location.href = `mailto:info@dtstack.com?subject=${subject}&body=${body}`;
+                });
+            });
+        </script>
 
     <footer>
         <div class="container">

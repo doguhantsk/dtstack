@@ -10,7 +10,7 @@ create extension if not exists pgcrypto;
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   email text,
-  role text check (role in ('admin','client')) default 'client',
+  role text default 'client',
   full_name text
 );
 
@@ -19,12 +19,7 @@ alter table public.profiles enable row level security;
 create policy "Profiles: select for authenticated" on public.profiles
   for select using (auth.role() = 'authenticated');
 
-create policy "Profiles: admin manage" on public.profiles
-  for insert, update, delete using (
-    exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
-  ) with check (
-    exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
-  );
+-- Admin-specific management policy removed (project no longer uses admin role)
 
 -- Optional: create profile automatically when auth.user created
 create function public.handle_new_user() returns trigger as $$
@@ -58,13 +53,7 @@ alter table public.projects enable row level security;
 create policy "Projects: public select" on public.projects
   for select using (true);
 
--- Only admins can insert/update/delete projects
-create policy "Projects: admin write" on public.projects
-  for insert, update, delete using (
-    exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
-  ) with check (
-    exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
-  );
+-- Admin-only project write policy removed; project write operations are now restricted by default.
 
 -- 3) contacts
 create table if not exists public.contacts (
@@ -86,17 +75,7 @@ alter table public.contacts enable row level security;
 create policy "Contacts: allow insert" on public.contacts
   for insert with check (true);
 
--- Admins can select/update/delete contacts
-create policy "Contacts: admin select" on public.contacts
-  for select using (
-    exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
-  );
-create policy "Contacts: admin write" on public.contacts
-  for update, delete using (
-    exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
-  ) with check (
-    exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
-  );
+-- Admin-only contact policies removed; contact management restricted by default.
 
 -- 4) testimonials
 create table if not exists public.testimonials (
@@ -117,12 +96,7 @@ create policy "Testimonials: public select" on public.testimonials
 create policy "Testimonials: authenticated insert" on public.testimonials
   for insert using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
 
-create policy "Testimonials: admin write" on public.testimonials
-  for update, delete using (
-    exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
-  ) with check (
-    exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
-  );
+-- Admin-only testimonial write policy removed; update/delete restricted by default.
 
 -- TEST DATA (sample projects, testimonials, contacts)
 insert into public.projects (title, description, image_url, category, tags)

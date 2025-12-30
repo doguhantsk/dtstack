@@ -15,23 +15,14 @@ This will write `assets/supabase.js` with the provided keys. Do NOT commit that 
 
 4) Run SQL setup in Supabase SQL editor. Open SQL Editor and run the following files in order:
    - `supabase_schema.sql` (creates tables, trigger, sample data)
-   - `supabase_policies.sql` (adds RLS policies allowing admins to manage profiles)
+   - `supabase_policies.sql` (adds RLS policies)
 
-5) Create an admin user:
-   - In Supabase → Authentication → Users, create a user (email + password) or sign up via `register.html`.
-   - Find the user's `id` in `public.profiles` and run:
-
-```sql
-UPDATE public.profiles SET role = 'admin' WHERE id = 'PUT_USER_UUID_HERE';
-```
-
-6) Deploy & test:
+5) Deploy & test:
    - Ensure your pages load the Supabase JS CDN before your module scripts, e.g. in HTML:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script type="module" src="assets/supabase.js"></script>
-<script type="module" src="assets/admin.js"></script>
 ```
 
 7) Security notes:

@@ -99,40 +99,16 @@
         <h2 class="login-title">Müşteri Paneli</h2>
         <p class="login-subtitle">Proje durumunuzu takip etmek için giriş yapın.</p>
 
-        <form id="loginForm">
-            <div class="form-group">
-                <label class="form-label">E-Posta</label>
-                <div class="input-wrapper">
-                    <input type="email" class="form-control" placeholder="isim@sirket.com" required>
-                    <i class="fas fa-envelope"></i>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Şifre</label>
-                <div class="input-wrapper">
-                    <input type="password" class="form-control" placeholder="••••••••" required>
-                    <i class="fas fa-lock"></i>
-                </div>
-            </div>
-
-            <button type="submit" class="btn-login">
-                Giriş Yap <i class="fas fa-arrow-right"></i>
-            </button>
-        </form>
-
-        <div id="loginMessage" aria-live="polite" style="margin-top:12px;color:#d00"></div>
-
-        <div style="margin-top: 20px; font-size: 0.9rem; color: var(--text-muted);">
-            Hesabınız yok mu? <a href="register.html" style="color: var(--accent); text-decoration: none; font-weight: 600;">Hemen Kayıt Olun</a>
+        <div style="padding:40px; text-align:center;">
+            <h3>Giriş devre dışı</h3>
+            <p style="color:var(--text-muted)">Müşteri paneli ve kimlik doğrulama artık kullanılmıyor.</p>
+            <a href="index.html" class="back-link">Ana Sayfaya Dön</a>
         </div>
 
         <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Ana Sayfaya Dön</a>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script type="module" src="assets/supabase.js"></script>
-    <script type="module" src="assets/login.js"></script>
+    <!-- Authentication removed -->
 
 </body>
 </html>

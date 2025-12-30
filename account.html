@@ -33,8 +33,24 @@
     <div id="msg" style="margin-top:12px;color:#d00"></div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script type="module" src="assets/supabase.js"></script>
-  <script type="module" src="assets/account.js"></script>
+  <!-- Account functionality removed (no data backend) -->
+  <script>
+    // Disable interactive account controls when no backend exists
+    document.addEventListener('DOMContentLoaded', () => {
+      const save = document.getElementById('saveBtn');
+      const signOut = document.getElementById('signOutBtn');
+      const form = document.getElementById('accountForm');
+      if (save) save.disabled = true;
+      if (signOut) signOut.disabled = true;
+      if (form) {
+        form.querySelectorAll('input,select,button').forEach(el => el.disabled = true);
+        const note = document.createElement('p');
+        note.style.color = '#9ca3af';
+        note.style.marginTop = '12px';
+        note.textContent = 'Hesap yönetimi devre dışı bırakıldı.';
+        form.parentNode.insertBefore(note, form.nextSibling);
+      }
+    });
+  </script>
 </body>
 </html>

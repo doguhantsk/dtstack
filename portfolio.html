@@ -8,9 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-        <script type="module" src="assets/supabase.js"></script>
-        <script type="module" src="assets/portfolio.js"></script>
+        <!-- Supabase and dynamic portfolio removed (static content shown) -->
     </body>
 
         /* 1. HERO BÖLÜMÜ */
@@ -138,7 +136,10 @@
     <div class="container" style="margin-bottom: 80px;">
         <h2 class="section-title">Projelerimiz</h2>
         <div class="portfolio-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:24px; max-width:1200px; margin:0 auto; padding:0 24px;">
-            <!-- Dynamic project cards will be rendered here by assets/portfolio.js -->
+            <div style="background:rgba(255,255,255,0.03);padding:20px;border-radius:12px;">
+                <h3>Projeler yakında</h3>
+                <p style="color:#9ca3af">Projeler veritabanı bağlantısı kaldırıldı; projeleri statik içerikle güncelleyin.</p>
+            </div>
         </div>
     </div>
 
@@ -265,7 +266,6 @@
             else header.classList.remove("glass");
         });
     </script>
-    <script type="module" src="assets/portfolio.js"></script>
     <script>
         const header = document.getElementById("navbar");
         window.addEventListener("scroll", () => {
@@ -273,65 +273,5 @@
             else header.classList.remove("glass");
         });
     </script>
-    <script type="module" src="assets/portfolio.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="assets/js/supbase.js"></script>
-
-<script>
-    async function loadProjects() {
-        console.log("Veriler çekiliyor...");
-        
-        // 1. Veritabanından projeleri çek
-        const { data: projects, error } = await _supabase
-            .from('projects')
-            .select('*')
-            .order('created_at', { ascending: false });
-
-        if (error) {
-            console.error('Hata oluştu:', error);
-            alert("Veri çekilemedi! Konsola bak.");
-            return;
-        }
-
-        console.log("Gelen Projeler:", projects);
-
-        // 2. HTML'i oluştur
-        const grid = document.querySelector('.projects-grid');
-        grid.innerHTML = ''; // Mevcut statik kartları temizle
-
-        if (projects.length === 0) {
-            grid.innerHTML = '<p style="color:white; text-align:center;">Henüz proje eklenmemiş.</p>';
-            return;
-        }
-
-        projects.forEach(project => {
-            // Etiketleri (Tags) oluştur
-            let tagsHtml = '';
-            if (project.tags) {
-                project.tags.forEach(tag => {
-                    tagsHtml += `<span style="font-size:0.7rem; border:1px solid rgba(255,255,255,0.2); padding:2px 8px; border-radius:10px; margin-right:5px; color:#ccc;">${tag}</span>`;
-                });
-            }
-
-            const html = `
-            <div class="project-card">
-                <div class="project-img" style="background-image: url('${project.image_url}'); background-size: cover; background-position: center;">
-                </div>
-                <div class="project-info">
-                    <span class="project-tag">${project.category.toUpperCase()}</span>
-                    <h3 class="project-title">${project.title}</h3>
-                    <p class="project-desc">${project.description}</p>
-                    <div style="margin-bottom:15px;">${tagsHtml}</div>
-                    <a href="#" class="project-link">Projeyi İncele <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            `;
-            grid.innerHTML += html;
-        });
-    }
-
-    // Sayfa açılınca yükle
-    document.addEventListener('DOMContentLoaded', loadProjects);
-</script>
 </html>

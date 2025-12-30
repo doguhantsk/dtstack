@@ -20,8 +20,17 @@
     <p style="margin-top:12px;color:#9ca3af">Hatırladıysanız <a href="login.html" style="color:#a855f7">Giriş Yap</a></p>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script type="module" src="assets/supabase.js"></script>
-  <script type="module" src="assets/forgot.js"></script>
+  <!-- Password reset disabled (no backend) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('forgotForm');
+      const msg = document.getElementById('msg');
+      if (form) {
+        form.querySelectorAll('input,button').forEach(el => el.disabled = true);
+        if (msg) msg.style.color = '#9ca3af';
+        if (msg) msg.textContent = 'Şifre sıfırlama devre dışı. Destek için info@dtstack.com ile iletişime geçin.';
+      }
+    });
+  </script>
 </body>
 </html>

@@ -8,21 +8,5 @@ alter table if exists public.profiles enable row level security;
 create policy if not exists "Profiles: select authenticated" on public.profiles
   for select using (auth.role() = 'authenticated');
 
--- Allow admins to manage (insert/update/delete) all profiles
-create policy if not exists "Profiles: admin manage" on public.profiles
-  for all using (
-    exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
-  ) with check (
-    exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
-  );
-
--- If you prefer a policy scoped only to updates of the role column, you can use:
-create policy if not exists "Profiles: admin update role" on public.profiles
-  for update using (
-    exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
-  ) with check (
-    exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
-  );
-
--- Note: The policies above assume the `profiles` table contains a `role` column
--- and that an admin row exists with role = 'admin'.
+-- Admin-specific policies removed: project no longer uses an admin role.
+-- If you need to reintroduce admin behaviour later, add targeted policies here.
