@@ -3,13 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kurumsal | DTStack</title>
+    <title>Portfolyo & Referanslar — DTStack</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-        <!-- Supabase and dynamic portfolio removed (static content shown) -->
-    </body>
+    <meta name="description" content="Seçilmiş projelerimiz: kurumsal siteler, e‑ticaret ve mobil uygulamalar. Başarı hikayelerimizi inceleyin ve proje örneklerinden ilham alın.">
+    <link rel="canonical" href="https://dtstack.com.tr/portfolio.html">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Portfolyo | DTStack">
+    <meta property="og:description" content="DTStack portfolyo - geçmiş projelerimiz ve başarı hikayelerimiz. Referanslar ve örnek işlerimiz.">
+    <meta property="og:url" content="https://dtstack.com.tr/portfolio.html">
+    <meta property="og:image" content="https://dtstack.com.tr/assets/og-image.svg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portfolyo | DTStack">
+    <meta name="twitter:description" content="DTStack portfolyo - geçmiş projelerimiz ve başarı hikayelerimiz. Referanslar ve örnek işlerimiz.">
+        <meta name="twitter:image" content="https://dtstack.com.tr/assets/og-image.svg">
+
+        <script type="application/ld+json">{
+            "@context": "https://schema.org",
+            "@graph": [
+                {"@type":"Organization","@id":"https://dtstack.com.tr/#organization","name":"DTStack","url":"https://dtstack.com.tr","logo":"https://dtstack.com.tr/assets/og-image.svg"},
+                {"@type":"WebSite","@id":"https://dtstack.com.tr/#website","url":"https://dtstack.com.tr","name":"DTStack"}
+            ]
+        }</script>
+
+        <style>
 
         /* 1. HERO BÖLÜMÜ */
         .about-hero { padding: 180px 0 100px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
@@ -186,7 +209,7 @@
             
             <div class="team-card">
                 <div class="team-img">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Doğuhan Taşkın — Kurucu & Full Stack Dev">
                 </div>
                 <div class="team-info">
                     <h4>Doğuhan Taşkın</h4>
@@ -201,7 +224,7 @@
 
             <div class="team-card">
                 <div class="team-img">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Elif Yılmaz — Lead UI/UX Designer">
                 </div>
                 <div class="team-info">
                     <h4>Elif Yılmaz</h4>
@@ -215,7 +238,7 @@
 
             <div class="team-card">
                 <div class="team-img">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Mert Demir — Backend Developer">
                 </div>
                 <div class="team-info">
                     <h4>Mert Demir</h4>
@@ -229,7 +252,7 @@
 
              <div class="team-card">
                 <div class="team-img">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Selin Kaya — Proje Yöneticisi">
                 </div>
                 <div class="team-info">
                     <h4>Selin Kaya</h4>
@@ -259,13 +282,6 @@
         </div>
     </footer>
 
-    <script>
-        const header = document.getElementById("navbar");
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) header.classList.add("glass");
-            else header.classList.remove("glass");
-        });
-    </script>
     <script>
         const header = document.getElementById("navbar");
         window.addEventListener("scroll", () => {
