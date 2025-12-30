@@ -20,30 +20,12 @@ if (form) {
         throw error;
       }
 
-      // If session exists, fetch user's profile to determine role and redirect accordingly
+      // If session exists, redirect user to their account page
       const session = data?.session;
       if (session) {
-        try {
-          const uid = session.user.id;
-          const { data: profile, error: pErr } = await supabase.from('profiles').select('role').eq('id', uid).single();
-          if (pErr) throw pErr;
-          const role = profile?.role || 'client';
-          if (msg) { msg.style.color = 'green'; msg.textContent = 'Giriş başarılı, yönlendiriliyorsunuz...'; }
-          // Redirect based on role
-          if (role === 'admin') {
-            window.location.href = 'admin.html';
-          } else {
-            // Non-admin users go to the homepage (no account page)
-            window.location.href = 'index.html';
-          }
-          return;
-        } catch (fetchErr) {
-          console.error('Profile fetch error', fetchErr);
-          // Fallback: send to account page
-          if (msg) { msg.style.color = 'green'; msg.textContent = 'Giriş başarılı, yönlendiriliyorsunuz...'; }
-          window.location.href = 'account.html';
-          return;
-        }
+        if (msg) { msg.style.color = 'green'; msg.textContent = 'Giriş başarılı, yönlendiriliyorsunuz...'; }
+        window.location.href = 'account.html';
+        return;
       }
 
       // No session: likely email confirmation required
