@@ -264,11 +264,11 @@ summary { padding: 20px; cursor: pointer; color: white; font-weight: 600; displa
     .nav-links, nav .btn-shiny { display: none !important; } /* Desktop menü elemanlarını gizle */
     .nav-toggle { display: block; } /* Hamburgeri göster */
 
-    /* Typography */
-    .hero h1, .page-header h1 { font-size: 3rem; line-height: 1.1; }
-    .hero-p, .page-header p { font-size: 1.1rem; }
-    h2 { font-size: 2rem; }
-    h3 { font-size: 1.5rem; }
+    /* Typography - Daha da küçültüldü */
+    .hero h1, .page-header h1 { font-size: 2.5rem; line-height: 1.1; }
+    .hero-p, .page-header p { font-size: 1rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.3rem; }
 
     /* Layout Reset (Tek Sütun) */
     .hero { flex-direction: column; text-align: center; padding-top: 100px; padding-bottom: 50px; height: auto; min-height: auto; }
@@ -282,24 +282,63 @@ summary { padding: 20px; cursor: pointer; color: white; font-weight: 600; displa
     .contact-cards,
     .magic-grid,
     .contact-container,
-    .story-wrap,
-    .sticky-section { 
+    .story-wrap { 
         display: flex; 
         flex-direction: column; 
-        gap: 30px; 
+        gap: 20px; 
     }
     
-    /* Görseller ve Kartlar */
+    /* Sticky Section - Mobil için Yan Yana Görünüm (Müşteri İsteği) */
+    .sticky-section { 
+        display: flex; 
+        flex-direction: row; /* Yan yana tut */
+        gap: 10px; 
+        padding: 50px 3%; /* Boşlukları azalt */
+    }
+    .sticky-text { 
+        flex: 1; 
+        padding-bottom: 50px; 
+    }
+    .sticky-visual { 
+        flex: 1; 
+        position: sticky; 
+        top: 100px; 
+        height: 300px; /* Mobilde yüksekliği düşür */
+        align-self: flex-start;
+    }
+    .s-step h3 { font-size: 1.2rem; margin-bottom: 10px; } /* Başlıkları küçült */
+    .s-step p { font-size: 0.8rem; line-height: 1.4; } /* Yazıları küçült */
+    .s-step { min-height: 40vh; padding-left: 15px; } /* Adım yüksekliğini ve paddingi düşür */
+    .visual-card { border-radius: 12px; }
+
+    /* Görseller ve Kartlar - Küçültülmüş */
     .hero-visual { position: relative; width: 100%; height: 300px; transform: none; right: auto; top: auto; margin: 0; }
     .glass-card { transform: none; box-shadow: none; border: 1px solid rgba(255,255,255,0.1); }
-    .project-card { height: 350px; }
+    .project-card { height: 300px; }
     .map-bg { display: none; } /* Haritayı mobilde gizle, karışıklığı önle */
     
     /* Hizmetler Process */
-    .process-wrap { padding-left: 20px; }
+    .process-wrap { padding-left: 20px; padding-right: 20px; }
     .process-line { left: 10px; }
     .ps-dot { left: -6px; width: 12px; height: 12px; top: 10px; } /* Çizgi üstüne oturt */
     .ps-card { margin-left: 20px; padding: 20px; }
+
+    /* Kartların Mobilde Küçültülmesi (Space optimization) */
+    .feat-card, .magic-card, .price-card, .c-card, .value-card, .stat-box { 
+        padding: 20px !important; 
+    }
+    .feat-icon, .mc-icon {
+        width: 50px; height: 50px; font-size: 1.4rem; margin-bottom: 15px;
+    }
+    /* Magic card styling if missing */
+    .magic-card {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+    }
+
+    /* İletişim Form */
+    .contact-container > div { width: 100%; padding: 20px !important; }
 
     /* İletişim Form */
     .contact-container > div { width: 100%; padding: 20px !important; }
@@ -309,9 +348,17 @@ summary { padding: 20px; cursor: pointer; color: white; font-weight: 600; displa
 }
 
 @media (max-width: 480px) {
-    .hero h1, .page-header h1 { font-size: 2.2rem; }
-    .project-card { height: 300px; }
-    .stat-number { font-size: 2.5rem; }
-    .footer-cta { font-size: 2rem; }
-    .nav-toggle { font-size: 1.5rem; }
+    .hero h1, .page-header h1 { font-size: 1.8rem; }
+    .hero-p, .page-header p { font-size: 0.95rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.2rem; }
+    .project-card { height: 250px; }
+    .stat-number { font-size: 2rem; }
+    .footer-cta { font-size: 1.5rem; }
+    .nav-toggle { font-size: 1.4rem; }
+    
+    /* Ensure cards are not too wide/big padding on very small screens */
+    .feat-card, .magic-card, .price-card, .c-card, .value-card, .stat-box { 
+        padding: 15px !important; 
+    }
 }
