@@ -286,16 +286,16 @@ footer { border-top: 1px solid var(--border); padding: 80px 5%; margin-top: 100p
     .nav-toggle { display: block; margin-left: 8px; }
 
     /* Hide desktop nav-links and present mobile dropdown */
-    .nav-links { display: none; position: absolute; top: 80px; left: 0; width: 100%; flex-direction: column; gap: 0; background: rgba(3,3,8,0.95); padding: 10px 0; border-top: 1px solid var(--border); }
-    .nav.open .nav-links { display: flex; }
+    .nav-links { display: none; position: absolute; top: 64px; left: 0; width: 100%; flex-direction: column; gap: 0; background: rgba(3,3,8,0.95); padding: 10px 0; border-top: 1px solid var(--border); z-index: 200; }
+    nav.open .nav-links { display: flex; }
     .nav-links .nav-link { padding: 14px 20px; width: 100%; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.03); }
 
     /* Move CTA into mobile flow when menu open */
     .btn-shiny { display: none; }
-    .nav.open .btn-shiny { display: block; margin: 12px auto; width: calc(100% - 40px); padding: 12px 20px; }
+    nav.open .btn-shiny { display: block; margin: 12px auto; width: calc(100% - 40px); padding: 12px 20px; }
 
     /* Make tall fixed elements adapt */
-    .project-card { height: auto; min-height: 300px; }
+    .project-card { height: auto; min-height: 260px; }
     .hero h1, .page-header h1 { font-size: 2.2rem; }
     .page-header { padding: 80px 5% 40px; }
     .features-wrapper { grid-template-columns: 1fr; padding: 0 5%; }
