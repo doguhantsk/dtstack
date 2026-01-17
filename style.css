@@ -205,19 +205,75 @@ summary { padding: 20px; cursor: pointer; color: white; font-weight: 600; displa
 .input-label { position: absolute; top: 15px; left: 0; color: var(--text-muted); pointer-events: none; transition: 0.3s; }
 .cyber-input:focus ~ .input-label, .cyber-input:valid ~ .input-label { top: -10px; font-size: 0.8rem; color: var(--accent-primary); }
 
-/* --- 9. MEDYA SORGULARI (ÖNEMLİ MOBİL DÜZELTMELER) --- */
+
+/* --- 9. GELİŞMİŞ MOBİL UYUMLULUK (RESPONSIVE) --- */
+
+/* Mobil Menü Butonu (Hamburger) */
+.nav-toggle {
+    display: none; /* Desktopta gizli */
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 1002;
+    padding: 10px;
+}
+
+/* Mobil Menü Overlay (Tam Ekran) */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    background: rgba(3, 3, 8, 0.98); /* Neredeyse opak */
+    backdrop-filter: blur(20px);
+    z-index: 1001;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    display: flex;
+}
+.mobile-nav-overlay.active { transform: translateX(0); }
+
+.mobile-link {
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+}
+.mobile-nav-overlay.active .mobile-link {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s; /* Animasyon sırası */
+}
+
+/* Tablet ve Mobil Ekranlar (1024px altı) */
 @media (max-width: 1024px) {
-    /* Genel Yapı */
-    .hero h1, .page-header h1 { font-size: 3rem; }
-    h1, h2, h3 { overflow-wrap: break-word; } /* Uzun kelimeleri kır */
+    /* Genel */
+    body { overflow-x: hidden; }
     
-    /* Navbar */
-    /* Keep nav links visible on mobile so desktop content remains available */
-    .nav-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-    .desktop-cta { display: inline-block; }
-    .hamburger { display: none; }
+    /* Navigasyon */
+    nav { padding: 10px 5%; height: 70px; }
+    .nav-links, .desktop-cta { display: none !important; } /* Desktop menüyü gizle */
+    .nav-toggle { display: block; } /* Hamburgeri göster */
+
+    /* Typography */
+    .hero h1, .page-header h1 { font-size: 3rem; line-height: 1.1; }
+    .hero-p, .page-header p { font-size: 1.1rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+
+    /* Layout Reset (Tek Sütun) */
+    .hero { flex-direction: column; text-align: center; padding-top: 100px; padding-bottom: 50px; height: auto; min-height: auto; }
+    .hero-content { max-width: 100%; margin-bottom: 40px; }
     
-    /* Gridleri Tek Sütun Yap */
     .projects-grid, 
     .pricing-grid, 
     .features-wrapper, 
@@ -225,43 +281,37 @@ summary { padding: 20px; cursor: pointer; color: white; font-weight: 600; displa
     .stats-container, 
     .contact-cards,
     .magic-grid,
-    .bento-grid { 
-        grid-template-columns: 1fr; 
-        gap: 30px;
+    .contact-container,
+    .story-wrap,
+    .sticky-section { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 30px; 
     }
-
-    /* Hero */
-    .hero { flex-direction: column; padding-top: 120px; text-align: center; height: auto; }
-    .hero-content { max-width: 100%; margin-bottom: 50px; }
-    .hero-visual { position: relative; width: 100%; height: auto; transform: none; right: auto; top: auto; margin-top: 20px; perspective: none; }
-    .glass-card { transform: none; }
-    .floating-element { display: block; position: relative; transform: none; box-shadow: none; border: 1px solid rgba(255,255,255,0.03); margin: 20px 0; }
-
-    /* Sticky Section */
-    .sticky-section { flex-direction: column; }
-    .sticky-visual { display: block; position: static; height: auto; margin-top: 20px; }
-    .s-step { opacity: 1; min-height: auto; margin-bottom: 50px; border-left: 2px solid var(--accent-primary); }
-
-    /* Hakkımızda */
-    .story-wrap { flex-direction: column; }
-    .story-visual { width: 100%; height: 300px; }
     
-    /* İletişim */
-    .contact-container { flex-direction: column; }
-    .map-bg { display: block; position: relative; width: 100%; height: 200px; right: 0; opacity: 0.12; margin-bottom: 20px; }
+    /* Görseller ve Kartlar */
+    .hero-visual { position: relative; width: 100%; height: 300px; transform: none; right: auto; top: auto; margin: 0; }
+    .glass-card { transform: none; box-shadow: none; border: 1px solid rgba(255,255,255,0.1); }
+    .project-card { height: 350px; }
+    .map-bg { display: none; } /* Haritayı mobilde gizle, karışıklığı önle */
     
-    /* Process (Hizmetler) */
-    .process-line { left: 10px !important; }
-    .ps-dot { left: -50px !important; } /* Çizgiye hizala */
-    .ps-card { margin-left: 0; }
+    /* Hizmetler Process */
     .process-wrap { padding-left: 20px; }
+    .process-line { left: 10px; }
+    .ps-dot { left: -6px; width: 12px; height: 12px; top: 10px; } /* Çizgi üstüne oturt */
+    .ps-card { margin-left: 20px; padding: 20px; }
 
-    /* Footer */
-    .footer-cta { font-size: 2.5rem; }
+    /* İletişim Form */
+    .contact-container > div { width: 100%; padding: 20px !important; }
+    
+    /* Modal */
+    .modal-content { width: 95%; max-height: 85vh; margin: 20px auto; }
 }
 
 @media (max-width: 480px) {
-    .hero h1, .page-header h1 { font-size: 2.5rem; }
-    .project-card { height: 400px; }
+    .hero h1, .page-header h1 { font-size: 2.2rem; }
+    .project-card { height: 300px; }
     .stat-number { font-size: 2.5rem; }
+    .footer-cta { font-size: 2rem; }
+    .nav-toggle { font-size: 1.5rem; }
 }

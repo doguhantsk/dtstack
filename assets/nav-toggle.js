@@ -1,59 +1,88 @@
 document.addEventListener('DOMContentLoaded', function () {
-	const nav = document.querySelector('nav');
-	if (!nav) return;
+  const nav = document.querySelector('nav');
+  if (!nav) return;
 
-	// Ensure there's a hamburger button (markup may be missing)
-	let hamburger = nav.querySelector('.hamburger');
-	if (!hamburger) {
-		hamburger = document.createElement('button');
-		hamburger.className = 'hamburger';
-		hamburger.setAttribute('aria-label', 'Menü');
-		hamburger.innerHTML = '<span class="bar"></span><span class="bar"></span><span class="bar"></span>';
-		const links = nav.querySelector('.nav-links');
-		if (links) nav.insertBefore(hamburger, links);
-		else nav.appendChild(hamburger);
-	}
+  // 1. Hamburger Butonunu Bul veya Oluştur
+  let toggleBtn = document.querySelector('.nav-toggle');
+  
+  // Eğer HTML'de yoksa (eski dosyalarda) oluştur
+  if (!toggleBtn) {
+    toggleBtn = document.createElement('button');
+    toggleBtn.className = 'nav-toggle';
+    toggleBtn.innerHTML = '☰'; 
+    
+    // Logodan sonraya ekle
+    const logo = nav.querySelector('.logo');
+    if (logo) {
+        logo.after(toggleBtn);
+    } else {
+        nav.appendChild(toggleBtn);
+    }
+  }
 
-	// Create mobile overlay (if not present) and populate with nav links + CTA
-	let overlay = document.querySelector('.mobile-nav-overlay');
-	if (!overlay) {
-		overlay = document.createElement('div');
-		overlay.className = 'mobile-nav-overlay';
+  // 2. Overlay Menüsünü Oluştur (Sadece bir kez)
+  let overlay = document.querySelector('.mobile-nav-overlay');
+  
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.className = 'mobile-nav-overlay';
+    
+    // Nav linklerini kopyala
+    const originalLinks = nav.querySelector('.nav-links');
+    if (originalLinks) {
+        // Linkleri NodeList'ten alıp döngüye sok
+        originalLinks.querySelectorAll('a').forEach((link, index) => {
+            const clone = link.cloneNode(true);
+            clone.classList.add('mobile-link'); 
+            clone.style.transitionDelay = `${index * 0.1}s`; // Her link sırayla gelsin
+            overlay.appendChild(clone);
+        });
+    }
 
-		const linksContainer = nav.querySelector('.nav-links');
-		if (linksContainer) {
-			const copy = linksContainer.cloneNode(true);
-			// convert links to mobile style
-			copy.querySelectorAll('a').forEach(a => {
-				a.classList.add('mobile-link');
-			});
-			overlay.appendChild(copy);
-		}
+    // CTA Butonunu kopyala (İletişime Geç)
+    const cta = nav.querySelector('.btn-shiny');
+    if (cta) {
+        const ctaClone = cta.cloneNode(true);
+        ctaClone.classList.add('mobile-link');
+        ctaClone.classList.add('btn-shiny');
+        ctaClone.style.marginTop = '20px';
+        ctaClone.style.display = 'inline-block';
+        overlay.appendChild(ctaClone);
+    }
 
-		// Clone CTA button if exists
-		const cta = nav.querySelector('.btn-shiny');
-		if (cta) {
-			const ctaClone = cta.cloneNode(true);
-			ctaClone.style.display = 'inline-block';
-			ctaClone.style.marginTop = '20px';
-			overlay.appendChild(ctaClone);
-		}
+    // Body'e ekle
+    document.body.appendChild(overlay);
+  }
 
-		document.body.appendChild(overlay);
-	}
+  // 3. Açma / Kapama Fonksiyonları
+  function toggleMenu() {
+    const isActive = overlay.classList.contains('active');
+    
+    if (isActive) {
+        overlay.classList.remove('active');
+        toggleBtn.innerHTML = '☰'; 
+        document.body.style.overflow = ''; 
+    } else {
+        overlay.classList.add('active');
+        toggleBtn.innerHTML = '✕'; 
+        document.body.style.overflow = 'hidden'; 
+    }
+  }
 
-	function openMenu() { overlay.classList.add('active'); hamburger.classList.add('active'); document.body.style.overflow = 'hidden'; }
-	function closeMenu() { overlay.classList.remove('active'); hamburger.classList.remove('active'); document.body.style.overflow = ''; }
+  // Event Listener
+  toggleBtn.addEventListener('click', function(e) {
+      e.stopPropagation(); 
+      toggleMenu();
+  });
 
-	hamburger.addEventListener('click', function () {
-		if (overlay.classList.contains('active')) closeMenu(); else openMenu();
-	});
+  // Linklere Tıklayınca Kapat
+  overlay.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', toggleMenu);
+  });
+  
+  // Dışarı tıklayınca kapat
+  overlay.addEventListener('click', function(e) {
+      if(e.target === overlay) toggleMenu();
+  });
 
-	// Close when clicking outside links (overlay background)
-	overlay.addEventListener('click', function (e) {
-		if (e.target === overlay) closeMenu();
-	});
-
-	// Close on link click
-	overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 });
