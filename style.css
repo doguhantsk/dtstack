@@ -261,7 +261,7 @@ summary { padding: 20px; cursor: pointer; color: white; font-weight: 600; displa
     
     /* Navigasyon */
     nav { padding: 10px 5%; height: 70px; }
-    .nav-links, .desktop-cta { display: none !important; } /* Desktop menüyü gizle */
+    .nav-links, nav .btn-shiny { display: none !important; } /* Desktop menü elemanlarını gizle */
     .nav-toggle { display: block; } /* Hamburgeri göster */
 
     /* Typography */
