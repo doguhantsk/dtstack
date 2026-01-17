@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTStack | Projeler</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    
+    <div class="stars"></div>
+    <div class="glow-spot gs-2"></div>
+
+    <nav>
+        <div class="logo"><div class="logo-icon"></div>DTStack</div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Ana Sayfa</a>
+            <a href="hizmetler.html" class="nav-link">Hizmetler</a>
+            <a href="projeler.html" class="nav-link" style="color:white;">Projeler</a>
+            <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
+        </div>
+        <a href="iletisim.html" class="btn-shiny">İletişime Geç</a>
+    </nav>
+
+    <header class="page-header">
+        <div class="tag">PORTFOLYO</div>
+        <h1 class="glitch-text" data-text="YARATICI İŞLER.">YARATICI İŞLER.</h1>
+        <p>Global markalar ve startuplar için geliştirdiğimiz ödüllü projeler.</p>
+    </header>
+
+    <section style="padding: 0 5% 100px; max-width: 1400px; margin: 0 auto;">
+        
+        <div class="filter-menu">
+            <button class="filter-btn active" data-filter="all">Tümü</button>
+            <button class="filter-btn" data-filter="ecommerce">E-Ticaret</button>
+            <button class="filter-btn" data-filter="corporate">Kurumsal</button>
+        </div>
+
+        <div class="projects-grid">
+            
+            <div class="project-card" data-category="ecommerce" data-id="1">
+                <div class="p-image prj-visual" style="background-image: url('https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2224&auto=format&fit=crop');"></div>
+                <div class="project-info-overlay">
+                    <div class="tag" style="background:var(--accent-primary); border:none; color:white;">E-TİCARET</div>
+                    <h3 style="font-size: 2.2rem; color:white; margin-bottom:10px;">Vriano Shoes</h3>
+                    <p style="color:#ddd; margin-bottom:20px;">Lüks ayakkabı markası için Stripe altyapılı, animasyonlu satış platformu.</p>
+                    <div style="display:flex; gap:10px;">
+                        <span class="p-tag">React</span> <span class="p-tag">NodeJS</span>
+                    </div>
+                </div>
+            </div>
+
+             <div class="project-card" data-category="corporate" data-id="2">
+                <div class="p-image prj-visual" style="background-image: url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2727&auto=format&fit=crop');"></div>
+                <div class="project-info-overlay">
+                    <div class="tag" style="background:var(--accent-pink); border:none; color:white;">WEB APP</div>
+                    <h3 style="font-size: 2.2rem; color:white; margin-bottom:10px;">Gourmet Recipes</h3>
+                    <p style="color:#ddd; margin-bottom:20px;">Sosyal etkileşimli, mobil uyumlu (PWA) yemek tarifi paylaşım uygulaması.</p>
+                    <div style="display:flex; gap:10px;">
+                        <span class="p-tag">Next.js</span> <span class="p-tag">Firebase</span>
+                    </div>
+                </div>
+            </div>
+
+             <div class="project-card" data-category="ecommerce" data-id="3">
+                <div class="p-image prj-visual" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2670&auto=format&fit=crop');"></div>
+                <div class="project-info-overlay">
+                    <div class="tag" style="background:var(--accent-primary); border:none; color:white;">E-TİCARET</div>
+                    <h3 style="font-size: 2.2rem; color:white; margin-bottom:10px;">DS Store</h3>
+                    <p style="color:#ddd; margin-bottom:20px;">Minimalist moda markası için yüksek dönüşümlü mağaza tasarımı.</p>
+                    <div style="display:flex; gap:10px;">
+                        <span class="p-tag">Shopify</span> <span class="p-tag">Liquid</span>
+                    </div>
+                </div>
+            </div>
+
+             <div class="project-card" data-category="corporate" data-id="4">
+                <div class="p-image prj-visual" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2301&auto=format&fit=crop');"></div>
+                <div class="project-info-overlay">
+                    <div class="tag" style="background:white; border:none; color:black;">KURUMSAL</div>
+                    <h3 style="font-size: 2.2rem; color:white; margin-bottom:10px;">Arch Studio</h3>
+                    <p style="color:#ddd; margin-bottom:20px;">Mimarlık ofisi için 3D görselleştirmeler içeren interaktif portfolyo.</p>
+                    <div style="display:flex; gap:10px;">
+                        <span class="p-tag">Three.js</span> <span class="p-tag">WebGL</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 DTStack. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeModal()">✕</div>
+            
+            <div class="modal-header-img" id="m-img"></div>
+            
+            <div class="modal-body">
+                <h2 class="modal-title" id="m-title">Proje Başlığı</h2>
+                
+                <div class="modal-meta">
+                    <div class="meta-item">
+                        <h4>MÜŞTERİ</h4>
+                        <p id="m-client">Marka İsmi</p>
+                    </div>
+                    <div class="meta-item">
+                        <h4>HİZMET</h4>
+                        <p id="m-service">Web Tasarım</p>
+                    </div>
+                    <div class="meta-item">
+                        <h4>TARİH</h4>
+                        <p>Ekim 2025</p>
+                    </div>
+                </div>
+
+                <p class="modal-desc" id="m-desc">
+                    Buraya detaylı açıklama gelecek...
+                </p>
+
+                <a href="#" id="m-link" class="btn-shiny" style="background: var(--accent-primary); border:none;" target="_blank">Canlı Siteyi Gör <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:10px;"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. PROJE VERİLERİ (URL KISIMLARINI BURADAN DÜZENLE)
+        const projectsDB = {
+            1: {
+                title: "Vriano Shoes",
+                client: "Vriano Inc.",
+                service: "E-Ticaret Geliştirme",
+                img: "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2224&auto=format&fit=crop",
+                url: "vriano.html",  // <-- BU DOSYAYI OLUŞTURMALISIN
+                desc: "Vriano için geliştirdiğimiz bu projede, kullanıcı deneyimini (UX) merkeze aldık. React.js ile süper hızlı sayfa geçişleri sağlarken, Node.js ve Stripe entegrasyonu ile güvenli bir ödeme altyapısı kurduk."
+            },
+            2: {
+                title: "Gourmet Recipes",
+                client: "Gourmet App",
+                service: "Web Uygulaması (PWA)",
+                img: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2727&auto=format&fit=crop",
+                url: "tarif.html",   // <-- BU DOSYAYI OLUŞTURMALISIN
+                desc: "Yemek tutkunları için sosyal bir platform. Kullanıcılar kendi tariflerini yükleyebiliyor, puanlayabiliyor ve favorilerine ekleyebiliyor."
+            },
+            3: {
+                title: "DS Store",
+                client: "Doğuhan S.",
+                service: "Shopify Altyapısı",
+                img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2670&auto=format&fit=crop",
+                url: "ds-store.html", // <-- BU DOSYAYI OLUŞTURMALISIN
+                desc: "Minimalist ve modern bir moda markası için tasarlanan DS Store, yüksek dönüşüm oranları (Conversion Rate) hedefleyerek kurgulandı."
+            },
+            4: {
+                title: "Arch Studio",
+                client: "Arch Mimarlık",
+                service: "3D Portfolio",
+                img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2301&auto=format&fit=crop",
+                url: "arch.html",    // <-- BU DOSYAYI OLUŞTURMALISIN
+                desc: "Bir mimarlık ofisinin vizyonunu yansıtmak için sıradan bir web sitesi yeterli değildi. Three.js ve WebGL teknolojilerini kullanarak, projelerin 3 boyutlu olarak incelenebildiği interaktif bir deneyim tasarladık."
+            }
+        };
+
+        // 2. MODAL AÇMA VE LİNK GÜNCELLEME
+        const modal = document.getElementById('projectModal');
+        const projectCards = document.querySelectorAll('.project-card');
+        const modalLink = document.getElementById('m-link'); // Butonu seçtik
+
+        // Kartlara tıklanınca
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.getAttribute('data-id');
+                const data = projectsDB[id];
+
+                if(data) {
+                    // Verileri doldur
+                    document.getElementById('m-title').innerText = data.title;
+                    document.getElementById('m-client').innerText = data.client;
+                    document.getElementById('m-service').innerText = data.service;
+                    document.getElementById('m-desc').innerText = data.desc;
+                    document.getElementById('m-img').style.backgroundImage = `url('${data.img}')`;
+                    
+                    // BUTON LİNKİNİ GÜNCELLE
+                    modalLink.href = data.url; 
+
+                    // Modalı göster
+                    modal.classList.add('active');
+                }
+            });
+        });
+
+        // Kapatma Fonksiyonu
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // Dışarı tıklayınca kapat
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) closeModal();
+        });
+
+        // 3. FİLTRELEME
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filterValue = btn.getAttribute('data-filter');
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

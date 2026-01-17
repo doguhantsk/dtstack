@@ -1,361 +1,454 @@
 <!DOCTYPE html>
-<html lang="tr" class="dark">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>DTStack — Özel Web Yazılım & Mobil Uygulama Ajansı | Ankara</title>
-        <meta name="description" content="Ankara merkezli DTStack; özel web yazılım, e‑ticaret ve mobil uygulama geliştirme. Ücretsiz proje analizi için teklif isteyin.">
-        <link rel="canonical" href="https://dtstack.com.tr/index.html">
-        <meta name="robots" content="index, follow">
-
-        <!-- Open Graph -->
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="DTStack — Özel Web Yazılım & Mobil Uygulama Ajansı | Ankara">
-        <meta property="og:description" content="Ankara merkezli DTStack; özel web yazılım, e‑ticaret ve mobil uygulama geliştirme. Ücretsiz proje analizi için teklif isteyin.">
-        <meta property="og:url" content="https://dtstack.com.tr/index.html">
-        <meta property="og:image" content="https://dtstack.com.tr/assets/og-image.svg">
-
-        <!-- Twitter -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="DTStack — Özel Web Yazılım & Mobil Uygulama Ajansı | Ankara">
-        <meta name="twitter:description" content="Ankara merkezli DTStack; özel web yazılım, e‑ticaret ve mobil uygulama geliştirme. Ücretsiz proje analizi için teklif isteyin.">
-        <meta name="twitter:image" content="https://dtstack.com.tr/assets/og-image.svg">
-
-        <script type="application/ld+json">{
-            "@context": "https://schema.org",
-            "@graph": [
-                {"@type": "Organization","@id": "https://dtstack.com.tr/#organization","name": "DTStack","url": "https://dtstack.com.tr","logo": "https://dtstack.com.tr/assets/og-image.svg","sameAs": ["https://www.linkedin.com/"],"contactPoint": [{"@type": "ContactPoint","telephone": "+90 555 000 0000","contactType": "customer service","email": "doguhantskn06@gmail.com","areaServed": "TR"}]},
-                {"@type": "WebSite","@id": "https://dtstack.com.tr/#website","url": "https://dtstack.com.tr","name": "DTStack","potentialAction": {"@type": "SearchAction","target": "https://dtstack.com.tr/?s={search_term_string}","query-input": "required name=search_term_string"}}
-            ]
-        }</script>
-        <link rel="canonical" href="https://dtstack.com/">
-        <meta name="robots" content="index, follow">
-
-        <!-- Open Graph / Facebook -->
-        <meta property="og:locale" content="tr_TR">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="DTStack | Dijital Geleceği Kodluyoruz">
-        <meta property="og:description" content="Ankara merkezli yeni nesil yazılım ajansı. Özel web yazılım, mobil uygulama ve dijital dönüşüm çözümleri.">
-        <meta property="og:url" content="https://dtstack.com/">
-        <meta property="og:site_name" content="DTStack">
-        <meta property="og:image" content="https://dtstack.com.tr/assets/og-image.svg">
-
-        <!-- Twitter -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:site" content="@DTStack">
-        <meta name="twitter:title" content="DTStack | Dijital Geleceği Kodluyoruz">
-        <meta name="twitter:description" content="Ankara merkezli yeni nesil yazılım ajansı. Özel web yazılım, mobil uygulama ve dijital dönüşüm çözümleri.">
-        <meta name="twitter:image" content="https://dtstack.com.tr/assets/og-image.svg">
-
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@graph": [
-                {
-                    "@type": "Organization",
-                    "name": "DTStack",
-                    "url": "https://dtstack.com",
-                    "logo": "https://dtstack.com/assets/logo.png",
-                    "sameAs": [
-                        "https://www.linkedin.com/company/dtstack",
-                        "https://github.com/dtstack",
-                        "https://twitter.com/DTStack"
-                    ]
-                },
-                {
-                    "@type": "WebSite",
-                    "url": "https://dtstack.com",
-                    "name": "DTStack",
-                    "potentialAction": {
-                        "@type": "SearchAction",
-                        "target": "https://dtstack.com/search?q={search_term_string}",
-                        "query-input": "required name=search_term_string"
-                    }
-                }
-            ]
-        }
-        </script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
+    <title>DTStack | Ultimate Vision</title>
     <style>
-        /* --- ORTAK AYARLAR (Diğer sayfalarla uyumlu) --- */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
         :root {
-            --bg-body: #000205;
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-surface: rgba(255, 255, 255, 0.03);
-            --accent: #a855f7;
-            --accent-glow: rgba(168, 85, 247, 0.4);
-            --text-main: #ffffff;
-            --text-muted: #9ca3af;
-            --font-display: 'Space Grotesk', sans-serif;
-            --font-body: 'Inter Tight', sans-serif;
+            --bg-deep: #030308;       /* Sonsuz Siyah */
+            --bg-surface: #0a0a12;    /* Kart Zemini */
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            
+            /* Neon Palet */
+            --accent-primary: #6366f1; /* Indigo */
+            --accent-glow: #818cf8;
+            --accent-pink: #ec4899;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        html { scroll-behavior: smooth; }
+
         body {
-            background-color: var(--bg-body);
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-deep);
             color: var(--text-main);
-            font-family: var(--font-body);
-            line-height: 1.6;
             overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Arka Plan Efektleri */
-        .aurora { position: fixed; top: -20%; left: -20%; width: 140%; height: 140%; background: radial-gradient(circle at 50% 50%, rgba(76, 29, 149, 0.15), transparent 50%), radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.1), transparent 40%), radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.1), transparent 40%); filter: blur(60px); z-index: -1; animation: auroraMove 20s infinite alternate; }
-        @keyframes auroraMove { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
-        .grid-bg { position: fixed; inset: 0; z-index: -1; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(circle at center, black 40%, transparent 80%); }
+        /* --- 1. STARFIELD ANIMATION (Yıldızlar) --- */
+        .stars {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none;
+            background: transparent;
+        }
+        /* Küçük yıldızlar oluşturma (Box-shadow trick) */
+        .stars::after {
+            content: ""; position: absolute; top: 0; left: 0; width: 2px; height: 2px; background: transparent;
+            box-shadow: 100px 200px #fff, 400px 600px #fff, 800px 100px #fff, 1200px 400px #fff, 1500px 800px #fff, 
+                        300px 300px rgba(255,255,255,0.5), 700px 500px rgba(255,255,255,0.5), 1100px 200px rgba(255,255,255,0.5);
+            animation: moveStars 100s linear infinite;
+        }
+        @keyframes moveStars { from { transform: translateY(0); } to { transform: translateY(-1000px); } }
 
-        /* Navbar */
-        header { position: fixed; top: 0; width: 100%; z-index: 100; padding: 20px 0; transition: transform 0.3s ease, background 0.3s; }
-        header.glass { background: rgba(0, 2, 5, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--glass-border); padding: 15px 0; }
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: white; letter-spacing: -0.02em; text-decoration: none; }
-        .logo span { color: var(--accent); }
+        /* Arkaplan Işıkları */
+        .glow-spot {
+            position: fixed; width: 600px; height: 600px; border-radius: 50%;
+            filter: blur(140px); z-index: -1; opacity: 0.15;
+            animation: pulseGlow 10s infinite alternate;
+        }
+        .gs-1 { top: -20%; left: 20%; background: var(--accent-primary); }
+        .gs-2 { bottom: -20%; right: 20%; background: var(--accent-pink); animation-delay: 3s; }
+        @keyframes pulseGlow { 0% { opacity: 0.1; transform: scale(1); } 100% { opacity: 0.2; transform: scale(1.2); } }
+
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 80px; z-index: 100;
+            background: rgba(3, 3, 8, 0.6); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center; padding: 0 8%;
+        }
+        .logo { font-family: 'Space Grotesk'; font-size: 1.6rem; font-weight: 700; color: white; letter-spacing: -1px; display: flex; align-items: center; gap: 8px;}
+        .logo-icon { width: 10px; height: 10px; background: var(--accent-primary); border-radius: 50%; box-shadow: 0 0 15px var(--accent-primary); }
+        
         .nav-links { display: flex; gap: 40px; }
-        .nav-link { color: var(--text-muted); font-size: 0.95rem; font-weight: 500; text-decoration: none; transition: 0.3s; }
-        .nav-link:hover, .nav-link.active { color: white; }
-        .btn-glow { padding: 10px 24px; background: white; color: black; border-radius: 100px; font-weight: 600; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-glow:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
-        .btn-outline { padding: 10px 24px; border: 1px solid var(--glass-border); border-radius: 100px; color: white; background: transparent; transition: 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: white; }
+        .nav-link { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; position: relative; }
+        .nav-link:hover { color: white; }
+        .nav-link::after { content:''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px; background: var(--accent-primary); transition: 0.3s; }
+        .nav-link:hover::after { width: 100%; }
+
+        /* --- SHINY BUTTON (Parlayan Buton) --- */
+        .btn-shiny {
+            position: relative; padding: 12px 28px; background: rgba(255,255,255,0.05); color: white;
+            border-radius: 50px; font-weight: 600; text-decoration: none; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
+        }
+        .btn-shiny::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .btn-shiny:hover::before { left: 100%; }
+        .btn-shiny:hover { border-color: rgba(255,255,255,0.4); box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
 
         /* --- HERO SECTION --- */
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 80px; position: relative; }
-        .hero-badge { display: inline-block; padding: 6px 16px; border-radius: 50px; border: 1px solid rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.1); color: #d8b4fe; font-size: 0.85rem; font-weight: 600; margin-bottom: 25px; }
-        .hero h1 { font-family: var(--font-display); font-size: 4.5rem; line-height: 1.1; font-weight: 700; margin-bottom: 24px; letter-spacing: -0.02em; }
-        .gradient-text { background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 650px; margin: 0 auto 40px; }
-        .hero-btns { display: flex; gap: 15px; justify-content: center; }
-
-        /* --- TECH MARQUEE --- */
-        .marquee-container { width: 100%; overflow: hidden; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); padding: 30px 0; background: rgba(0,0,0,0.3); margin-top: -50px; position: relative; z-index: 10; backdrop-filter: blur(5px); }
-        .marquee-track { display: flex; gap: 60px; width: max-content; animation: scroll 30s linear infinite; }
-        .tech-item { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.5); font-weight: 600; font-family: var(--font-display); font-size: 1.2rem; }
-        .tech-item i { font-size: 1.5rem; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* --- BENTO GRID SERVICES --- */
-        .section { padding: 120px 0; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 15px; }
-        .section-header p { color: var(--text-muted); max-width: 500px; margin: 0 auto; }
-
-        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .bento-card { background: var(--glass-surface); border: 1px solid var(--glass-border); padding: 40px; border-radius: 24px; position: relative; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
-        .bento-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.2); }
-        .span-2 { grid-column: span 2; }
-        
-        .bento-icon { width: 60px; height: 60px; background: rgba(255,255,255,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--accent); margin-bottom: 25px; border: 1px solid var(--glass-border); }
-        .bento-card h3 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 15px; color: white; }
-        .bento-card p { color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem; }
-        .card-link { color: white; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-size: 0.9rem; }
-        .card-link i { transition: 0.3s; }
-        .bento-card:hover .card-link i { transform: translateX(5px); }
-
-        /* --- STATS --- */
-        .stats-strip { border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); padding: 60px 0; background: rgba(255,255,255,0.01); }
-        .stats-grid { display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap; gap: 30px; }
-        .stat-item h4 { font-family: var(--font-display); font-size: 3rem; color: white; line-height: 1; margin-bottom: 10px; background: linear-gradient(to bottom, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .stat-item span { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* --- PROCESS (TIMELINE) --- */
-        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 50px; }
-        .step-card { position: relative; padding: 30px; background: var(--glass-surface); border: 1px solid var(--glass-border); border-radius: 20px; text-align: center; }
-        .step-number { width: 40px; height: 40px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 20px; box-shadow: 0 0 15px var(--accent-glow); }
-        .step-card h4 { color: white; margin-bottom: 10px; font-family: var(--font-display); }
-        .step-card p { color: var(--text-muted); font-size: 0.9rem; }
-
-        /* --- CTA --- */
-        .cta-section { text-align: center; padding: 100px 0; }
-        .cta-box { background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(0,0,0,0)); border: 1px solid var(--glass-border); border-radius: 30px; padding: 80px 20px; position: relative; overflow: hidden; }
-        .cta-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://www.transparenttextures.com/patterns/cubes.png'); opacity: 0.05; }
-
-        footer { padding: 80px 0 40px; border-top: 1px solid var(--glass-border); text-align: center; color: var(--text-muted); }
-        
-        @media (max-width: 1024px) {
-            .hero h1 { font-size: 3.5rem; }
-            .bento-grid { grid-template-columns: 1fr; }
-            .span-2 { grid-column: span 1; }
-            .process-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; padding: 120px 5% 50px; position: relative;
         }
+        
+        .hero-content { z-index: 2; max-width: 55%; }
+        
+        .tag {
+            display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; 
+            border-radius: 100px; background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+            font-size: 0.8rem; color: #a5b4fc; margin-bottom: 25px; letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk'; font-size: 5rem; line-height: 1.05; font-weight: 700; letter-spacing: -2px; margin-bottom: 25px;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 30%, #6366f1 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        p.hero-p {
+            font-size: 1.2rem; color: var(--text-muted); max-width: 550px; margin-bottom: 40px; line-height: 1.6;
+        }
+
+        /* Hero Visual (3D & Parallax Elements) */
+        .hero-visual {
+            position: absolute; right: 5%; top: 50%; transform: translateY(-50%); width: 45%; height: 650px;
+            perspective: 1500px; z-index: 1;
+        }
+        .glass-card {
+            width: 100%; height: 100%;
+            background: linear-gradient(160deg, rgba(255,255,255,0.03), rgba(0,0,0,0.4));
+            border: 1px solid var(--border); border-radius: 24px;
+            backdrop-filter: blur(20px);
+            transform: rotateY(-10deg) rotateX(5deg);
+            box-shadow: -20px 20px 60px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column; overflow: hidden;
+            transition: transform 0.1s ease-out;
+        }
+
+        /* İç Parallax Elemanları */
+        .floating-element {
+            position: absolute; border-radius: 12px; backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex; align-items: center; gap: 10px; padding: 15px;
+            transform: translateZ(40px); /* Derinlik */
+            transition: transform 0.2s;
+        }
+        .fe-1 { top: 20%; right: -20px; background: rgba(99, 102, 241, 0.2); }
+        .fe-2 { bottom: 20%; left: -20px; background: rgba(236, 72, 153, 0.15); }
+
+        /* Browser Mockup Inside */
+        .browser-header { height: 50px; border-bottom: 1px solid var(--border); padding: 0 20px; display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.3); }
+        .browser-content { flex: 1; position: relative; padding: 40px; }
+        
+        .mock-hero {
+            width: 100%; height: 200px; background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
+            border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--border);
+        }
+        .mock-row { display: flex; gap: 15px; }
+        .mock-box { height: 100px; flex: 1; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid var(--border); }
+
+
+        /* --- MARQUEE --- */
+        .marquee-wrap {
+            border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            padding: 30px 0; background: rgba(0,0,0,0.3); overflow: hidden;
+        }
+        .marquee-track { display: flex; gap: 80px; width: max-content; animation: scroll 25s linear infinite; }
+        .m-item { font-size: 1.2rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
+        @keyframes scroll { to { transform: translateX(-50%); } }
+
+        /* --- STICKY SCROLL --- */
+        .sticky-section { padding: 150px 5%; max-width: 1400px; margin: 0 auto; display: flex; gap: 80px; }
+        .sticky-text { flex: 1; padding-bottom: 100px; }
+        .sticky-visual { flex: 1.2; position: sticky; top: 100px; height: 600px; }
+
+        .s-step {
+            min-height: 70vh; display: flex; flex-direction: column; justify-content: center;
+            opacity: 0.15; transition: 0.6s; border-left: 2px solid var(--border); padding-left: 40px;
+        }
+        .s-step.active { opacity: 1; border-left-color: var(--accent-primary); }
+        .s-step h3 { font-size: 2.5rem; margin-bottom: 20px; }
+        .s-step p { font-size: 1.1rem; color: var(--text-muted); }
+
+        .visual-card {
+            width: 100%; height: 100%; background: #08080f; border-radius: 20px; border: 1px solid var(--border);
+            position: relative; overflow: hidden;
+        }
+        .v-slide {
+            position: absolute; inset: 0; opacity: 0; transition: 0.8s; transform: scale(1.1);
+            background-size: cover; background-position: center;
+        }
+        .v-slide.active { opacity: 1; transform: scale(1); }
+        .v-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px;
+            background: linear-gradient(to top, #030308, transparent);
+        }
+
+        /* --- MAGIC BENTO GRID (Spotlight Effect) --- */
+        .bento-section { padding: 100px 5%; max-width: 1400px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 3rem; margin-bottom: 80px; font-weight: 700; }
+
+        .magic-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+            /* Container mouse tracking için önemli */
+        }
+
+        .magic-card {
+            background: rgba(255,255,255,0.015); border-radius: 16px; padding: 40px;
+            position: relative; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05); /* Varsayılan border */
+        }
+        
+        /* SPOTLIGHT EFFECT (BORDER GLOW) */
+        /* JS ile --mouse-x ve --mouse-y güncellenecek */
+        .magic-card::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 16px; padding: 1.5px; /* Border kalınlığı */
+            background: radial-gradient(
+                600px circle at var(--mouse-x) var(--mouse-y),
+                rgba(99, 102, 241, 0.6),
+                transparent 40%
+            );
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            pointer-events: none; opacity: 0; transition: opacity 0.5s;
+        }
+        .magic-grid:hover .magic-card::before { opacity: 1; }
+
+        /* İçerik Işıltısı */
+        .magic-card::after {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(
+                600px circle at var(--mouse-x) var(--mouse-y),
+                rgba(99, 102, 241, 0.1),
+                transparent 40%
+            );
+            pointer-events: none; opacity: 0; transition: opacity 0.5s;
+        }
+        .magic-grid:hover .magic-card::after { opacity: 1; }
+
+
+        .mc-icon { font-size: 2rem; margin-bottom: 20px; color: var(--accent-primary); }
+        .magic-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .magic-card p { color: var(--text-muted); font-size: 0.95rem; }
+        .span-2 { grid-column: span 2; }
+
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border); padding: 100px 5%; margin-top: 100px;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .footer-cta {
+            font-size: 5rem; font-weight: 800; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+            margin-bottom: 40px; transition: 0.3s; cursor: pointer;
+        }
+        .footer-cta:hover { color: white; -webkit-text-stroke: 0; text-shadow: 0 0 30px rgba(99,102,241,0.5); }
+        
+        .footer-copy { color: var(--text-muted); font-size: 0.9rem; margin-top: 50px; }
+
+        @media (max-width: 1024px) {
+            h1 { font-size: 3.5rem; }
+            .hero { flex-direction: column; text-align: center; }
+            .hero-content { max-width: 100%; }
+            .hero-visual { position: relative; width: 100%; height: 400px; right: auto; top: auto; transform: none; margin-top: 50px; }
+            .sticky-section { flex-direction: column; }
+            .visual-side { display: none; }
+            .s-step { opacity: 1; min-height: auto; margin-bottom: 50px; border-left-color: var(--accent-primary); }
+            .magic-grid { grid-template-columns: 1fr; }
+            .span-2 { grid-column: auto; }
+            .footer-cta { font-size: 3rem; }
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="aurora"></div>
-    <div class="grid-bg"></div>
+    <div class="stars"></div>
+    <div class="glow-spot gs-1"></div>
+    <div class="glow-spot gs-2"></div>
 
-    <header id="navbar">
-        <div class="container nav-wrapper">
-            <a href="index.html" class="logo">DT<span>STACK</span></a>
-            <nav class="nav-links">
-                <a href="index.html" class="nav-link active">Ana Sayfa</a>
-                <a href="about.html" class="nav-link">Kurumsal</a>
-                <a href="services.html" class="nav-link">Hizmetler</a>
-                <a href="portfolio.html" class="nav-link">Portfolyo</a>
-                <a href="refercane.html" class="nav-link">Referanslar</a>
-            </nav>
-
-
-                <a href="proje-baslat.html" class="btn-glow">Proje Başlat</a>
-            </div>
-        </div>
-    </header>
+<nav>
+    <div class="logo"><div class="logo-icon"></div>DTStack</div>
+    <div class="nav-links">
+        <a href="index.html" class="nav-link" style="color:white;">Ana Sayfa</a>
+        <a href="hizmetler.html" class="nav-link">Hizmetler</a>
+        <a href="projeler.html" class="nav-link">Projeler</a>
+        <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
+    </div>
+    <a href="iletisim.html" class="btn-shiny">İletişime Geç</a>
+</nav>
 
     <section class="hero">
-        <div class="container">
-            <span class="hero-badge">🚀 2025'in Yazılım Teknolojileri</span>
-            <h1><span class="gradient-text">Hayalinizdeki Projeyi</span> <br> Kodla Gerçeğe Dönüştürüyoruz.</h1>
-            <p>Ankara merkezli teknoloji ajansıyız. Sıradan şablonları unutun. İşletmenize özel, yüksek performanslı ve ölçeklenebilir dijital ürünler geliştiriyoruz.</p>
-            <div class="hero-btns">
-                <a href="services.html" class="btn-glow">Hizmetleri Keşfet <i class="fas fa-arrow-right"></i></a>
-                <a href="portfolio.html" class="btn-outline">Referanslarımız</a>
+        <div class="hero-content">
+            <div class="tag">🚀 DTSTACK V3.0</div>
+            <h1>Dijitalde Sınırları<br><span class="text-gradient">Yeniden Çiziyoruz.</span></h1>
+            <p class="hero-p">Ankara Bilim Üniversitesi'nin inovasyon merkezinden, markanızı küresel arenaya taşıyacak web teknolojileri. Estetik, hız ve zeka.</p>
+            <a href="#" class="btn-shiny" style="display:inline-block; padding: 16px 40px; font-size: 1rem;">Projeyi Başlat</a>
+        </div>
+
+        <div class="hero-visual" id="heroTilt">
+            <div class="glass-card">
+                <div class="browser-header">
+                    <div style="width:10px; height:10px; border-radius:50%; background:#ef4444;"></div>
+                    <div style="width:10px; height:10px; border-radius:50%; background:#eab308;"></div>
+                    <div style="width:10px; height:10px; border-radius:50%; background:#22c55e;"></div>
+                </div>
+                <div class="browser-content">
+                    <div class="mock-hero"></div>
+                    <div class="mock-row">
+                        <div class="mock-box"></div>
+                        <div class="mock-box"></div>
+                        <div class="mock-box"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="floating-element fe-1">
+                <div style="width: 10px; height: 10px; background: #fff; border-radius: 50%;"></div>
+                <span style="font-size: 0.8rem; font-weight: 600;">%300 Büyüme</span>
+            </div>
+            <div class="floating-element fe-2">
+                <div style="width: 10px; height: 10px; background: #fff; border-radius: 50%;"></div>
+                <span style="font-size: 0.8rem; font-weight: 600;">SEO Optimizasyonu</span>
             </div>
         </div>
     </section>
 
-    <div class="marquee-container">
+    <div class="marquee-wrap">
         <div class="marquee-track">
-            <div class="tech-item"><i class="fab fa-react"></i> REACT</div>
-            <div class="tech-item"><i class="fab fa-node-js"></i> NODE.JS</div>
-            <div class="tech-item"><i class="fab fa-python"></i> PYTHON</div>
-            <div class="tech-item"><i class="fab fa-aws"></i> AWS</div>
-            <div class="tech-item"><i class="fas fa-database"></i> POSTGRESQL</div>
-            <div class="tech-item"><i class="fab fa-docker"></i> DOCKER</div>
-            <div class="tech-item"><i class="fab fa-js"></i> JAVASCRIPT</div>
-            <div class="tech-item"><i class="fab fa-react"></i> REACT</div>
-            <div class="tech-item"><i class="fab fa-node-js"></i> NODE.JS</div>
-            <div class="tech-item"><i class="fab fa-python"></i> PYTHON</div>
-            <div class="tech-item"><i class="fab fa-aws"></i> AWS</div>
-             <div class="tech-item"><i class="fas fa-database"></i> POSTGRESQL</div>
+            <div class="m-item">Development</div>
+            <div class="m-item">Strategy</div>
+            <div class="m-item">Design</div>
+            <div class="m-item">Marketing</div>
+            <div class="m-item">Development</div>
+            <div class="m-item">Strategy</div>
+            <div class="m-item">Design</div>
+            <div class="m-item">Marketing</div>
         </div>
     </div>
 
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Neler Yapıyoruz?</h2>
-                <p>İhtiyacınıza en uygun dijital çözümü stratejik olarak planlıyor ve hayata geçiriyoruz.</p>
+    <section class="sticky-section">
+        <div class="sticky-text">
+            <div class="s-step active" data-index="0">
+                <div class="step-num">01</div>
+                <h3>Kozmik Tasarım</h3>
+                <p>Kullanıcıyı içine çeken, derinlik algısı yüksek ve modern "Dark UI" arayüzler. Şablon kullanmıyoruz, markanızın DNA'sını tasarlıyoruz.</p>
             </div>
-
-            <div class="bento-grid">
-                <div class="bento-card span-2" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(0,0,0,0));">
-                    <div>
-                        <div class="bento-icon"><i class="fas fa-code"></i></div>
-                        <h3>Özel Web Yazılım</h3>
-                        <p>İşletmenizin iç süreçlerini yönetebileceğiniz CRM, ERP veya size özel web tabanlı otomasyonlar. Hazır paketlerin sınırlarına takılmayın.</p>
-                    </div>
-                    <div><a href="services.html" class="card-link">Detaylı İncele <i class="fas fa-arrow-right"></i></a></div>
+            <div class="s-step" data-index="1">
+                <div class="step-num">02</div>
+                <h3>Roket Hızında Altyapı</h3>
+                <p>Next.js ve React. Google Core Web Vitals skorlarında 100/100 performans. Müşterilerinizi bekletmeyin.</p>
+            </div>
+            <div class="s-step" data-index="2">
+                <div class="step-num">03</div>
+                <h3>Satış Odaklı Kurgu</h3>
+                <p>Güzel görünmek yetmez. Dönüşüm (Conversion) odaklı buton yerleşimleri ve akışlarla ziyaretçileri müşteriye çevirin.</p>
+            </div>
+        </div>
+        
+        <div class="sticky-visual">
+            <div class="visual-card">
+                <div class="v-slide active" style="background-image: url('https://images.unsplash.com/photo-1620641788427-b11e6423e805?q=80&w=2670&auto=format&fit=crop');">
+                    <div class="v-overlay"><h3>Estetik Arayüzler</h3></div>
                 </div>
-
-                <div class="bento-card">
-                    <div class="bento-icon"><i class="fas fa-shopping-bag"></i></div>
-                    <h3>E-Ticaret</h3>
-                    <p>Satış odaklı, hızlı ve güvenli e-ticaret altyapıları.</p>
-                    <a href="services.html" class="card-link">Detaylı İncele <i class="fas fa-arrow-right"></i></a>
+                <div class="v-slide" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2670&auto=format&fit=crop');">
+                    <div class="v-overlay"><h3>Temiz Kod</h3></div>
                 </div>
-
-                <div class="bento-card">
-                    <div class="bento-icon"><i class="fas fa-mobile-alt"></i></div>
-                    <h3>Mobil Uygulama</h3>
-                    <p>iOS ve Android için native/hybrid çözümler.</p>
-                    <a href="services.html" class="card-link">Detaylı İncele <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="bento-card span-2">
-                    <div>
-                        <div class="bento-icon" style="color: #60a5fa;"><i class="fas fa-paint-brush"></i></div>
-                        <h3>UI/UX Tasarım</h3>
-                        <p>Kullanıcı deneyimini (UX) merkeze alan, modern ve estetik arayüz tasarımları ile markanızın dijital yüzünü yeniliyoruz.</p>
-                    </div>
-                    <div><a href="services.html" class="card-link">Detaylı İncele <i class="fas fa-arrow-right"></i></a></div>
+                <div class="v-slide" style="background-image: url('https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=2564&auto=format&fit=crop');">
+                    <div class="v-overlay"><h3>Veri Analizi</h3></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="stats-strip">
-        <div class="container stats-grid">
-            <div class="stat-item">
-                <h4>50+</h4>
-                <span>BAŞARILI PROJE</span>
+    <section class="bento-section">
+        <h2 class="section-title">Hizmetlerimiz</h2>
+        <div class="magic-grid" id="magicGrid">
+            <div class="magic-card span-2">
+                <div class="mc-icon">💻</div>
+                <h3>Web Uygulamaları</h3>
+                <p>İşletmenizin ihtiyaçlarına özel, güvenli ve ölçeklenebilir kurumsal yazılımlar.</p>
             </div>
-            <div class="stat-item">
-                <h4>%100</h4>
-                <span>MÜŞTERİ MEMNUNİYETİ</span>
+            <div class="magic-card">
+                <div class="mc-icon">🚀</div>
+                <h3>Startup Launch</h3>
+                <p>Fikrinizi hayata geçiren hızlı MVP geliştirme ve lansman sayfaları.</p>
             </div>
-            <div class="stat-item">
-                <h4>7/24</h4>
-                <span>TEKNİK DESTEK</span>
+            <div class="magic-card">
+                <div class="mc-icon">🛍️</div>
+                <h3>E-Ticaret</h3>
+                <p>Modern arayüzler ve güvenli ödeme sistemleriyle satışlarınızı artırın.</p>
             </div>
-            <div class="stat-item">
-                <h4>4.9</h4>
-                <span>GOOGLE PUANI</span>
-            </div>
-        </div>
-    </div>
-
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Çalışma Sürecimiz</h2>
-                <p>Şeffaf, planlı ve sonuç odaklı bir geliştirme süreci yürütüyoruz.</p>
-            </div>
-
-            <div class="process-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h4>Analiz & Planlama</h4>
-                    <p>İhtiyaçlarınızı dinler, rakipleri inceler ve en doğru yol haritasını çıkarırız.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h4>Tasarım & UI/UX</h4>
-                    <p>Markanıza uygun, modern ve kullanıcı dostu arayüz tasarımları hazırlarız.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h4>Kodlama</h4>
-                    <p>En güncel teknolojilerle (React, Node.js vb.) temiz ve hızlı kod yazarız.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">4</div>
-                    <h4>Test & Yayın</h4>
-                    <p>Projeyi test eder, onayınızla yayına alır ve desteğimizi sürdürürüz.</p>
-                </div>
+            <div class="magic-card span-2">
+                <div class="mc-icon">📱</div>
+                <h3>Mobil & PWA</h3>
+                <p>App Store kalitesinde çalışan, telefona indirilebilir web siteleri.</p>
             </div>
         </div>
     </section>
-
-    <div class="container cta-section">
-        <div class="cta-box">
-            <h2 style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 20px; color: white;">Bir Fikriniz mi Var?</h2>
-            <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem;">Gelin, kahve eşliğinde projenizi konuşalım ve hayata geçirelim.</p>
-            <a href="proje-baslat.html" class="btn-glow" style="background: white; color: black; font-size: 1rem; padding: 15px 35px;">Hemen Teklif Alın</a>
-        </div>
-    </div>
 
     <footer>
-        <div class="container">
-            <div class="logo" style="margin-bottom: 20px; display: inline-block;">DT<span>STACK</span></div>
-            <p>&copy; 2025 DTStack Yazılım. Tüm Hakları Saklıdır.</p>
-        </div>
+        <div class="footer-cta">BİRLİKTE ÇALIŞALIM</div>
+        <p class="footer-copy">© 2026 DTStack. Ankara Bilim Üniversitesi, YBS.</p>
     </footer>
 
     <script>
-        /* Navbar Scroll Effect */
-        const header = document.getElementById("navbar");
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) header.classList.add("glass");
-            else header.classList.remove("glass");
+        // 1. HERO 3D TILT
+        const heroWrapper = document.querySelector('.hero');
+        const heroCard = document.querySelector('.glass-card');
+        const floatingEls = document.querySelectorAll('.floating-element');
+
+        heroWrapper.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 40;
+            const y = (window.innerHeight / 2 - e.pageY) / 40;
+            
+            heroCard.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+            
+            // Parallax effect for floating elements
+            floatingEls.forEach((el, index) => {
+                const speed = (index + 1) * 2;
+                el.style.transform = `translateZ(40px) translateX(${x * speed}px) translateY(${y * speed}px)`;
+            });
         });
+
+        heroWrapper.addEventListener('mouseleave', () => {
+            heroCard.style.transform = `rotateY(-10deg) rotateX(5deg)`;
+            floatingEls.forEach(el => el.style.transform = `translateZ(40px)`);
+        });
+
+        // 2. STICKY SCROLL OBSERVER
+        const steps = document.querySelectorAll('.s-step');
+        const slides = document.querySelectorAll('.v-slide');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    steps.forEach(s => s.classList.remove('active'));
+                    entry.target.classList.add('active');
+
+                    const idx = entry.target.getAttribute('data-index');
+                    slides.forEach(s => s.classList.remove('active'));
+                    slides[idx].classList.add('active');
+                }
+            });
+        }, { threshold: 0.6 });
+
+        steps.forEach(s => observer.observe(s));
+
+        // 3. MAGIC SPOTLIGHT EFFECT (En Önemli Kısım)
+        const grid = document.getElementById("magicGrid");
+        grid.onmousemove = e => {
+            for(const card of document.getElementsByClassName("magic-card")) {
+                const rect = card.getBoundingClientRect(),
+                      x = e.clientX - rect.left,
+                      y = e.clientY - rect.top;
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+            };
+        }
     </script>
 </body>
 </html>
