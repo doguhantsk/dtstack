@@ -27,6 +27,9 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* Make media (images/videos) responsive */
+img, video { max-width: 100%; height: auto; display: block; }
+
 /* --- 2. ARKAPLAN EFEKTLERİ (YILDIZLAR) --- */
 .stars {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none;
@@ -274,6 +277,44 @@ footer { border-top: 1px solid var(--border); padding: 80px 5%; margin-top: 100p
     .sticky-section, .contact-container { flex-direction: column; }
     .sticky-visual, .map-bg { display: none; }
     .projects-grid, .pricing-grid, .features-wrapper, .contact-cards { grid-template-columns: 1fr; }
+}
+
+/* MOBILE NAV & ADDITIONAL RESPONSIVE TWEAKS */
+.nav-toggle { display: none; background: transparent; border: none; color: var(--text-main); font-size: 1.6rem; cursor: pointer; }
+@media (max-width: 900px) {
+    nav { height: auto; padding: 12px 5%; align-items: center; }
+    .nav-toggle { display: block; margin-left: 8px; }
+
+    /* Hide desktop nav-links and present mobile dropdown */
+    .nav-links { display: none; position: absolute; top: 80px; left: 0; width: 100%; flex-direction: column; gap: 0; background: rgba(3,3,8,0.95); padding: 10px 0; border-top: 1px solid var(--border); }
+    .nav.open .nav-links { display: flex; }
+    .nav-links .nav-link { padding: 14px 20px; width: 100%; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.03); }
+
+    /* Move CTA into mobile flow when menu open */
+    .btn-shiny { display: none; }
+    .nav.open .btn-shiny { display: block; margin: 12px auto; width: calc(100% - 40px); padding: 12px 20px; }
+
+    /* Make tall fixed elements adapt */
+    .project-card { height: auto; min-height: 300px; }
+    .hero h1, .page-header h1 { font-size: 2.2rem; }
+    .page-header { padding: 80px 5% 40px; }
+    .features-wrapper { grid-template-columns: 1fr; padding: 0 5%; }
+    .pricing-grid { grid-template-columns: 1fr; padding: 20px 5% 60px; }
+    .modal-content { max-width: 95%; }
+    .story-visual { height: 300px; }
+}
+
+@media (max-width: 600px) {
+    .page-header h1 { font-size: 1.8rem; }
+    .hero-p { font-size: 1rem; }
+    .tag { padding: 5px 10px; font-size: 0.75rem; }
+    .nav-links .nav-link { font-size: 0.95rem; }
+}
+
+@media (max-width: 480px) {
+    nav { padding: 10px 4%; }
+    .nav-links { top: 70px; }
+    .hero { padding: 90px 4% 40px; }
 }
 /* --- PROJE DETAY MODAL (POPUP) --- */
 .modal-overlay {
