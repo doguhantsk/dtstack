@@ -1,16 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
   const nav = document.querySelector('nav');
   if (!nav) return;
-  const toggle = document.createElement('button');
-  toggle.className = 'nav-toggle';
-  toggle.setAttribute('aria-label', 'Menü');
-  toggle.innerHTML = '\u2630'; // hamburger
-  // insert toggle after logo
-  const logo = nav.querySelector('.logo');
-  if (logo && logo.parentNode === nav) {
-    nav.insertBefore(toggle, logo.nextSibling);
-  } else {
-    nav.insertBefore(toggle, nav.firstChild);
+  // Reuse existing toggle if present in markup, otherwise create one
+  let toggle = nav.querySelector('.nav-toggle');
+  if (!toggle) {
+    toggle = document.createElement('button');
+    toggle.className = 'nav-toggle';
+    toggle.setAttribute('aria-label', 'Menü');
+    toggle.innerHTML = '\u2630'; // hamburger
+    // insert toggle after logo
+    const logo = nav.querySelector('.logo');
+    if (logo && logo.parentNode === nav) {
+      nav.insertBefore(toggle, logo.nextSibling);
+    } else {
+      nav.insertBefore(toggle, nav.firstChild);
+    }
   }
 
   toggle.addEventListener('click', function () {
