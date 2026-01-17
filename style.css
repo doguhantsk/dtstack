@@ -262,7 +262,7 @@ summary { padding: 20px; cursor: pointer; color: white; font-weight: 600; displa
     /* Navigasyon */
     nav { padding: 10px 5%; height: 70px; }
     .nav-links, nav .btn-shiny { display: none !important; } /* Desktop menü elemanlarını gizle */
-    .nav-toggle { display: block; } /* Hamburgeri göster */
+    .hamburger { display: flex; } /* Hamburgeri göster - FLEX olarak */
 
     /* Typography - Daha da küçültüldü */
     .hero h1, .page-header h1 { font-size: 2.5rem; line-height: 1.1; }
@@ -276,16 +276,22 @@ summary { padding: 20px; cursor: pointer; color: white; font-weight: 600; displa
     
     .projects-grid, 
     .pricing-grid, 
-    .features-wrapper, 
     .values-grid, 
     .stats-container, 
     .contact-cards,
-    .magic-grid,
     .contact-container,
     .story-wrap { 
         display: flex; 
         flex-direction: column; 
         gap: 20px; 
+    }
+
+    /* Hizmetler ve Ana Sayfa Bento Grid - Mobilde 2 Kolon */
+    .features-wrapper,
+    .magic-grid {
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); /* İki sütun yap */
+        gap: 15px; 
     }
     
     /* Sticky Section - Mobil için Yan Yana Görünüm (Müşteri İsteği) */
@@ -355,10 +361,17 @@ summary { padding: 20px; cursor: pointer; color: white; font-weight: 600; displa
     .project-card { height: 250px; }
     .stat-number { font-size: 2rem; }
     .footer-cta { font-size: 1.5rem; }
-    .nav-toggle { font-size: 1.4rem; }
     
     /* Ensure cards are not too wide/big padding on very small screens */
     .feat-card, .magic-card, .price-card, .c-card, .value-card, .stat-box { 
         padding: 15px !important; 
+    }
+
+    /* Çok küçük ekranlarda hizmetleri tek sütuna düşür veya sıkıştır */
+    .features-wrapper, .magic-grid {
+        gap: 10px;
+        /* İsterseniz burada tekrar 1 sütuna düşürebilirsiniz, 
+           fakat "daha düzgün" dendiği için 2 sütun sıkışık da olsa daha düzenli durabilir.
+           Şimdilik 2 sütunda bırakıyoruz ama grid yapısını koruyoruz. */
     }
 }
