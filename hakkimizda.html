@@ -23,7 +23,21 @@
             <a href="hakkimizda.html" class="nav-link" style="color:white;">Hakkımızda</a>
         </div>
         <a href="iletisim.html" class="btn-shiny">İletişime Geç</a>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
     </nav>
+
+    <div class="mobile-nav-overlay" id="mobileMenu">
+        <a href="index.html" class="mobile-link">Ana Sayfa</a>
+        <a href="hizmetler.html" class="mobile-link">Hizmetler</a>
+        <a href="projeler.html" class="mobile-link">Projeler</a>
+        <a href="hakkimizda.html" class="mobile-link">Hakkımızda</a>
+        <a href="iletisim.html" class="btn-shiny" style="font-size: 1.5rem; padding: 15px 40px;">İletişime Geç</a>
+    </div>
 
     <header class="page-header">
         <div class="tag">BİZ KİMİZ?</div>
@@ -105,5 +119,20 @@
         <p>© 2026 DTStack. Tüm hakları saklıdır.</p>
     </footer>
 
+    <script>
+        // MOBİL MENÜ FONKSİYONU
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const menu = document.getElementById('mobileMenu');
+            hamburger.classList.toggle('active');
+            menu.classList.toggle('active');
+        }
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+    </script>
 </body>
 </html>
