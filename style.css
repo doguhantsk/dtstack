@@ -458,3 +458,138 @@ footer { padding: 50px 5%; text-align: center; border-top: 1px solid var(--borde
            Şimdilik 2 sütunda bırakıyoruz ama grid yapısını koruyoruz. */
     }
 }
+/* --- MARKET / YAZILIM ÜRÜNLERİ SAYFASI --- */
+
+.market-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+    max-width: 1400px; margin: 0 auto 100px; padding: 0 5%;
+}
+
+.market-card {
+    background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 20px;
+    overflow: hidden; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative;
+    display: flex; flex-direction: column;
+}
+
+.market-card:hover {
+    transform: translateY(-10px); border-color: var(--accent-primary);
+    box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.2);
+}
+
+.m-img-box {
+    height: 220px; width: 100%; position: relative; overflow: hidden;
+    border-bottom: 1px solid var(--border);
+}
+.m-img {
+    width: 100%; height: 100%; object-fit: cover; transition: 0.5s;
+}
+.market-card:hover .m-img { transform: scale(1.1); }
+
+/* Fiyat Etiketi */
+.m-price-tag {
+    position: absolute; top: 15px; right: 15px;
+    background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
+    border: 1px solid var(--accent-primary); color: white;
+    padding: 8px 16px; border-radius: 50px; font-weight: 700; font-size: 1.1rem;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+}
+
+.m-content { padding: 30px; flex: 1; display: flex; flex-direction: column; }
+
+.m-title { font-size: 1.5rem; color: white; margin-bottom: 10px; font-weight: 700; }
+.m-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6; flex: 1; }
+
+/* Özellik Listesi */
+.m-features { list-style: none; margin-bottom: 25px; border-top: 1px solid var(--border); padding-top: 20px; }
+.m-features li {
+    color: var(--text-main); font-size: 0.9rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
+}
+.m-features li i { color: var(--accent-pink); font-size: 0.8rem; }
+
+/* Tech Stack (Küçük) */
+.m-tech { display: flex; gap: 8px; margin-bottom: 25px; flex-wrap: wrap; }
+.mt-badge {
+    font-size: 0.75rem; background: rgba(255,255,255,0.05); color: #a5b4fc;
+    padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border);
+}
+
+.m-actions { display: flex; gap: 15px; margin-top: auto; }
+
+.btn-demo {
+    flex: 1; padding: 12px; border: 1px solid var(--border); background: transparent; color: white;
+    border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s; text-align: center; text-decoration: none;
+}
+.btn-demo:hover { background: rgba(255,255,255,0.05); }
+
+.btn-buy {
+    flex: 1; padding: 12px; background: var(--accent-primary); color: white; border: none;
+    border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s; text-align: center; text-decoration: none;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+.btn-buy:hover { background: #4f46e5; transform: scale(1.05); }
+
+/* Mobil Uyum */
+@media (max-width: 1024px) {
+    .market-grid { grid-template-columns: 1fr; }
+}
+/* --- MARKET SAYFASI GELİŞMİŞ DETAYLAR --- */
+
+/* 1. Market Hero & Search */
+.market-header-wrap {
+    text-align: center; margin-bottom: 60px;
+}
+.search-box {
+    position: relative; max-width: 600px; margin: 30px auto 0;
+}
+.search-input {
+    width: 100%; padding: 18px 25px; border-radius: 50px; border: 1px solid var(--border);
+    background: rgba(255,255,255,0.05); color: white; font-family: 'Outfit'; font-size: 1.1rem;
+    padding-right: 60px; transition: 0.3s;
+}
+.search-input:focus { outline: none; border-color: var(--accent-primary); background: rgba(255,255,255,0.1); }
+.search-btn {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    width: 45px; height: 45px; border-radius: 50%; background: var(--accent-primary);
+    border: none; color: white; cursor: pointer; display: grid; place-items: center;
+}
+
+/* 2. Categories (Filtreler) */
+.market-filters {
+    display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap;
+}
+.m-filter-btn {
+    padding: 10px 20px; border-radius: 30px; border: 1px solid var(--border);
+    background: transparent; color: var(--text-muted); font-weight: 500; cursor: pointer; transition: 0.3s;
+    font-size: 0.95rem; display: flex; align-items: center; gap: 8px;
+}
+.m-filter-btn:hover, .m-filter-btn.active {
+    background: rgba(99, 102, 241, 0.15); border-color: var(--accent-primary); color: white;
+}
+.m-filter-btn i { color: var(--accent-glow); }
+
+/* 3. Product Meta Data (Kart İçi Detaylar) */
+.m-meta-row {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;
+    font-size: 0.85rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px;
+}
+.m-rating { color: #fbbf24; display: flex; align-items: center; gap: 4px; }
+.m-version { background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; }
+
+/* 4. "Why Buy?" Benefits Section */
+.market-benefits {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    max-width: 1400px; margin: 0 auto 100px; padding: 0 5%;
+}
+.benefit-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+    border: 1px solid var(--border); padding: 25px; border-radius: 16px; text-align: center;
+}
+.benefit-icon {
+    font-size: 2rem; color: var(--accent-primary); margin-bottom: 15px;
+}
+.benefit-card h4 { color: white; margin-bottom: 5px; font-size: 1.1rem; }
+.benefit-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+@media (max-width: 900px) {
+    .market-benefits { grid-template-columns: 1fr 1fr; }
+}

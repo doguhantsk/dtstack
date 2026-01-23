@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTStack | Yazılım Mağazası</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* MODAL İÇİ ÖZEL LİSTE TASARIMI */
+        .modal-feature-list {
+            list-style: none; margin: 20px 0; padding: 20px;
+            background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border);
+        }
+        .modal-feature-list li {
+            margin-bottom: 12px; color: var(--text-main); font-size: 1rem; display: flex; align-items: start; gap: 12px;
+        }
+        .modal-feature-list li i {
+            color: var(--accent-primary); margin-top: 4px;
+        }
+        .modal-price-box {
+            font-size: 2rem; font-weight: 800; color: white; margin: 20px 0; text-align: center;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            padding: 10px; border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+    <div class="glow-spot gs-1"></div>
+    <div class="glow-spot gs-2"></div>
+
+    <nav>
+        <div class="logo"><div class="logo-icon"></div>DTStack</div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Ana Sayfa</a>
+            <a href="hizmetler.html" class="nav-link">Hizmetler</a>
+            <a href="projeler.html" class="nav-link">Projeler</a>
+            <a href="market.html" class="nav-link" style="color:white; border-bottom:1px solid var(--accent-primary);">Özel Yazılım</a>
+            <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
+        </div>
+        <a href="iletisim.html" class="btn-shiny desktop-cta">İletişime Geç</a>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </nav>
+
+    <div class="mobile-nav-overlay" id="mobileMenu">
+        <a href="index.html" class="mobile-link">Ana Sayfa</a>
+        <a href="hizmetler.html" class="mobile-link">Hizmetler</a>
+        <a href="projeler.html" class="mobile-link">Projeler</a>
+        <a href="market.html" class="mobile-link">Mağaza</a>
+        <a href="hakkimizda.html" class="mobile-link">Hakkımızda</a>
+        <a href="iletisim.html" class="btn-shiny" style="font-size: 1.5rem; padding: 15px 40px;">İletişime Geç</a>
+    </div>
+
+    <header class="page-header">
+        <div class="tag">SOFTWARE STORE</div>
+        <h1 class="glitch-text" data-text="PREMIUM SCRIPTS.">PREMIUM SCRIPTS.</h1>
+        <p>İşinizi hızlandıracak, güvenlik testlerinden geçmiş ve lisanslı hazır yazılım çözümleri.</p>
+    </header>
+
+    <div class="market-filters">
+        <button class="m-filter-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i> Tümü</button>
+        <button class="m-filter-btn" data-filter="ecommerce"><i class="fa-solid fa-cart-shopping"></i> E-Ticaret</button>
+        <button class="m-filter-btn" data-filter="mobile"><i class="fa-solid fa-mobile-screen"></i> Mobil App</button>
+        <button class="m-filter-btn" data-filter="corporate"><i class="fa-solid fa-building"></i> Kurumsal</button>
+        <button class="m-filter-btn" data-filter="dashboard"><i class="fa-solid fa-chart-pie"></i> Yönetim Paneli</button>
+    </div>
+
+    <section class="market-grid">
+        
+        <div class="market-card" data-category="ecommerce" onclick="openProductModal('novashop')">
+            <div class="m-img-box">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=2670&auto=format&fit=crop" class="m-img">
+                <div class="m-price-tag">₺12.000</div>
+            </div>
+            <div class="m-content">
+                <div class="m-meta-row">
+                    <div class="m-rating"><i class="fa-solid fa-star"></i> 4.9 (120 Satış)</div>
+                    <div class="m-version">v2.4</div>
+                </div>
+                <h3 class="m-title">NovaShop E-Ticaret</h3>
+                <p class="m-desc">Modern, çok satıcılı (Multi-Vendor) destekli, ileri seviye bir e-ticaret altyapısı.</p>
+                <div class="m-tech">
+                    <span class="mt-badge">Next.js 14</span>
+                    <span class="mt-badge">Node.js</span>
+                    <span class="mt-badge">MongoDB</span>
+                </div>
+                <div class="m-actions">
+                    <button class="btn-demo">İncele</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="market-card" data-category="mobile" onclick="openProductModal('gastroqr')">
+            <div class="m-img-box">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2670&auto=format&fit=crop" class="m-img">
+                <div class="m-price-tag">₺8.500</div>
+            </div>
+            <div class="m-content">
+                <div class="m-meta-row">
+                    <div class="m-rating"><i class="fa-solid fa-star"></i> 5.0 (85 Satış)</div>
+                    <div class="m-version">v1.8</div>
+                </div>
+                <h3 class="m-title">GastroQR Menü</h3>
+                <p class="m-desc">Restoran ve kafeler için geliştirilmiş, uygulama marketine yüklenmeden çalışabilen (PWA) menü.</p>
+                <div class="m-tech">
+                    <span class="mt-badge">React</span>
+                    <span class="mt-badge">Firebase</span>
+                    <span class="mt-badge">PWA</span>
+                </div>
+                <div class="m-actions">
+                    <button class="btn-demo">İncele</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="market-card" data-category="corporate" onclick="openProductModal('estatepro')">
+            <div class="m-img-box">
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2573&auto=format&fit=crop" class="m-img">
+                <div class="m-price-tag">₺15.000</div>
+            </div>
+            <div class="m-content">
+                <div class="m-meta-row">
+                    <div class="m-rating"><i class="fa-solid fa-star"></i> 4.8 (42 Satış)</div>
+                    <div class="m-version">v3.0</div>
+                </div>
+                <h3 class="m-title">EstatePro Emlak</h3>
+                <p class="m-desc">Emlak ofisleri için harita entegrasyonlu, 360 derece sanal tur destekli platform.</p>
+                <div class="m-tech">
+                    <span class="mt-badge">Laravel</span>
+                    <span class="mt-badge">Vue.js</span>
+                    <span class="mt-badge">MySQL</span>
+                </div>
+                <div class="m-actions">
+                    <button class="btn-demo">İncele</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="market-card" data-category="mobile" onclick="openProductModal('bookflow')">
+            <div class="m-img-box">
+                <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=2668&auto=format&fit=crop" class="m-img">
+                <div class="m-price-tag">₺9.000</div>
+            </div>
+            <div class="m-content">
+                <div class="m-meta-row">
+                    <div class="m-rating"><i class="fa-solid fa-star"></i> 4.7 (65 Satış)</div>
+                    <div class="m-version">v2.1</div>
+                </div>
+                <h3 class="m-title">BookFlow Randevu</h3>
+                <p class="m-desc">Kuaförler, klinikler ve danışmanlar için akıllı rezervasyon sistemi.</p>
+                <div class="m-tech">
+                    <span class="mt-badge">React Native</span>
+                    <span class="mt-badge">Node.js</span>
+                </div>
+                <div class="m-actions">
+                    <button class="btn-demo">İncele</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="market-card" data-category="dashboard" onclick="openProductModal('cosmos')">
+            <div class="m-img-box">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop" class="m-img">
+                <div class="m-price-tag">₺6.500</div>
+            </div>
+            <div class="m-content">
+                <div class="m-meta-row">
+                    <div class="m-rating"><i class="fa-solid fa-star"></i> 4.9 (210 Satış)</div>
+                    <div class="m-version">v4.2</div>
+                </div>
+                <h3 class="m-title">Cosmos Admin</h3>
+                <p class="m-desc">SaaS projeleri için hazır, modüler React Yönetim Paneli.</p>
+                <div class="m-tech">
+                    <span class="mt-badge">React</span>
+                    <span class="mt-badge">Tailwind</span>
+                </div>
+                <div class="m-actions">
+                    <button class="btn-demo">İncele</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="market-card" data-category="corporate" onclick="openProductModal('pulse')">
+            <div class="m-img-box">
+                <img src="https://images.unsplash.com/photo-1499750310159-5254f4cc1555?q=80&w=2670&auto=format&fit=crop" class="m-img">
+                <div class="m-price-tag">₺5.000</div>
+            </div>
+            <div class="m-content">
+                <div class="m-meta-row">
+                    <div class="m-rating"><i class="fa-solid fa-star"></i> 4.6 (55 Satış)</div>
+                    <div class="m-version">v1.5</div>
+                </div>
+                <h3 class="m-title">Pulse Haber/Blog</h3>
+                <p class="m-desc">Yüksek trafikli haber siteleri için SEO odaklı CMS.</p>
+                <div class="m-tech">
+                    <span class="mt-badge">WordPress</span>
+                    <span class="mt-badge">PHP 8</span>
+                </div>
+                <div class="m-actions">
+                    <button class="btn-demo">İncele</button>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeProductModal()">✕</div>
+            
+            <div class="modal-header-img" id="mp-img"></div>
+            
+            <div class="modal-body">
+                <h2 class="modal-title" id="mp-title">Ürün Başlığı</h2>
+                
+                <div class="modal-price-box" id="mp-price">₺0.00</div>
+
+                <p class="modal-desc" id="mp-desc">Genel açıklama...</p>
+
+                <h4 style="color:white; margin-top:20px;">Öne Çıkan Özellikler:</h4>
+                <ul class="modal-feature-list" id="mp-features">
+                    </ul>
+
+                <a href="#" id="mp-buy-btn" class="btn-shiny" style="background: var(--accent-primary); border:none; width:100%; text-align:center;">Satın Al ve İndir</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="market-benefits">
+        <div class="benefit-card">
+            <div class="benefit-icon"><i class="fa-solid fa-code"></i></div>
+            <h4>%100 Açık Kaynak</h4>
+            <p>Satın aldığınız yazılımın tüm kodlarına erişebilirsiniz.</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon"><i class="fa-solid fa-file-shield"></i></div>
+            <h4>Ömür Boyu Lisans</h4>
+            <p>Yıllık ödeme yok. Bir kere satın alın, ömür boyu kullanın.</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon"><i class="fa-solid fa-download"></i></div>
+            <h4>Anında Teslimat</h4>
+            <p>Ödeme sonrası dosyalarınız anında mailinizde.</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon"><i class="fa-solid fa-headset"></i></div>
+            <h4>Kurulum Desteği</h4>
+            <p>Sunucunuza kurulum aşamasında ücretsiz destek.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 DTStack. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        // 1. ÜRÜN VERİTABANI (BURAYI DÜZENLEYEREK İÇERİĞİ DEĞİŞTİREBİLİRSİN)
+        const marketDB = {
+            'novashop': {
+                title: "NovaShop E-Ticaret Scripti",
+                price: "₺12.000",
+                img: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=2670&auto=format&fit=crop",
+                desc: "NovaShop, sıradan bir e-ticaret scripti değil, tam teşekküllü bir dijital mağaza çözümüdür. Trendyol veya Hepsiburada gibi çok satıcılı (Multi-Vendor) pazaryeri kurmak isteyenler veya kendi markasını en güçlü altyapıyla satmak isteyenler için tasarlandı.",
+                features: [
+                    "Iyzico, Stripe ve PayTR 3D Secure Tam Entegrasyon",
+                    "Gelişmiş varyasyon yönetimi (Renk, Beden, Stok takibi)",
+                    "Otomatik Kargo Barkodu Oluşturma (Yurtiçi, Aras API)",
+                    "Pazaryeri Modülü: Başkaları sizin sitenizde ürün satıp komisyon ödeyebilir",
+                    "Google Merchant Center XML Çıktısı (Tek tıkla Google Shopping)",
+                    "Whatsapp Sipariş ve Canlı Destek Modülü"
+                ],
+                link: "iletisim.html?paket=novashop"
+            },
+            'gastroqr': {
+                title: "GastroQR Dijital Menü Sistemi",
+                price: "₺8.500",
+                img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2670&auto=format&fit=crop",
+                desc: "Pandemi sonrası standart haline gelen temassız QR menülerin en gelişmiş hali. Müşterileriniz uygulama indirmeden masadaki kodu okutur, menüyü görür ve garsona ihtiyaç duymadan siparişini verir.",
+                features: [
+                    "Sınırsız Kategori ve Ürün Ekleme Paneli",
+                    "Garson Çağır / Hesap İste Butonları (Admin paneline bildirim düşer)",
+                    "Mutfak Ekranı: Gelen siparişleri aşçı anlık görür",
+                    "Çoklu Dil Desteği (Turist müşteriler için otomatik çeviri)",
+                    "Ürün bazlı stok yönetimi (Biten ürünler menüde gizlenir)"
+                ],
+                link: "iletisim.html?paket=gastroqr"
+            },
+            'estatepro': {
+                title: "EstatePro Emlak Yönetim Portalı",
+                price: "₺15.000",
+                img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2573&auto=format&fit=crop",
+                desc: "Büyük emlak ofisleri ve gayrimenkul danışmanları için Sahibinden.com kalitesinde bir altyapı. İlanlarınızı harita üzerinde gösterin, sanal tur ekleyin ve müşterilerinize profesyonel bir deneyim sunun.",
+                features: [
+                    "Google Maps API ile konum bazlı ilan arama",
+                    "360 Derece Sanal Tur ve Video Galeri desteği",
+                    "Danışman Yönetimi: Her danışmanın kendi paneli ve ilanları olur",
+                    "İlan Karşılaştırma ve Favoriye Ekleme özelliği",
+                    "Kredi Hesaplama Aracı ve Döviz Kuru Entegrasyonu"
+                ],
+                link: "iletisim.html?paket=estatepro"
+            },
+            'bookflow': {
+                title: "BookFlow Akıllı Randevu Sistemi",
+                price: "₺9.000",
+                img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=2668&auto=format&fit=crop",
+                desc: "Randevularınızı kağıt kalemle takip etmeyi bırakın. Kuaförler, klinikler, spor salonları ve danışmanlar için 7/24 çalışan dijital asistanınız. Müşterileriniz siz uyurken bile randevu alabilir.",
+                features: [
+                    "Otomatik SMS ve E-posta Randevu Hatırlatma (No-Show'u engeller)",
+                    "Personel bazlı çalışma saatleri ve izin yönetimi",
+                    "Online Ön Ödeme (Kaparo) alma sistemi",
+                    "Google Takvim (Google Calendar) Entegrasyonu",
+                    "Müşteri Veritabanı (CRM) ve Geçmiş İşlem Kaydı"
+                ],
+                link: "iletisim.html?paket=bookflow"
+            },
+            'cosmos': {
+                title: "Cosmos SaaS Admin Paneli",
+                price: "₺6.500",
+                img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
+                desc: "Kendi yazılım projenizi geliştiriyorsanız, admin paneliyle vakit kaybetmeyin. Cosmos, React ve Tailwind ile geliştirilmiş, içinde CRM, Chat, Takvim gibi hazır modüller bulunan süper hızlı bir şablondur.",
+                features: [
+                    "50+ Hazır Bileşen (Tablolar, Formlar, Kartlar)",
+                    "Koyu Mod (Dark Mode) ve Açık Mod desteği",
+                    "Gelişmiş Grafik ve Analiz Sayfaları (Recharts)",
+                    "Tamamen Responsive (Mobilde kusursuz çalışır)",
+                    "Temiz ve Dokümante edilmiş kod yapısı"
+                ],
+                link: "iletisim.html?paket=cosmos"
+            },
+            'pulse': {
+                title: "Pulse Haber ve Blog CMS",
+                price: "₺5.000",
+                img: "https://images.unsplash.com/photo-1499750310159-5254f4cc1555?q=80&w=2670&auto=format&fit=crop",
+                desc: "WordPress'in hantallığından sıkılanlar için özel kodlanmış, SEO canavarı bir haber yazılımı. Google News uyumlu yapısı sayesinde içerikleriniz çok daha hızlı indekslenir.",
+                features: [
+                    "Google News ve AMP (Hızlandırılmış Mobil Sayfalar) uyumlu",
+                    "Gelişmiş Reklam Yönetimi (AdSense yerleşimi için özel alanlar)",
+                    "Yazarlar için özel panel, yetkilendirme ve performans takibi",
+                    "Otomatik Sosyal Medya Paylaşımı",
+                    "Manşet, Sürmanşet ve Son Dakika modülleri"
+                ],
+                link: "iletisim.html?paket=pulse"
+            }
+        };
+
+        // 2. MODAL İŞLEMLERİ
+        const modal = document.getElementById('productModal');
+        const buyBtn = document.getElementById('mp-buy-btn');
+
+        function openProductModal(id) {
+            const data = marketDB[id];
+            if(data) {
+                // İçerikleri Doldur
+                document.getElementById('mp-title').innerText = data.title;
+                document.getElementById('mp-price').innerText = data.price;
+                document.getElementById('mp-desc').innerText = data.desc;
+                document.getElementById('mp-img').style.backgroundImage = `url('${data.img}')`;
+                
+                // Satın Al Linkini Güncelle
+                buyBtn.href = data.link;
+
+                // Özellik Listesini Temizle ve Doldur
+                const featureList = document.getElementById('mp-features');
+                featureList.innerHTML = ''; // Önce temizle
+                
+                data.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<i class="fa-solid fa-check"></i> ${feature}`;
+                    featureList.appendChild(li);
+                });
+
+                // Modalı Aç
+                modal.classList.add('active');
+            }
+        }
+
+        function closeProductModal() {
+            modal.classList.remove('active');
+        }
+
+        // Dışarı tıklayınca kapat
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) closeProductModal();
+        });
+
+        // 3. MOBİL MENÜ
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const menu = document.getElementById('mobileMenu');
+            hamburger.classList.toggle('active');
+            menu.classList.toggle('active');
+        }
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => { toggleMenu(); });
+        });
+
+        // 4. FİLTRELEME
+        const filterBtns = document.querySelectorAll('.m-filter-btn');
+        const marketCards = document.querySelectorAll('.market-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filterValue = btn.getAttribute('data-filter');
+                marketCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filterValue === 'all' || category === filterValue) {
+                        card.style.display = 'flex';
+                        setTimeout(() => { card.style.opacity = '1'; }, 50);
+                    } else {
+                        card.style.display = 'none';
+                        card.style.opacity = '0';
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
