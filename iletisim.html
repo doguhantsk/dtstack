@@ -199,6 +199,9 @@
             const params = {
                 from_name: name,
                 from_email: email,
+                user_email: email,
+                reply_to: email,
+                to_email: email,
                 project_type: type,
                 budget: budget,
                 message: message
@@ -218,7 +221,10 @@
                             const replyParams = {
                                 to_name: name,
                                 to_email: email,
+                                to_email_address: email,
+                                to_name_display: name,
                                 from_name: 'DTStack',
+                                from_email: window.EMAILJS_FROM_EMAIL || 'noreply@yourdomain.com',
                                 project_type: type,
                                 message: message
                             };
@@ -230,6 +236,7 @@
                                     sendBtn.innerHTML = originalBtnHtml;
                                 }, (err) => {
                                     console.warn('Auto-reply failed', err);
+                                    console.warn('Auto-reply error details:', err && err.status, err && err.text ? err.text : err);
                                     alert('Mesajınız gönderildi, ancak otomatik cevap gönderilemedi.');
                                     document.getElementById('contactForm').reset();
                                     sendBtn.disabled = false;
