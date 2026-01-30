@@ -217,7 +217,7 @@
                 emailjs.send(serviceID, templateIDOwner, params)
                     .then(() => {
                         // 2) Send auto-reply to user (if configured)
-                        if (templateIDAuto && email) {
+                        if (templateIDAuto) {
                             const replyParams = {
                                 to_name: name,
                                 to_email: email,
@@ -228,6 +228,16 @@
                                 project_type: type,
                                 message: message
                             };
+                            console.log('Auto-reply params:', replyParams);
+
+                            if (!replyParams.to_email) {
+                                console.warn('Auto-reply skipped: recipient (to_email) is empty', replyParams);
+                                alert('Otomatik cevap gönderilemedi: alıcı adresi boş. Lütfen e-posta alanını kontrol edin.');
+                                document.getElementById('contactForm').reset();
+                                sendBtn.disabled = false;
+                                sendBtn.innerHTML = originalBtnHtml;
+                                return;
+                            }
                             emailjs.send(serviceID, templateIDAuto, replyParams)
                                 .then(() => {
                                     alert('Mesaj başarıyla gönderildi. Teşekkürler! (Otomatik cevap gönderildi)');
