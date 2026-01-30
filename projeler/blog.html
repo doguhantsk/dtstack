@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satır Arası | Modern Teknoloji ve Yaşam Blogu</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        'paper': '#fdfbf7', // Göz yormayan kağıt rengi
+                        'ink': '#1a1a1a',   // Tam siyah değil, yumuşak siyah
+                        'accent': '#e11d48', // Vurgu rengi (Rose)
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-paper text-ink antialiased">
+
+    <nav class="border-b border-gray-200 bg-paper/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" class="font-serif text-2xl font-bold tracking-tight flex items-center gap-2">
+                <span class="w-8 h-8 bg-ink text-white rounded-lg flex items-center justify-center text-lg italic">S</span>
+                Satır Arası.
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600">
+                <a href="#" class="hover:text-ink transition-colors">Teknoloji</a>
+                <a href="#" class="hover:text-ink transition-colors">Yazılım</a>
+                <a href="#" class="hover:text-ink transition-colors">Girişimcilik</a>
+                <a href="#" class="hover:text-ink transition-colors">Kültür</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button class="text-gray-500 hover:text-ink transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+                <a href="#" class="bg-ink text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition shadow-lg shadow-gray-200">Bültene Katıl</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-16 md:py-24 px-6 border-b border-gray-200">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1">
+                <div class="flex items-center gap-3 text-sm font-medium mb-6">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full">Yapay Zeka</span>
+                    <span class="text-gray-500">18 Aralık 2025</span>
+                </div>
+                <h1 class="font-serif text-4xl md:text-5xl font-bold leading-tight mb-6 text-gray-900 group cursor-pointer hover:text-gray-700 transition-colors">
+                    Yaratıcılığın Sonu mu? AI Çağında Sanatçı Olmak
+                </h1>
+                <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                    Midjourney ve ChatGPT gibi araçlar her geçen gün daha da yetenekli hale geliyor. Peki bu durum insan yaratıcılığını öldürüyor mu, yoksa yeni bir rönesansın başlangıcı mı?
+                </p>
+                <div class="flex items-center gap-4">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop" class="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm" alt="Yazar">
+                    <div>
+                        <p class="font-bold text-sm">Doğuhan Taşkın</p>
+                        <p class="text-xs text-gray-500">Editör • 5 dk okuma</p>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 relative group cursor-pointer">
+                <div class="absolute inset-0 bg-ink rounded-2xl rotate-2 opacity-5 group-hover:rotate-3 transition-transform"></div>
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop" class="relative w-full aspect-[4/3] object-cover rounded-2xl shadow-xl transition-transform group-hover:-translate-y-1" alt="AI Art">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex justify-between items-end mb-12">
+                <h2 class="font-serif text-3xl font-bold">Son Yazılar</h2>
+                <a href="#" class="text-sm font-medium text-gray-500 hover:text-ink flex items-center gap-1">Tümünü Gör <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
+                
+                <article class="group cursor-pointer flex flex-col h-full">
+                    <div class="overflow-hidden rounded-xl mb-5 aspect-[3/2] relative">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Kodlama">
+                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-md">Yazılım</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold mb-3 group-hover:text-accent transition-colors leading-snug">
+                        2025'te Web Geliştirme: Hangi Teknolojileri Öğrenmelisin?
+                    </h3>
+                    <p class="text-gray-500 text-sm mb-4 line-clamp-3 leading-relaxed flex-1">
+                        React, Vue, Svelte derken kafanız mı karıştı? İşte modern web ekosisteminde kaybolmadan ilerlemenin yol haritası.
+                    </p>
+                    <div class="text-xs font-medium text-gray-400 border-t border-gray-100 pt-4 flex justify-between items-center">
+                        <span>12 Aralık 2025</span>
+                        <span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> 8 dk okuma</span>
+                    </div>
+                </article>
+
+                <article class="group cursor-pointer flex flex-col h-full">
+                    <div class="overflow-hidden rounded-xl mb-5 aspect-[3/2] relative">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Ofis">
+                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-md">Kariyer</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold mb-3 group-hover:text-accent transition-colors leading-snug">
+                        Freelance Çalışırken Tükenmişlik Sendromundan Korunma
+                    </h3>
+                    <p class="text-gray-500 text-sm mb-4 line-clamp-3 leading-relaxed flex-1">
+                        Evden çalışmak harika görünüyor, ta ki gece 03:00'te hala mail cevaplayana kadar. İşte dengeyi kurmanın 5 kuralı.
+                    </p>
+                    <div class="text-xs font-medium text-gray-400 border-t border-gray-100 pt-4 flex justify-between items-center">
+                        <span>10 Aralık 2025</span>
+                        <span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> 4 dk okuma</span>
+                    </div>
+                </article>
+
+                <article class="group cursor-pointer flex flex-col h-full">
+                    <div class="overflow-hidden rounded-xl mb-5 aspect-[3/2] relative">
+                        <img src="https://images.unsplash.com/photo-1616489953125-95a967e411ef?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Minimalizm">
+                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-md">Yaşam</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold mb-3 group-hover:text-accent transition-colors leading-snug">
+                        Dijital Minimalizm: Bildirimleri Kapatıp Hayata Dönmek
+                    </h3>
+                    <p class="text-gray-500 text-sm mb-4 line-clamp-3 leading-relaxed flex-1">
+                        Telefonunuzdaki uygulamalar dikkatinizi çalmak için tasarlandı. Odaklanma becerinizi geri kazanmak için yapmanız gerekenler.
+                    </p>
+                    <div class="text-xs font-medium text-gray-400 border-t border-gray-100 pt-4 flex justify-between items-center">
+                        <span>08 Aralık 2025</span>
+                        <span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> 6 dk okuma</span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-serif text-3xl font-bold mb-4 text-ink">Her Pazar, İlham Kutunda.</h2>
+            <p class="text-gray-500 mb-8 max-w-lg mx-auto">
+                Haftanın en iyi teknoloji haberleri, yazılım ipuçları ve kitap önerileri. Spam yok, sadece değer var.
+            </p>
+            <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input type="email" placeholder="E-posta adresin" class="flex-1 px-5 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-ink focus:ring-1 focus:ring-ink transition-all">
+                <button class="bg-ink text-white px-8 py-3 rounded-lg font-medium hover:bg-accent transition-colors shadow-lg">
+                    Abone Ol
+                </button>
+            </form>
+            <p class="text-xs text-gray-400 mt-4">10.000+ okuyucuya katıl. İstediğin zaman ayrılabilirsin.</p>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-gray-200 pt-16 pb-8 text-sm">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-2 md:col-span-1">
+                    <span class="font-serif font-bold text-lg block mb-4">Satır Arası.</span>
+                    <p class="text-gray-500">Teknoloji, tasarım ve modern yaşam üzerine haftalık notlar.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Keşfet</h4>
+                    <ul class="space-y-2 text-gray-500">
+                        <li><a href="#" class="hover:text-ink">Hakkımda</a></li>
+                        <li><a href="#" class="hover:text-ink">Yazılar</a></li>
+                        <li><a href="#" class="hover:text-ink">Projeler</a></li>
+                        <li><a href="#" class="hover:text-ink">İletişim</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Sosyal</h4>
+                    <ul class="space-y-2 text-gray-500">
+                        <li><a href="#" class="hover:text-ink">Twitter (X)</a></li>
+                        <li><a href="#" class="hover:text-ink">LinkedIn</a></li>
+                        <li><a href="#" class="hover:text-ink">Instagram</a></li>
+                        <li><a href="#" class="hover:text-ink">GitHub</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Yasal</h4>
+                    <ul class="space-y-2 text-gray-500">
+                        <li><a href="#" class="hover:text-ink">Gizlilik Politikası</a></li>
+                        <li><a href="#" class="hover:text-ink">Kullanım Şartları</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-400">
+                <p>© 2025 Satır Arası Blog. Tüm hakları saklıdır.</p>
+                <p class="mt-2 md:mt-0">Ankara'da ❤️ ile tasarlandı.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

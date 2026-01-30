@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VANGUARD & PARTNERS | Hukuk & Stratejik Danışmanlık</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        'royal-blue': '#0f172a', // Ciddi Lacivert
+                        'royal-gold': '#c5a059', // Mat Altın
+                        'cream': '#f9f9f7', // Kağıt rengi
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Altın Çizgi Efekti */
+        .gold-line::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: #c5a059;
+            margin-top: 1rem;
+        }
+        
+        /* Resimlerin üzerine gelince hafif kararma */
+        .overlay-hover:hover {
+            background-color: rgba(15, 23, 42, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-cream text-royal-blue antialiased">
+
+    <div class="bg-royal-blue text-white text-xs py-3 px-8 flex justify-between tracking-widest border-b border-white/10">
+        <div class="hidden md:block">KURULUŞ 1985 • ZÜRİH • LONDRA • NEW YORK</div>
+        <div class="flex gap-6">
+            <a href="#" class="hover:text-royal-gold transition">Kariyer</a>
+            <a href="#" class="hover:text-royal-gold transition">Müşteri Portalı</a>
+            <span>+1 (212) 555-0199</span>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 z-50 bg-cream/95 backdrop-blur-md border-b border-gray-200 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <a href="#" class="flex flex-col items-start group">
+                    <span class="font-serif text-2xl font-bold tracking-tight text-royal-blue">VANGUARD <span class="text-royal-gold">&</span> PARTNERS</span>
+                    <span class="text-[10px] uppercase tracking-[0.3em] text-gray-500 group-hover:text-royal-gold transition-colors">Stratejik Danışmanlık</span>
+                </a>
+
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-royal-gold transition-colors">Firma</a>
+                    <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-royal-gold transition-colors">Uzmanlık</a>
+                    <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-royal-gold transition-colors">Avukatlar</a>
+                    <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-royal-gold transition-colors">Yayınlar</a>
+                </div>
+
+                <a href="#" class="hidden md:inline-block border border-royal-blue px-6 py-3 text-sm font-bold uppercase tracking-widest hover:bg-royal-blue hover:text-white transition-all duration-300">
+                    Danışmanlık
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative h-[85vh] flex items-center">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover grayscale opacity-90" alt="Office">
+            <div class="absolute inset-0 bg-royal-blue/30 mix-blend-multiply"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+            <div class="bg-white/95 p-12 md:p-16 max-w-2xl shadow-2xl border-t-4 border-royal-gold">
+                <span class="text-royal-gold font-bold tracking-widest uppercase text-xs mb-4 block">Küresel Dava ve Tahkim</span>
+                <h1 class="font-serif text-5xl md:text-6xl font-medium leading-tight mb-8 text-royal-blue">
+                    Mirasınızı Koruyoruz <br>
+                    <span class="italic text-gray-500">Geleceğinizi Savunuyoruz</span>
+                </h1>
+                <p class="text-gray-600 text-lg mb-10 leading-relaxed font-light">
+                    Dört yılı aşkın süredir Vanguard, dünyanın önde gelen kurumları ve finansal kuruluşları için ödünsüz hukuki temsil sunuyor.
+                </p>
+                <div class="flex gap-6">
+                    <button class="bg-royal-blue text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-royal-gold transition-colors">
+                        Hizmet Alanlarımız
+                    </button>
+                    <button class="text-royal-blue px-8 py-4 text-xs font-bold uppercase tracking-widest hover:text-royal-gold transition-colors flex items-center gap-2">
+                        Vaka İncelemeleri <span>→</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-royal-blue text-white py-20 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center divide-x divide-white/10">
+            <div>
+                <span class="block font-serif text-4xl md:text-5xl mb-2 text-royal-gold">40+</span>
+                <span class="text-xs uppercase tracking-widest text-gray-400">Yıllık Deneyim</span>
+            </div>
+            <div>
+                <span class="block font-serif text-4xl md:text-5xl mb-2 text-royal-gold">$12B</span>
+                <span class="text-xs uppercase tracking-widest text-gray-400">Yönetilen İşlemler</span>
+            </div>
+            <div>
+                <span class="block font-serif text-4xl md:text-5xl mb-2 text-royal-gold">150</span>
+                <span class="text-xs uppercase tracking-widest text-gray-400">Ortak Avukatlar</span>
+            </div>
+            <div>
+                <span class="block font-serif text-4xl md:text-5xl mb-2 text-royal-gold">24</span>
+                <span class="text-xs uppercase tracking-widest text-gray-400">Global Ofisler</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 bg-cream">
+        <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-gray-300 pb-8">
+                <div>
+                    <span class="text-royal-gold font-bold tracking-widest uppercase text-xs mb-2 block">Hizmet Alanları</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-royal-blue gold-line">Ödünsüz <br> Uzmanlık</h2>
+                </div>
+                <a href="#" class="hidden md:block text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-royal-blue mt-8 md:mt-0">Tüm Hizmetleri Göster →</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
+                <div class="group cursor-pointer">
+                    <div class="border-t border-gray-300 pt-6 group-hover:border-royal-gold transition-colors duration-500">
+                        <h3 class="font-serif text-2xl mb-4 group-hover:text-royal-gold transition-colors">Şirket & Finans</h3>
+                        <p class="text-gray-600 font-light leading-relaxed mb-6">Fortune 500 şirketleri için birleşme, devralma ve karmaşık finansal yeniden yapılandırma hizmetleri.</p>
+                        <span class="text-xs font-bold uppercase tracking-widest text-royal-blue group-hover:translate-x-2 transition-transform inline-block">Detaylar</span>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="border-t border-gray-300 pt-6 group-hover:border-royal-gold transition-colors duration-500">
+                        <h3 class="font-serif text-2xl mb-4 group-hover:text-royal-gold transition-colors">Fikri Mülkiyet</h3>
+                        <p class="text-gray-600 font-light leading-relaxed mb-6">Küresel ekonomiyi yönlendiren yenilikleri ve markaları patent davaları ile koruyoruz.</p>
+                        <span class="text-xs font-bold uppercase tracking-widest text-royal-blue group-hover:translate-x-2 transition-transform inline-block">Detaylar</span>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="border-t border-gray-300 pt-6 group-hover:border-royal-gold transition-colors duration-500">
+                        <h3 class="font-serif text-2xl mb-4 group-hover:text-royal-gold transition-colors">Gayrimenkul Hukuku</h3>
+                        <p class="text-gray-600 font-light leading-relaxed mb-6">Ticari gelişim, imar ve yüksek sermayeli işlemler için kapsamlı hukuki danışmanlık.</p>
+                        <span class="text-xs font-bold uppercase tracking-widest text-royal-blue group-hover:translate-x-2 transition-transform inline-block">Detaylar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-serif text-4xl text-center mb-16">Yönetim</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center group">
+                    <div class="w-full aspect-[3/4] overflow-hidden mb-6 relative">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Partner">
+                        <div class="absolute inset-0 bg-royal-blue/0 group-hover:bg-royal-blue/10 transition-colors"></div>
+                    </div>
+                    <h3 class="font-serif text-2xl text-royal-blue">James Sterling</h3>
+                    <p class="text-xs uppercase tracking-widest text-royal-gold mt-1">Yönetici Ortak</p>
+                </div>
+
+                <div class="text-center group">
+                    <div class="w-full aspect-[3/4] overflow-hidden mb-6 relative">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Partner">
+                        <div class="absolute inset-0 bg-royal-blue/0 group-hover:bg-royal-blue/10 transition-colors"></div>
+                    </div>
+                    <h3 class="font-serif text-2xl text-royal-blue">Eleanor Vance</h3>
+                    <p class="text-xs uppercase tracking-widest text-royal-gold mt-1">Kıdemli Danışman</p>
+                </div>
+
+                <div class="text-center group">
+                    <div class="w-full aspect-[3/4] overflow-hidden mb-6 relative">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Partner">
+                        <div class="absolute inset-0 bg-royal-blue/0 group-hover:bg-royal-blue/10 transition-colors"></div>
+                    </div>
+                    <h3 class="font-serif text-2xl text-royal-blue">Robert Chen</h3>
+                    <p class="text-xs uppercase tracking-widest text-royal-gold mt-1">Finans Başkanı</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-royal-blue text-white py-32">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="font-serif text-4xl md:text-5xl mb-6">Danışmanlık Talebi</h2>
+            <p class="text-gray-400 mb-12 font-light">Gizli. Profesyonel. Stratejik.</p>
+            
+            <form class="space-y-6 max-w-xl mx-auto text-left">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="text-xs uppercase tracking-widest text-royal-gold mb-2 block">Ad</label>
+                        <input type="text" class="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-royal-gold transition-colors">
+                    </div>
+                    <div>
+                        <label class="text-xs uppercase tracking-widest text-royal-gold mb-2 block">Soyad</label>
+                        <input type="text" class="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-royal-gold transition-colors">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-xs uppercase tracking-widest text-royal-gold mb-2 block">E-Posta Adresi</label>
+                    <input type="email" class="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-royal-gold transition-colors">
+                </div>
+                <div>
+                    <label class="text-xs uppercase tracking-widest text-royal-gold mb-2 block">Konu Açıklaması</label>
+                    <textarea rows="4" class="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-royal-gold transition-colors"></textarea>
+                </div>
+                <div class="pt-6">
+                    <button class="w-full bg-royal-gold text-royal-blue font-bold uppercase tracking-widest py-4 hover:bg-white transition-colors">
+                        Talebi Gönder
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-royal-blue border-t border-white/10 pt-20 pb-10 text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <span class="font-serif text-2xl font-bold tracking-tight text-white mb-6 block">VANGUARD <span class="text-royal-gold">&</span> PARTNERS</span>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        1985'ten beri hukuki mükemmeliyetin standartlarını belirliyoruz. Dünya çapında 50'den fazla yargı bölgesinde müvekkillerimizi temsil ediyoruz.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-royal-gold text-xs font-bold uppercase tracking-widest mb-6">Ofisler</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li>New York</li>
+                        <li>London</li>
+                        <li>Zurich</li>
+                        <li>Dubai</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-royal-gold text-xs font-bold uppercase tracking-widest mb-6">Hizmetler</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li>Şirket Hukuku</li>
+                        <li>Dava ve Tahkim</li>
+                        <li>Fikri Mülkiyet</li>
+                        <li>Özel Servet Yönetimi</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-royal-gold text-xs font-bold uppercase tracking-widest mb-6">Legal</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li>Disclaimer</li>
+                        <li>Privacy Policy</li>
+                        <li>Attorney Advertising</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 text-center md:text-left text-xs text-gray-600 uppercase tracking-widest">
+                © 2025 Vanguard & Partners LLP. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

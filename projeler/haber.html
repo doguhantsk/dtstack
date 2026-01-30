@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS HABER | Gerçeğin Sesi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-light: #f8fafc;
+            --text-gray: #94a3b8;
+            --accent-red: #ef4444; /* Son Dakika Kırmızısı */
+            --accent-blue: #3b82f6;
+            --border: rgba(255,255,255,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a:hover { color: var(--accent-blue); }
+
+        /* --- ÜST BAR & LOGO --- */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 5%;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            border-bottom: 1px solid var(--border);
+        }
+
+        header {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+        .logo span { color: var(--accent-red); }
+
+        nav ul { display: flex; list-style: none; gap: 1.5rem; }
+        nav a { font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* --- SON DAKİKA BANDI --- */
+        .breaking-news {
+            background: var(--accent-red);
+            color: white;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            height: 40px;
+        }
+
+        .bn-label {
+            background: #991b1b;
+            padding: 0 1.5rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 2;
+        }
+
+        .bn-content {
+            display: flex;
+            animation: ticker 20s linear infinite;
+            white-space: nowrap;
+            padding-left: 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* --- MANŞET GRID SİSTEMİ (Layout'un Kalbi) --- */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 500px;
+            gap: 20px;
+            padding: 40px 5%;
+        }
+
+        .news-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .news-card:hover img { transform: scale(1.05); }
+
+        .overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            z-index: 10;
+        }
+
+        .tag {
+            background: var(--accent-blue);
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .tag.red { background: var(--accent-red); }
+
+        .news-title {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .main-story .news-title { font-size: 3rem; } /* Ana manşet daha büyük */
+
+        .sub-grid {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* --- EKONOMİ & PİYASA ŞERİDİ --- */
+        .markets {
+            background: var(--bg-card);
+            padding: 1rem 5%;
+            display: flex;
+            gap: 2rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+            overflow-x: auto;
+        }
+        
+        .market-item {
+            display: flex;
+            flex-direction: column;
+            min-width: 100px;
+        }
+        .market-name { font-size: 0.8rem; color: var(--text-gray); }
+        .market-val { font-weight: 700; font-size: 1.1rem; }
+        .up { color: #22c55e; }
+        .down { color: #ef4444; }
+
+        /* --- ALT HABERLER (3'lü Grid) --- */
+        .latest-section { padding: 0 5% 60px 5%; }
+        .section-header { 
+            display: flex; justify-content: space-between; align-items: flex-end;
+            margin-bottom: 20px; border-bottom: 2px solid var(--border); padding-bottom: 10px;
+        }
+        .section-title { font-family: 'Frank Ruhl Libre', serif; font-size: 1.8rem; }
+
+        .three-col-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .standard-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
+        .standard-card h3 { font-family: 'Frank Ruhl Libre', serif; font-size: 1.4rem; margin-bottom: 10px; }
+        .standard-card p { color: var(--text-gray); font-size: 0.9rem; line-height: 1.6; }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); color: var(--text-gray); font-size: 0.9rem; }
+
+        /* Mobil */
+        @media (max-width: 768px) {
+            .hero-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .sub-grid { display: none; } /* Mobilde yan manşetleri gizle veya aşağı al */
+            .main-story .news-title { font-size: 2rem; }
+            nav { display: none; } /* Basitlik için mobilde nav gizlendi */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>Ankara, TR • 30 Ocak 2026, Cuma</span>
+        <span>Dolar: 36.42₺ • Euro: 39.15₺</span>
+    </div>
+
+    <header>
+        <div class="logo">NEXUS<span>HABER</span></div>
+        <nav>
+            <ul>
+                <li><a href="#">Gündem</a></li>
+                <li><a href="#">Ekonomi</a></li>
+                <li><a href="#">Teknoloji</a></li>
+                <li><a href="#">Spor</a></li>
+                <li><a href="#">Dünya</a></li>
+            </ul>
+        </nav>
+        <a href="#" style="padding: 10px 20px; border: 1px solid var(--border); border-radius: 4px;">Giriş Yap</a>
+    </header>
+
+    <div class="breaking-news">
+        <div class="bn-label">SON DAKİKA</div>
+        <div class="bn-content">
+            MERKEZ BANKASI FAİZ KARARINI AÇIKLADI: PİYASALARDA HAREKETLİLİK... &nbsp;&nbsp; • &nbsp;&nbsp; 
+            TEKNOLOJİ DEVİNDEN YENİ YAPAY ZEKA HAMLESİ... &nbsp;&nbsp; • &nbsp;&nbsp; 
+            İSTANBUL'DA BEKLENEN KAR YAĞIŞI BAŞLADI...
+        </div>
+    </div>
+
+    <main class="hero-grid">
+        <article class="news-card main-story">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" alt="Haber Görseli">
+            <div class="overlay">
+                <span class="tag red">GÜNDEM</span>
+                <h1 class="news-title">Küresel Piyasalar Dijital Dönüşüme Hazırlanıyor: Yeni Dönem Başladı</h1>
+                <p style="color: #cbd5e1;">Dünya ekonomik forumunda alınan kararlar, dijital para birimleri ve teknoloji sektöründe şok etkisi yarattı.</p>
+            </div>
+        </article>
+
+        <div class="sub-grid">
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1526304640152-d4619684e484?q=80&w=2070&auto=format&fit=crop" alt="Haber 2">
+                <div class="overlay">
+                    <span class="tag">EKONOMİ</span>
+                    <h2 class="news-title" style="font-size: 1.4rem;">Yapay Zeka Borsayı Salladı</h2>
+                </div>
+            </article>
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=2070&auto=format&fit=crop" alt="Haber 3">
+                <div class="overlay">
+                    <span class="tag">SPOR</span>
+                    <h2 class="news-title" style="font-size: 1.4rem;">Şampiyonlar Ligi Finali Nerede?</h2>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <div class="markets">
+        <div class="market-item">
+            <span class="market-name">BIST 100</span>
+            <span class="market-val up">9.450 <small>%1.2 ▲</small></span>
+        </div>
+        <div class="market-item">
+            <span class="market-name">USD/TRY</span>
+            <span class="market-val down">36.42 <small>%-0.1 ▼</small></span>
+        </div>
+        <div class="market-item">
+            <span class="market-name">ALTIN (GR)</span>
+            <span class="market-val up">2.850 <small>%0.5 ▲</small></span>
+        </div>
+        <div class="market-item">
+            <span class="market-name">BITCOIN</span>
+            <span class="market-val up">$98.000 <small>%3.4 ▲</small></span>
+        </div>
+        <div class="market-item">
+            <span class="market-name">EURO/TRY</span>
+            <span class="market-val">39.15 <small>%0.0 -</small></span>
+        </div>
+    </div>
+
+    <section class="latest-section">
+        <div class="section-header">
+            <h2 class="section-title">Editörün Seçimi</h2>
+            <a href="#" style="font-size: 0.9rem; text-decoration: underline;">Tümünü Gör</a>
+        </div>
+
+        <div class="three-col-grid">
+            <article class="standard-card">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop" alt="Teknoloji">
+                <span class="tag" style="background: #a855f7;">TEKNOLOJİ</span>
+                <h3>Yeni Nesil İşlemciler Tanıtıldı</h3>
+                <p>Verimlilikte %40 artış sağlayan yeni çipler, mobil cihazların pil ömrünü ikiye katlamayı vaat ediyor.</p>
+            </article>
+
+            <article class="standard-card">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=2748&auto=format&fit=crop" alt="Doğa">
+                <span class="tag" style="background: #10b981;">YAŞAM</span>
+                <h3>İklim Zirvesinden Çıkan Sonuçlar</h3>
+                <p>Ülkeler karbon emisyonlarını azaltmak için yeni bir anlaşmaya imza attı. Detaylar haberimizde.</p>
+            </article>
+
+            <article class="standard-card">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" alt="İş Dünyası">
+                <span class="tag">KARİYER</span>
+                <h3>Uzaktan Çalışma Kalıcı mı Oluyor?</h3>
+                <p>Büyük şirketlerin %60'ı hibrit çalışma modeline geçişi tamamladı. Ofislerin geleceği tartışılıyor.</p>
+            </article>
+        </div>
+    </section>
+
+    <footer>
+        <p>Copyright &copy; 2026 Nexus Haber. <br> Tasarım ve Kodlama: <strong>Doğuhan</strong></p>
+    </footer>
+
+</body>
+</html>

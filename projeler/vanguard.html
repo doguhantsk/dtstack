@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERİDYEN PARTNERS | Global Hukuk ve Strateji</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                    },
+                    colors: {
+                        'corporate-navy': '#0f1419', // Çok koyu lacivert/siyah
+                        'corporate-gray': '#f4f4f5', // Soğuk gri arka plan
+                        'accent-bronze': '#c8aa86', // Lüks Bronz/Bakır
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* İnce detaylar için özel CSS */
+        .bronze-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c8aa86, transparent);
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(15,20,25,0.3), rgba(15,20,25,0.8));
+        }
+
+        /* Yavaş zoom efekti */
+        .zoom-effect {
+            transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .group:hover .zoom-effect {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-corporate-gray text-corporate-navy antialiased">
+
+    <div class="bg-corporate-navy text-white/60 text-[10px] md:text-xs py-3 px-8 flex justify-between tracking-[0.2em] border-b border-white/10 uppercase">
+        <div class="hidden md:flex gap-4">
+            <span>İstanbul</span>
+            <span class="text-accent-bronze">•</span>
+            <span>Londra</span>
+            <span class="text-accent-bronze">•</span>
+            <span>Dubai</span>
+        </div>
+        <div class="flex gap-6">
+            <a href="#" class="hover:text-white transition-colors">Basın Odası</a>
+            <a href="#" class="hover:text-white transition-colors">Kariyer</a>
+            <span class="text-white">+90 (212) 345 00 99</span>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 z-50 bg-corporate-gray/90 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 border border-corporate-navy flex items-center justify-center rounded-sm group-hover:bg-corporate-navy group-hover:text-white transition-all duration-500">
+                        <span class="font-serif text-2xl font-bold italic">M</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-sans text-xl font-bold tracking-widest text-corporate-navy leading-none">MERİDYEN</span>
+                        <span class="text-[9px] uppercase tracking-[0.4em] text-gray-500 mt-1">Partners & Co.</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex space-x-12 items-center">
+                    <a href="#" class="text-xs font-semibold uppercase tracking-widest hover:text-accent-bronze transition-colors">Kurumsal</a>
+                    <a href="#" class="text-xs font-semibold uppercase tracking-widest hover:text-accent-bronze transition-colors">Uzmanlıklar</a>
+                    <a href="#" class="text-xs font-semibold uppercase tracking-widest hover:text-accent-bronze transition-colors">Ekibimiz</a>
+                    <a href="#" class="text-xs font-semibold uppercase tracking-widest hover:text-accent-bronze transition-colors">Makaleler</a>
+                </div>
+
+                <a href="#contact" class="hidden md:block bg-corporate-navy text-white px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-accent-bronze transition-colors duration-300">
+                    Randevu Al
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative h-[90vh] overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Istanbul Business District">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+
+        <div class="relative z-10 h-full flex items-center">
+            <div class="max-w-7xl mx-auto px-6 w-full">
+                <div class="border-l-2 border-accent-bronze pl-8 md:pl-12 py-4">
+                    <p class="text-accent-bronze text-sm font-semibold tracking-[0.3em] uppercase mb-4 animate-pulse">Global Vizyon, Yerel Güç</p>
+                    <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white leading-[1.1] mb-8 font-light">
+                        Geleceği <br>
+                        <span class="italic font-normal">Güvenle</span> İnşa Ediyoruz.
+                    </h1>
+                    <p class="text-gray-300 text-lg md:text-xl font-light max-w-2xl leading-relaxed mb-10">
+                        Meridyen Partners, 30 yılı aşkın süredir Türkiye'nin önde gelen holdinglerine ve çok uluslu şirketlere stratejik hukuk ve danışmanlık hizmeti sunmaktadır.
+                    </p>
+                    <div class="flex gap-6">
+                        <button class="bg-white text-corporate-navy px-10 py-4 text-xs font-bold uppercase tracking-widest hover:bg-accent-bronze hover:text-white transition-colors">
+                            Hizmetlerimiz
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-corporate-navy text-white py-20 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
+            <div>
+                <p class="font-serif text-3xl italic text-accent-bronze">"Adalet, en sağlam temeldir."</p>
+                <p class="text-xs text-gray-500 mt-2 uppercase tracking-widest">— Kurucu Ortak, Ahmet Yılmaz</p>
+            </div>
+            <div class="flex gap-16">
+                <div>
+                    <span class="block font-serif text-5xl font-light">₺50M+</span>
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Yönetilen Portföy</span>
+                </div>
+                <div>
+                    <span class="block font-serif text-5xl font-light">35</span>
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Yıllık Tecrübe</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+                <div>
+                    <span class="text-accent-bronze font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Faaliyet Alanları</span>
+                    <h2 class="font-serif text-4xl md:text-6xl text-corporate-navy">Stratejik Çözümler</h2>
+                </div>
+                <div class="w-full md:w-auto mt-8 md:mt-0">
+                    <p class="text-gray-500 max-w-sm text-sm leading-relaxed">
+                        Karmaşık hukuki süreçlerde, firmanızın ihtiyaç duyduğu netliği ve stratejik üstünlüğü sağlıyoruz.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-300 border border-gray-300">
+                <div class="bg-corporate-gray p-12 hover:bg-white transition-colors duration-500 group cursor-pointer h-96 flex flex-col justify-between">
+                    <div class="w-12 h-12 border border-gray-300 rounded-full flex items-center justify-center group-hover:border-accent-bronze group-hover:text-accent-bronze transition-colors">
+                        <span class="font-serif text-xl italic">01</span>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-3xl mb-4 group-hover:text-accent-bronze transition-colors">Şirketler Hukuku</h3>
+                        <p class="text-gray-500 font-light text-sm leading-relaxed">
+                            Birleşme, devralma ve kurumsal yeniden yapılandırma süreçlerinde uçtan uca danışmanlık.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-corporate-gray p-12 hover:bg-white transition-colors duration-500 group cursor-pointer h-96 flex flex-col justify-between">
+                    <div class="w-12 h-12 border border-gray-300 rounded-full flex items-center justify-center group-hover:border-accent-bronze group-hover:text-accent-bronze transition-colors">
+                        <span class="font-serif text-xl italic">02</span>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-3xl mb-4 group-hover:text-accent-bronze transition-colors">Finansal Tahkim</h3>
+                        <p class="text-gray-500 font-light text-sm leading-relaxed">
+                            Uluslararası ticari anlaşmazlıklarda ve bankacılık hukukunda uzman temsiliyet.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-corporate-gray p-12 hover:bg-white transition-colors duration-500 group cursor-pointer h-96 flex flex-col justify-between">
+                    <div class="w-12 h-12 border border-gray-300 rounded-full flex items-center justify-center group-hover:border-accent-bronze group-hover:text-accent-bronze transition-colors">
+                        <span class="font-serif text-xl italic">03</span>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-3xl mb-4 group-hover:text-accent-bronze transition-colors">Gayrimenkul Yatırımı</h3>
+                        <p class="text-gray-500 font-light text-sm leading-relaxed">
+                            Büyük ölçekli inşaat projeleri ve arazi geliştirme süreçleri için hukuki altyapı.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-serif text-4xl mb-16 text-center">Yönetim Kurulu</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="group cursor-pointer">
+                    <div class="overflow-hidden mb-6 relative">
+                        <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=2070&auto=format&fit=crop" class="zoom-effect w-full aspect-[4/5] object-cover grayscale group-hover:grayscale-0" alt="Avukat">
+                        <div class="absolute bottom-0 left-0 bg-corporate-navy text-white px-6 py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-xs uppercase tracking-widest">Managing Partner</p>
+                        </div>
+                    </div>
+                    <h3 class="font-serif text-2xl text-corporate-navy">Mehmet Demir</h3>
+                    <p class="text-xs text-accent-bronze uppercase tracking-widest mt-1">Şirket Birleşmeleri</p>
+                </div>
+
+                 <div class="group cursor-pointer">
+                    <div class="overflow-hidden mb-6 relative">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1974&auto=format&fit=crop" class="zoom-effect w-full aspect-[4/5] object-cover grayscale group-hover:grayscale-0" alt="Avukat">
+                         <div class="absolute bottom-0 left-0 bg-corporate-navy text-white px-6 py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-xs uppercase tracking-widest">Senior Partner</p>
+                        </div>
+                    </div>
+                    <h3 class="font-serif text-2xl text-corporate-navy">Ayşe Yılmaz</h3>
+                    <p class="text-xs text-accent-bronze uppercase tracking-widest mt-1">Uluslararası Ticaret</p>
+                </div>
+
+                 <div class="group cursor-pointer">
+                    <div class="overflow-hidden mb-6 relative">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" class="zoom-effect w-full aspect-[4/5] object-cover grayscale group-hover:grayscale-0" alt="Avukat">
+                         <div class="absolute bottom-0 left-0 bg-corporate-navy text-white px-6 py-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-xs uppercase tracking-widest">Partner</p>
+                        </div>
+                    </div>
+                    <h3 class="font-serif text-2xl text-corporate-navy">Caner Özkan</h3>
+                    <p class="text-xs text-accent-bronze uppercase tracking-widest mt-1">Fikri Mülkiyet</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="relative py-32 bg-corporate-navy">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+            <div class="text-white">
+                <span class="text-accent-bronze font-bold tracking-[0.2em] uppercase text-xs mb-4 block">İletişime Geçin</span>
+                <h2 class="font-serif text-5xl md:text-6xl mb-8 leading-tight">Profesyonel Desteğe mi İhtiyacınız Var?</h2>
+                <p class="text-gray-400 font-light mb-10 leading-relaxed">
+                    Hukuki süreçlerinizi en üst düzeyde gizlilik ve profesyonellikle yönetmek için buradayız. Formu doldurun, uzman ekibimiz size dönüş yapsın.
+                </p>
+                <div class="space-y-4 text-sm text-gray-300">
+                    <p class="flex items-center gap-4"><span class="w-12 h-[1px] bg-accent-bronze"></span> info@meridyenpartners.com</p>
+                    <p class="flex items-center gap-4"><span class="w-12 h-[1px] bg-accent-bronze"></span> Levent, Büyükdere Cad. No:193 İstanbul</p>
+                </div>
+            </div>
+
+            <div class="bg-white/5 backdrop-blur-lg border border-white/10 p-10 md:p-12">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="text-[10px] uppercase tracking-widest text-gray-400 mb-2 block">Adınız</label>
+                            <input type="text" class="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-accent-bronze transition-colors">
+                        </div>
+                        <div>
+                            <label class="text-[10px] uppercase tracking-widest text-gray-400 mb-2 block">Soyadınız</label>
+                            <input type="text" class="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-accent-bronze transition-colors">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase tracking-widest text-gray-400 mb-2 block">E-Posta Adresi</label>
+                        <input type="email" class="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-accent-bronze transition-colors">
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase tracking-widest text-gray-400 mb-2 block">Konu</label>
+                        <select class="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-accent-bronze transition-colors [&>option]:text-black">
+                            <option>Genel Danışmanlık</option>
+                            <option>Dava Süreci</option>
+                            <option>Kurumsal Ortaklık</option>
+                        </select>
+                    </div>
+                    <button class="w-full bg-accent-bronze text-white font-bold uppercase tracking-widest text-xs py-5 hover:bg-white hover:text-corporate-navy transition-all duration-300 mt-4">
+                        Gönder
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-gray-500 text-xs py-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <p>© 2025 Meridyen Partners. Tüm hakları saklıdır.</p>
+            <div class="flex gap-8 mt-4 md:mt-0 uppercase tracking-widest">
+                <a href="#" class="hover:text-white transition-colors">Gizlilik</a>
+                <a href="#" class="hover:text-white transition-colors">KVKK</a>
+                <a href="#" class="hover:text-white transition-colors">Yasal Uyarı</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

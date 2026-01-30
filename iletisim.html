@@ -100,10 +100,10 @@
                     <div class="input-group">
                         <select id="projectType" class="cyber-input" style="color: var(--text-muted);">
                             <option value="genel">Proje Türü Seçin</option>
-                            <option value="start">Start Paketi (Landing)</option>
-                            <option value="business">Business Paketi (Kurumsal)</option>
-                            <option value="ecommerce">E-Commerce Paketi (E-Ticaret)</option>
-                            <option value="ozel">Özel Proje</option>
+                            <option value="onepage">One Page Paketi</option>
+                            <option value="business">Business Paketi</option>
+                            <option value="ecommerce">özel yazılımlar</option>
+                            <option value="ozelyazilim">Kişisel proje</option>
                         </select>
                     </div>
 
@@ -169,12 +169,12 @@
                 selectBox.value = paket;
                 
                 // Mesaj kutusunu doldur ve efekt ver
-                if(paket === 'start') {
-                    messageBox.value = "Merhaba, Start Paketi hakkında detaylı bilgi almak istiyorum.";
+                if(paket === 'onepage') {
+                    messageBox.value = "Merhaba, One Page Paketi hakkında detaylı bilgi almak istiyorum.";
                 } else if(paket === 'business') {
-                    messageBox.value = "Merhaba, Business (Kurumsal) paketinizle ilgileniyorum.";
+                    messageBox.value = "Merhaba, Business Paketi hakkında detaylı bilgi almak istiyorum.";
                 } else if(paket === 'ecommerce') {
-                    messageBox.value = "Merhaba, E-Ticaret paketiyle ilgileniyorum. Mağaza açmak istiyorum.";
+                    messageBox.value = "Merhaba, Özel Yazılımlar hakkında detaylı bilgi almak istiyorum.";
                 }
                 
                 // Label'ın yukarı kayması için focus yap
@@ -213,7 +213,7 @@
             sendBtn.textContent = 'Gönderiliyor...';
 
             if (typeof emailjs !== 'undefined' && serviceID && templateIDOwner) {
-                // Send only to site owner (no auto-reply)
+                    // Sadece site sahibine gönder (otomatik cevap yok)
                 emailjs.send(serviceID, templateIDOwner, params)
                     .then(() => {
                         alert('Mesaj başarıyla gönderildi. Teşekkürler!');
