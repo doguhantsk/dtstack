@@ -1,6 +1,6 @@
 // EmailJS keys placeholder - replace these with your real EmailJS values
 // Do NOT commit real keys to a public repo.
-window.EMAILJS_SERVICE_ID = 'service_j96oxki';
+window.EMAILJS_SERVICE_ID = 'service_js95q4f';
 // Owner / contact template (send to site owner)
 window.EMAILJS_TEMPLATE_ID_OWNER = 'template_vz6mp94';
 // Auto-reply template (sent to the user)
