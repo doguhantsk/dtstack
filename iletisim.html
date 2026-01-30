@@ -131,6 +131,16 @@
         <p>© 2026 DTStack. Tüm hakları saklıdır.</p>
     </footer>
 
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="assets/emailjs-keys.js"></script>
+    <script>
+        // Initialize EmailJS if public key provided
+        if (typeof emailjs !== 'undefined' && window.EMAILJS_PUBLIC_KEY) {
+            try { emailjs.init(window.EMAILJS_PUBLIC_KEY); } catch (e) { console.warn('EmailJS init failed', e); }
+        }
+
+    </script>
+
     <script>
         // MOBİL MENÜ FONKSİYONU
         function toggleMenu() {
@@ -172,30 +182,80 @@
             }
         });
 
-        // 2. Form Gönderildiğinde Mail Oluşturma
+        // 2. Form Gönderildiğinde EmailJS ile Gönderim
         document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Sayfanın yenilenmesini engelle
+            e.preventDefault();
 
-            // Verileri al
             const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
             const type = document.getElementById('projectType').options[document.getElementById('projectType').selectedIndex].text;
             const budget = document.getElementById('budget').value;
             const message = document.getElementById('message').value;
 
-            // KENDİ MAİLİNİ BURAYA YAZ (Örn: doguhan@gmail.com)
-            const myEmail = "doguhan@gmail.com"; 
-            
-            const subject = "DTStack - Yeni Proje Talebi: " + name;
-            
-            // Mail içeriğini düzgün formatla
-            const body = `Ad Soyad: ${name}%0D%0A` +
-                         `Proje Türü: ${type}%0D%0A` +
-                         `Bütçe: ${budget}%0D%0A` +
-                         `-----------------------%0D%0A` +
-                         `Mesaj:%0D%0A${message}`;
+            const serviceID = window.EMAILJS_SERVICE_ID || '';
+            const templateIDOwner = window.EMAILJS_TEMPLATE_ID_OWNER || '';
+            const templateIDAuto = window.EMAILJS_TEMPLATE_ID_AUTOREPLY || '';
 
-            // Mail uygulamasını aç
-            window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+            const params = {
+                from_name: name,
+                from_email: email,
+                project_type: type,
+                budget: budget,
+                message: message
+            };
+
+            const sendBtn = this.querySelector('button[type="submit"]');
+            const originalBtnHtml = sendBtn.innerHTML;
+            sendBtn.disabled = true;
+            sendBtn.textContent = 'Gönderiliyor...';
+
+            if (typeof emailjs !== 'undefined' && serviceID && templateIDOwner) {
+                // 1) Send to site owner
+                emailjs.send(serviceID, templateIDOwner, params)
+                    .then(() => {
+                        // 2) Send auto-reply to user (if configured)
+                        if (templateIDAuto && email) {
+                            const replyParams = {
+                                to_name: name,
+                                to_email: email,
+                                from_name: 'DTStack',
+                                project_type: type,
+                                message: message
+                            };
+                            emailjs.send(serviceID, templateIDAuto, replyParams)
+                                .then(() => {
+                                    alert('Mesaj başarıyla gönderildi. Teşekkürler! (Otomatik cevap gönderildi)');
+                                    document.getElementById('contactForm').reset();
+                                    sendBtn.disabled = false;
+                                    sendBtn.innerHTML = originalBtnHtml;
+                                }, (err) => {
+                                    console.warn('Auto-reply failed', err);
+                                    alert('Mesajınız gönderildi, ancak otomatik cevap gönderilemedi.');
+                                    document.getElementById('contactForm').reset();
+                                    sendBtn.disabled = false;
+                                    sendBtn.innerHTML = originalBtnHtml;
+                                });
+                        } else {
+                            alert('Mesaj başarıyla gönderildi. Teşekkürler!');
+                            document.getElementById('contactForm').reset();
+                            sendBtn.disabled = false;
+                            sendBtn.innerHTML = originalBtnHtml;
+                        }
+                    }, (err) => {
+                        console.error('EmailJS error', err);
+                        alert('Gönderim başarısız oldu. Lütfen daha sonra tekrar deneyin.');
+                        sendBtn.disabled = false;
+                        sendBtn.innerHTML = originalBtnHtml;
+                    });
+            } else {
+                // Fallback to mailto if EmailJS not configured
+                const myEmail = "doguhan@gmail.com"; // fallback address
+                const subject = "DTStack - Yeni Proje Talebi: " + name;
+                const body = `Ad Soyad: ${name}%0D%0AProje Türü: ${type}%0D%0ABütçe: ${budget}%0D%0A-----------------------%0D%0AMesaj:%0D%0A${message}`;
+                window.location.href = `mailto:${myEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                sendBtn.disabled = false;
+                sendBtn.innerHTML = originalBtnHtml;
+            }
         });
     </script>
 
