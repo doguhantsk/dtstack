@@ -213,52 +213,15 @@
             sendBtn.textContent = 'Gönderiliyor...';
 
             if (typeof emailjs !== 'undefined' && serviceID && templateIDOwner) {
-                // 1) Send to site owner
+                // Send only to site owner (no auto-reply)
                 emailjs.send(serviceID, templateIDOwner, params)
                     .then(() => {
-                        // 2) Send auto-reply to user (if configured)
-                        if (templateIDAuto) {
-                            const replyParams = {
-                                to_name: name,
-                                to_email: email,
-                                to_email_address: email,
-                                to_name_display: name,
-                                from_name: 'DTStack',
-                                from_email: window.EMAILJS_FROM_EMAIL || 'noreply@yourdomain.com',
-                                project_type: type,
-                                message: message
-                            };
-                            console.log('Auto-reply params:', replyParams);
-
-                            if (!replyParams.to_email) {
-                                console.warn('Auto-reply skipped: recipient (to_email) is empty', replyParams);
-                                alert('Otomatik cevap gönderilemedi: alıcı adresi boş. Lütfen e-posta alanını kontrol edin.');
-                                document.getElementById('contactForm').reset();
-                                sendBtn.disabled = false;
-                                sendBtn.innerHTML = originalBtnHtml;
-                                return;
-                            }
-                            emailjs.send(serviceID, templateIDAuto, replyParams)
-                                .then(() => {
-                                    alert('Mesaj başarıyla gönderildi. Teşekkürler! (Otomatik cevap gönderildi)');
-                                    document.getElementById('contactForm').reset();
-                                    sendBtn.disabled = false;
-                                    sendBtn.innerHTML = originalBtnHtml;
-                                }, (err) => {
-                                    console.warn('Auto-reply failed', err);
-                                    console.warn('Auto-reply error details:', err && err.status, err && err.text ? err.text : err);
-                                    alert('Mesajınız gönderildi, ancak otomatik cevap gönderilemedi.');
-                                    document.getElementById('contactForm').reset();
-                                    sendBtn.disabled = false;
-                                    sendBtn.innerHTML = originalBtnHtml;
-                                });
-                        } else {
-                            alert('Mesaj başarıyla gönderildi. Teşekkürler!');
-                            document.getElementById('contactForm').reset();
-                            sendBtn.disabled = false;
-                            sendBtn.innerHTML = originalBtnHtml;
-                        }
-                    }, (err) => {
+                        alert('Mesaj başarıyla gönderildi. Teşekkürler!');
+                        document.getElementById('contactForm').reset();
+                        sendBtn.disabled = false;
+                        sendBtn.innerHTML = originalBtnHtml;
+                    })
+                    .catch((err) => {
                         console.error('EmailJS error', err);
                         alert('Gönderim başarısız oldu. Lütfen daha sonra tekrar deneyin.');
                         sendBtn.disabled = false;
