@@ -5,11 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DTStack | Yazılım Mağazası</title>
     <link rel="icon" href="assets/favicon.ico">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* MODAL İÇİ ÖZEL LİSTE TASARIMI */
+        /* MEVCUT SİTENİN TEMEL DEĞİŞKENLERİ (Varsayılan olarak ekledim, style.css'te varsa burayı ezer) */
+        :root {
+            --accent-primary: #6366f1;
+            --border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+
+        /* --- YENİ KART TASARIMI (RESİMSİZ) --- */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Kartlar biraz daha geniş */
+            gap: 25px;
+            padding: 0 5% 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.02); /* Çok hafif şeffaf arka plan */
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Kart Hover Efekti */
+        .tech-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .tc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .tc-icon-box {
+            width: 55px;
+            height: 55px;
+            background: rgba(99, 102, 241, 0.1); /* İkon arkası hafif renk */
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            transition: 0.3s;
+        }
+        
+        .tech-card:hover .tc-icon-box {
+            background: var(--accent-primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .tc-price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            background: rgba(255,255,255,0.05);
+            padding: 5px 12px;
+            border-radius: 8px;
+        }
+
+        .tc-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .tc-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Açıklama alanı esnek */
+        }
+
+        /* Kart içi teknik özellikler çizgisi */
+        .tc-tech-stack {
+            border-top: 1px solid var(--border);
+            padding-top: 15px;
+            margin-top: auto; /* En alta it */
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tc-badge {
+            font-size: 0.8rem;
+            color: #ccc;
+            background: rgba(255,255,255,0.05);
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .tc-badge i { color: var(--accent-primary); margin-right: 5px; }
+
+        .btn-card-action {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+        .btn-card-action:hover {
+            background: white;
+            color: black;
+        }
+
+        /* --- MODAL GÜNCELLEMESİ --- */
+        /* Modal resmi yerine ikon göstermek için stil */
+        .modal-icon-header {
+            width: 80px; height: 80px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; color: var(--accent-primary);
+            margin-bottom: 20px;
+        }
+        
+        /* Modal Liste Tasarımı (Senin eski kodunla uyumlu) */
         .modal-feature-list {
             list-style: none; margin: 20px 0; padding: 20px;
             background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border);
@@ -20,10 +157,10 @@
         .modal-feature-list li i {
             color: var(--accent-primary); margin-top: 4px;
         }
-        .modal-price-box {
-            font-size: 2rem; font-weight: 800; color: white; margin: 20px 0; text-align: center;
-            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
-            padding: 10px; border-radius: 8px;
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .market-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -68,145 +205,101 @@
 
     <div class="market-filters">
         <button class="m-filter-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i> Tümü</button>
-        <button class="m-filter-btn" data-filter="ecommerce"><i class="fa-solid fa-cart-shopping"></i> Randevu</button>
-        <button class="m-filter-btn" data-filter="corporate"><i class="fa-solid fa-building"></i> Menü</button>
+        <button class="m-filter-btn" data-filter="ecommerce"><i class="fa-solid fa-cart-shopping"></i> E-Ticaret/Randevu</button>
+        <button class="m-filter-btn" data-filter="corporate"><i class="fa-solid fa-building"></i> Kurumsal/Menü</button>
         <button class="m-filter-btn" data-filter="dashboard"><i class="fa-solid fa-chart-pie"></i> Yönetim Paneli</button>   
+    </div>
 
     <section class="market-grid">
         
-        <div class="market-card" data-category="ecommerce" onclick="openProductModal('novashop')">
-            <div class="m-img-box">
-                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=2670&auto=format&fit=crop" class="m-img">
-                <div class="m-price-tag">₺12.000</div>
+        <div class="tech-card" data-category="ecommerce" onclick="openProductModal('novashop')">
+            <div class="tc-header">
+                <div class="tc-icon-box"><i class="fa-solid fa-bag-shopping"></i></div>
+                <div class="tc-price">₺12.000</div>
             </div>
-            <div class="m-content">
-                <div class="m-meta-row">
-                    <div class="m-rating"><i class="fa-solid fa-star"></i> 4.9 (120 Satış)</div>
-                    <div class="m-version">v2.4</div>
-                </div>
-                <h3 class="m-title">Randevu Sistemi</h3>
-                <p class="m-desc">Modern, çok satıcılı (Multi-Vendor) destekli, ileri seviye bir e-ticaret altyapısı.</p>
-                <div class="m-tech">
-                    <span class="mt-badge">Next.js 14</span>
-                    <span class="mt-badge">Node.js</span>
-                    <span class="mt-badge">MongoDB</span>
-                </div>
-                <div class="m-actions">
-                    <button class="btn-demo">İncele</button>
-                </div>
+            <h3 class="tc-title">NovaShop E-Ticaret</h3>
+            <p class="tc-desc">Trendyol benzeri Multi-Vendor pazaryeri altyapısı. Gelişmiş varyasyon, kargo entegrasyonu ve satıcı paneli.</p>
+            <div class="tc-tech-stack">
+                <span class="tc-badge"><i class="fa-brands fa-node-js"></i> Next.js 14</span>
+                <span class="tc-badge"><i class="fa-solid fa-database"></i> MongoDB</span>
+                <span class="tc-badge"><i class="fa-solid fa-shield-halved"></i> Iyzico</span>
             </div>
+            <button class="btn-card-action">İncele</button>
         </div>
 
-        <div class="market-card" data-category="mobile" onclick="openProductModal('gastroqr')">
-            <div class="m-img-box">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2670&auto=format&fit=crop" class="m-img">
-                <div class="m-price-tag">₺8.500</div>
+        <div class="tech-card" data-category="corporate" onclick="openProductModal('gastroqr')">
+            <div class="tc-header">
+                <div class="tc-icon-box"><i class="fa-solid fa-utensils"></i></div>
+                <div class="tc-price">₺8.500</div>
             </div>
-            <div class="m-content">
-                <div class="m-meta-row">
-                    <div class="m-rating"><i class="fa-solid fa-star"></i> 5.0 (85 Satış)</div>
-                    <div class="m-version">v1.8</div>
-                </div>
-                <h3 class="m-title">GastroQR Menü</h3>
-                <p class="m-desc">Restoran ve kafeler için geliştirilmiş, uygulama marketine yüklenmeden çalışabilen (PWA) menü.</p>
-                <div class="m-tech">
-                    <span class="mt-badge">React</span>
-                    <span class="mt-badge">Firebase</span>
-                    <span class="mt-badge">PWA</span>
-                </div>
-                <div class="m-actions">
-                    <button class="btn-demo">İncele</button>
-                </div>
+            <h3 class="tc-title">GastroQR Menü</h3>
+            <p class="tc-desc">Restoran ve kafeler için uygulama gerektirmeyen, QR kodlu temassız dijital menü ve sipariş sistemi.</p>
+            <div class="tc-tech-stack">
+                <span class="tc-badge"><i class="fa-brands fa-react"></i> React PWA</span>
+                <span class="tc-badge"><i class="fa-solid fa-fire"></i> Firebase</span>
+                <span class="tc-badge"><i class="fa-solid fa-qrcode"></i> QR Gen</span>
             </div>
+            <button class="btn-card-action">İncele</button>
         </div>
 
-        <div class="market-card" data-category="corporate" onclick="openProductModal('estatepro')">
-            <div class="m-img-box">
-                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2573&auto=format&fit=crop" class="m-img">
-                <div class="m-price-tag">₺15.000</div>
+        <div class="tech-card" data-category="corporate" onclick="openProductModal('estatepro')">
+            <div class="tc-header">
+                <div class="tc-icon-box"><i class="fa-solid fa-house-chimney"></i></div>
+                <div class="tc-price">₺15.000</div>
             </div>
-            <div class="m-content">
-                <div class="m-meta-row">
-                    <div class="m-rating"><i class="fa-solid fa-star"></i> 4.8 (42 Satış)</div>
-                    <div class="m-version">v3.0</div>
-                </div>
-                <h3 class="m-title">Lokonta Sipariş</h3>
-                <p class="m-desc">Emlak ofisleri için harita entegrasyonlu, 360 derece sanal tur destekli platform.</p>
-                <div class="m-tech">
-                    <span class="mt-badge">Laravel</span>
-                    <span class="mt-badge">Vue.js</span>
-                    <span class="mt-badge">MySQL</span>
-                </div>
-                <div class="m-actions">
-                    <button class="btn-demo">İncele</button>
-                </div>
+            <h3 class="tc-title">EstatePro Emlak</h3>
+            <p class="tc-desc">Emlak ofisleri için harita entegrasyonlu, 360 derece sanal tur destekli gelişmiş emlak portalı.</p>
+            <div class="tc-tech-stack">
+                <span class="tc-badge"><i class="fa-brands fa-laravel"></i> Laravel</span>
+                <span class="tc-badge"><i class="fa-brands fa-vuejs"></i> Vue.js</span>
+                <span class="tc-badge"><i class="fa-solid fa-map-location-dot"></i> Google Maps</span>
             </div>
+            <button class="btn-card-action">İncele</button>
         </div>
 
-        <div class="market-card" data-category="mobile" onclick="openProductModal('bookflow')">
-            <div class="m-img-box">
-                <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=2668&auto=format&fit=crop" class="m-img">
-                <div class="m-price-tag">₺9.000</div>
+        <div class="tech-card" data-category="ecommerce" onclick="openProductModal('bookflow')">
+            <div class="tc-header">
+                <div class="tc-icon-box"><i class="fa-solid fa-calendar-check"></i></div>
+                <div class="tc-price">₺9.000</div>
             </div>
-            <div class="m-content">
-                <div class="m-meta-row">
-                    <div class="m-rating"><i class="fa-solid fa-star"></i> 4.7 (65 Satış)</div>
-                    <div class="m-version">v2.1</div>
-                </div>
-                <h3 class="m-title">BookFlow Randevu</h3>
-                <p class="m-desc">Kuaförler, klinikler ve danışmanlar için akıllı rezervasyon sistemi.</p>
-                <div class="m-tech">
-                    <span class="mt-badge">React Native</span>
-                    <span class="mt-badge">Node.js</span>
-                </div>
-                <div class="m-actions">
-                    <button class="btn-demo">İncele</button>
-                </div>
+            <h3 class="tc-title">BookFlow Randevu</h3>
+            <p class="tc-desc">Kuaförler, klinikler ve danışmanlar için SMS hatırlatmalı akıllı rezervasyon ve takvim sistemi.</p>
+            <div class="tc-tech-stack">
+                <span class="tc-badge"><i class="fa-brands fa-react"></i> React Native</span>
+                <span class="tc-badge"><i class="fa-brands fa-node"></i> Node.js</span>
+                <span class="tc-badge"><i class="fa-solid fa-comment-sms"></i> SMS API</span>
             </div>
+            <button class="btn-card-action">İncele</button>
         </div>
 
-        <div class="market-card" data-category="dashboard" onclick="openProductModal('cosmos')">
-            <div class="m-img-box">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop" class="m-img">
-                <div class="m-price-tag">₺6.500</div>
+        <div class="tech-card" data-category="dashboard" onclick="openProductModal('cosmos')">
+            <div class="tc-header">
+                <div class="tc-icon-box"><i class="fa-solid fa-gauge-high"></i></div>
+                <div class="tc-price">₺6.500</div>
             </div>
-            <div class="m-content">
-                <div class="m-meta-row">
-                    <div class="m-rating"><i class="fa-solid fa-star"></i> 4.9 (210 Satış)</div>
-                    <div class="m-version">v4.2</div>
-                </div>
-                <h3 class="m-title">Admin</h3>
-                <p class="m-desc">SaaS projeleri için hazır, modüler React Yönetim Paneli.</p>
-                <div class="m-tech">
-                    <span class="mt-badge">React</span>
-                    <span class="mt-badge">Tailwind</span>
-                </div>
-                <div class="m-actions">
-                    <button class="btn-demo">İncele</button>
-                </div>
+            <h3 class="tc-title">Cosmos Admin</h3>
+            <p class="tc-desc">SaaS projeleri için hazır, modüler, Dark/Light mode destekli React Yönetim Paneli şablonu.</p>
+            <div class="tc-tech-stack">
+                <span class="tc-badge"><i class="fa-brands fa-react"></i> React</span>
+                <span class="tc-badge"><i class="fa-solid fa-wind"></i> Tailwind</span>
+                <span class="tc-badge"><i class="fa-solid fa-chart-line"></i> Recharts</span>
             </div>
+            <button class="btn-card-action">İncele</button>
         </div>
 
-        <div class="market-card" data-category="corporate" onclick="openProductModal('pulse')">
-            <div class="m-img-box">
-                <img src="https://images.unsplash.com/photo-1499750310159-5254f4cc1555?q=80&w=2670&auto=format&fit=crop" class="m-img">
-                <div class="m-price-tag">₺5.000</div>
+        <div class="tech-card" data-category="corporate" onclick="openProductModal('pulse')">
+            <div class="tc-header">
+                <div class="tc-icon-box"><i class="fa-solid fa-newspaper"></i></div>
+                <div class="tc-price">₺5.000</div>
             </div>
-            <div class="m-content">
-                <div class="m-meta-row">
-                    <div class="m-rating"><i class="fa-solid fa-star"></i> 4.6 (55 Satış)</div>
-                    <div class="m-version">v1.5</div>
-                </div>
-                <h3 class="m-title">Pulse Haber/Blog</h3>
-                <p class="m-desc">Yüksek trafikli haber siteleri için SEO odaklı CMS.</p>
-                <div class="m-tech">
-                    <span class="mt-badge">WordPress</span>
-                    <span class="mt-badge">PHP 8</span>
-                </div>
-                <div class="m-actions">
-                    <button class="btn-demo">İncele</button>
-                </div>
+            <h3 class="tc-title">Pulse Haber CMS</h3>
+            <p class="tc-desc">Yüksek trafikli haber siteleri için Google News uyumlu, özel kodlanmış SEO odaklı CMS.</p>
+            <div class="tc-tech-stack">
+                <span class="tc-badge"><i class="fa-brands fa-php"></i> PHP 8</span>
+                <span class="tc-badge"><i class="fa-brands fa-wordpress"></i> WordPress</span>
+                <span class="tc-badge"><i class="fa-brands fa-google"></i> AMP</span>
             </div>
+            <button class="btn-card-action">İncele</button>
         </div>
         
     </section>
@@ -215,7 +308,9 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeProductModal()">✕</div>
             
-            <div class="modal-header-img" id="mp-img"></div>
+            <div class="modal-icon-header" id="mp-icon-box">
+                <i class="fa-solid fa-box" id="mp-icon"></i>
+            </div>
             
             <div class="modal-body">
                 <h2 class="modal-title" id="mp-title">Ürün Başlığı</h2>
@@ -261,12 +356,12 @@
     </footer>
 
     <script>
-        // 1. ÜRÜN VERİTABANI (BURAYI DÜZENLEYEREK İÇERİĞİ DEĞİŞTİREBİLİRSİN)
+        // 1. ÜRÜN VERİTABANI (İkonlar Eklendi, Resimler Silindi)
         const marketDB = {
             'novashop': {
                 title: "NovaShop E-Ticaret Scripti",
                 price: "₺12.000",
-                img: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=2670&auto=format&fit=crop",
+                icon: "fa-bag-shopping", // İkon kodu
                 desc: "NovaShop, sıradan bir e-ticaret scripti değil, tam teşekküllü bir dijital mağaza çözümüdür. Trendyol veya Hepsiburada gibi çok satıcılı (Multi-Vendor) pazaryeri kurmak isteyenler veya kendi markasını en güçlü altyapıyla satmak isteyenler için tasarlandı.",
                 features: [
                     "Iyzico, Stripe ve PayTR 3D Secure Tam Entegrasyon",
@@ -281,7 +376,7 @@
             'gastroqr': {
                 title: "GastroQR Dijital Menü Sistemi",
                 price: "₺8.500",
-                img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2670&auto=format&fit=crop",
+                icon: "fa-utensils",
                 desc: "Pandemi sonrası standart haline gelen temassız QR menülerin en gelişmiş hali. Müşterileriniz uygulama indirmeden masadaki kodu okutur, menüyü görür ve garsona ihtiyaç duymadan siparişini verir.",
                 features: [
                     "Sınırsız Kategori ve Ürün Ekleme Paneli",
@@ -295,7 +390,7 @@
             'estatepro': {
                 title: "EstatePro Emlak Yönetim Portalı",
                 price: "₺15.000",
-                img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2573&auto=format&fit=crop",
+                icon: "fa-house-chimney",
                 desc: "Büyük emlak ofisleri ve gayrimenkul danışmanları için Sahibinden.com kalitesinde bir altyapı. İlanlarınızı harita üzerinde gösterin, sanal tur ekleyin ve müşterilerinize profesyonel bir deneyim sunun.",
                 features: [
                     "Google Maps API ile konum bazlı ilan arama",
@@ -309,7 +404,7 @@
             'bookflow': {
                 title: "BookFlow Akıllı Randevu Sistemi",
                 price: "₺9.000",
-                img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=2668&auto=format&fit=crop",
+                icon: "fa-calendar-check",
                 desc: "Randevularınızı kağıt kalemle takip etmeyi bırakın. Kuaförler, klinikler, spor salonları ve danışmanlar için 7/24 çalışan dijital asistanınız. Müşterileriniz siz uyurken bile randevu alabilir.",
                 features: [
                     "Otomatik SMS ve E-posta Randevu Hatırlatma (No-Show'u engeller)",
@@ -323,7 +418,7 @@
             'cosmos': {
                 title: "Cosmos SaaS Admin Paneli",
                 price: "₺6.500",
-                img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
+                icon: "fa-gauge-high",
                 desc: "Kendi yazılım projenizi geliştiriyorsanız, admin paneliyle vakit kaybetmeyin. Cosmos, React ve Tailwind ile geliştirilmiş, içinde CRM, Chat, Takvim gibi hazır modüller bulunan süper hızlı bir şablondur.",
                 features: [
                     "50+ Hazır Bileşen (Tablolar, Formlar, Kartlar)",
@@ -337,7 +432,7 @@
             'pulse': {
                 title: "Pulse Haber ve Blog CMS",
                 price: "₺5.000",
-                img: "https://images.unsplash.com/photo-1499750310159-5254f4cc1555?q=80&w=2670&auto=format&fit=crop",
+                icon: "fa-newspaper",
                 desc: "WordPress'in hantallığından sıkılanlar için özel kodlanmış, SEO canavarı bir haber yazılımı. Google News uyumlu yapısı sayesinde içerikleriniz çok daha hızlı indekslenir.",
                 features: [
                     "Google News ve AMP (Hızlandırılmış Mobil Sayfalar) uyumlu",
@@ -361,14 +456,18 @@
                 document.getElementById('mp-title').innerText = data.title;
                 document.getElementById('mp-price').innerText = data.price;
                 document.getElementById('mp-desc').innerText = data.desc;
-                document.getElementById('mp-img').style.backgroundImage = `url('${data.img}')`;
+                
+                // İKON AYARLAMA (Resim yerine)
+                // Önceki ikonu temizle ve yenisini ekle
+                const iconContainer = document.getElementById('mp-icon-box');
+                iconContainer.innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
                 
                 // Satın Al Linkini Güncelle
                 buyBtn.href = data.link;
 
                 // Özellik Listesini Temizle ve Doldur
                 const featureList = document.getElementById('mp-features');
-                featureList.innerHTML = ''; // Önce temizle
+                featureList.innerHTML = ''; 
                 
                 data.features.forEach(feature => {
                     const li = document.createElement('li');
@@ -401,9 +500,9 @@
             link.addEventListener('click', () => { toggleMenu(); });
         });
 
-        // 4. FİLTRELEME
+        // 4. FİLTRELEME (Sınıf adı güncellendi: .tech-card)
         const filterBtns = document.querySelectorAll('.m-filter-btn');
-        const marketCards = document.querySelectorAll('.market-card');
+        const marketCards = document.querySelectorAll('.tech-card'); // Yeni sınıf adı
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -414,6 +513,7 @@
                     const category = card.getAttribute('data-category');
                     if (filterValue === 'all' || category === filterValue) {
                         card.style.display = 'flex';
+                        // Animasyon için ufak gecikme
                         setTimeout(() => { card.style.opacity = '1'; }, 50);
                     } else {
                         card.style.display = 'none';
