@@ -162,6 +162,16 @@
         @media (max-width: 768px) {
             .market-grid { grid-template-columns: 1fr; }
         }
+
+        /* Sadece ilk 2 kartı göster; kalan kartları gizle */
+        .market-grid .tech-card:nth-child(n+3) {
+            display: none;
+        }
+
+        /* Filtreleme bölümünü gizle */
+        .market-filters {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -241,7 +251,7 @@
             </div>
             <button class="btn-card-action">İncele</button>
         </div>
-
+  
         <div class="tech-card" data-category="corporate" onclick="openProductModal('estatepro')">
             <div class="tc-header">
                 <div class="tc-icon-box"><i class="fa-solid fa-house-chimney"></i></div>
