@@ -222,12 +222,12 @@
 
     <section class="market-grid">
         
-        <div class="tech-card" data-category="ecommerce" onclick="openProductModal('novashop')">
+        <div class="tech-card" data-category="ecommerce" onclick="openProductModal('netrandevu')">
             <div class="tc-header">
                 <div class="tc-icon-box"><i class="fa-solid fa-bag-shopping"></i></div>
-                <div class="tc-price">₺12.000</div>
+                <div class="tc-price">₺9.500</div>
             </div>
-            <h3 class="tc-title">NovaShop E-Ticaret</h3>
+            <h3 class="tc-title">NetRandevu sistemi</h3>
             <p class="tc-desc">Trendyol benzeri Multi-Vendor pazaryeri altyapısı. Gelişmiş varyasyon, kargo entegrasyonu ve satıcı paneli.</p>
             <div class="tc-tech-stack">
                 <span class="tc-badge"><i class="fa-brands fa-node-js"></i> Next.js 14</span>
@@ -333,7 +333,7 @@
                 <ul class="modal-feature-list" id="mp-features">
                     </ul>
 
-                <a href="#" id="mp-buy-btn" class="btn-shiny" style="background: var(--accent-primary); border:none; width:100%; text-align:center;">Satın Al ve İndir</a>
+                <a href="#" id="mp-buy-btn" class="btn-shiny" style="background: var(--accent-primary); border:none; width:100%; text-align:center;">Bilgi Al</a>
             </div>
         </div>
     </div>
@@ -385,7 +385,7 @@
             },
             'gastroqr': {
                 title: "GastroQR Dijital Menü Sistemi",
-                price: "₺8.500",
+                price: "₺9.500",
                 icon: "fa-utensils",
                 desc: "Pandemi sonrası standart haline gelen temassız QR menülerin en gelişmiş hali. Müşterileriniz uygulama indirmeden masadaki kodu okutur, menüyü görür ve garsona ihtiyaç duymadan siparişini verir.",
                 features: [
@@ -474,8 +474,9 @@
                 const iconContainer = document.getElementById('mp-icon-box');
                 iconContainer.innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
                 
-                // Satın Al Linkini Güncelle
-                buyBtn.href = data.link;
+                // Bilgi Al butonunu iletişim formuna yönlendir (paket paramı ile)
+                buyBtn.href = `iletisim.html?paket=${id}#contactForm`;
+                buyBtn.innerText = 'Bilgi Al';
 
                 // Özellik Listesini Temizle ve Doldur
                 const featureList = document.getElementById('mp-features');

@@ -164,19 +164,33 @@
             const selectBox = document.getElementById('projectType');
             const messageBox = document.getElementById('message');
 
+            const productNames = {
+                'novashop': 'NovaShop E-Ticaret Scripti',
+                'gastroqr': 'GastroQR Dijital Menü Sistemi',
+                'estatepro': 'EstatePro Emlak Yönetim Portalı',
+                'bookflow': 'BookFlow Akıllı Randevu Sistemi',
+                'cosmos': 'Cosmos SaaS Admin Paneli',
+                'pulse': 'Pulse Haber ve Blog CMS'
+            };
+
             if(paket) {
-                // Select kutusunu güncelle
-                selectBox.value = paket;
-                
-                // Mesaj kutusunu doldur ve efekt ver
-                if(paket === 'onepage') {
-                    messageBox.value = "Merhaba, One Page Paketi hakkında detaylı bilgi almak istiyorum.";
-                } else if(paket === 'business') {
-                    messageBox.value = "Merhaba, Business Paketi hakkında detaylı bilgi almak istiyorum.";
-                } else if(paket === 'ecommerce') {
-                    messageBox.value = "Merhaba, Özel Yazılımlar hakkında detaylı bilgi almak istiyorum.";
+                // Eğer paket bir market ürünü ise, "Özel proje" seçilsin
+                if (productNames[paket]) {
+                    selectBox.value = 'ozelyazilim';
+                    messageBox.value = `Merhaba, ${productNames[paket]} hakkında detaylı bilgi almak istiyorum.`;
+                } else {
+                    // Mevcut davranış: paket doğrudan select değeri ise onu ata
+                    selectBox.value = paket;
+
+                    if(paket === 'onepage') {
+                        messageBox.value = "Merhaba, One Page Paketi hakkında detaylı bilgi almak istiyorum.";
+                    } else if(paket === 'business') {
+                        messageBox.value = "Merhaba, Business Paketi hakkında detaylı bilgi almak istiyorum.";
+                    } else if(paket === 'ecommerce') {
+                        messageBox.value = "Merhaba, Özel Yazılımlar hakkında detaylı bilgi almak istiyorum.";
+                    }
                 }
-                
+
                 // Label'ın yukarı kayması için focus yap
                 messageBox.focus();
             }
