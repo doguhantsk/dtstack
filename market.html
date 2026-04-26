@@ -228,15 +228,30 @@
                 <div class="tc-price">₺9.500</div>
             </div>
             <h3 class="tc-title">NetRandevu sistemi</h3>
-            <p class="tc-desc">Trendyol benzeri Multi-Vendor pazaryeri altyapısı. Gelişmiş varyasyon, kargo entegrasyonu ve satıcı paneli.</p>
+            <p class="tc-desc">Müşteri takibinden,sürekli çalan telefonlardan kurtaran modern bir randevu çözümü.</p>
             <div class="tc-tech-stack">
-                <span class="tc-badge"><i class="fa-brands fa-node-js"></i> Next.js 14</span>
-                <span class="tc-badge"><i class="fa-solid fa-database"></i> MongoDB</span>
-                <span class="tc-badge"><i class="fa-solid fa-shield-halved"></i> Iyzico</span>
+                <span class="tc-badge"><i class="fa-brands fa-node-js"></i> Müşteri odaklı</span>
+                <span class="tc-badge"><i class="fa-solid fa-database"></i> Özel Tasarım</span>
+                <span class="tc-badge"><i class="fa-solid fa-shield-halved"></i> Güvenli</span>
             </div>
             <button class="btn-card-action">İncele</button>
         </div>
 
+        <div class="tech-card" data-category="corporate" onclick="openProductModal('gastroqr')">
+            <div class="tc-header">
+                <div class="tc-icon-box"><i class="fa-solid fa-utensils"></i></div>
+                <div class="tc-price">₺9.500</div>
+            </div>
+            <h3 class="tc-title">GastroQR Menü</h3>
+            <p class="tc-desc">Restoran ve kafeler için uygulama gerektirmeyen, QR kodlu temassız dijital menü ve sipariş sistemi.</p>
+            <div class="tc-tech-stack">
+                <span class="tc-badge"><i class="fa-brands fa-react"></i> zahmetsiz sipariş</span>
+                <span class="tc-badge"><i class="fa-solid fa-fire"></i> zahmetsiz hesap</span>
+                <span class="tc-badge"><i class="fa-solid fa-qrcode"></i> hızlı takip</span>
+            </div>
+            <button class="btn-card-action">İncele</button>
+        </div>
+        
         <div class="tech-card" data-category="corporate" onclick="openProductModal('gastroqr')">
             <div class="tc-header">
                 <div class="tc-icon-box"><i class="fa-solid fa-utensils"></i></div>
@@ -368,20 +383,19 @@
     <script>
         // 1. ÜRÜN VERİTABANI (İkonlar Eklendi, Resimler Silindi)
         const marketDB = {
-            'novashop': {
-                title: "NovaShop E-Ticaret Scripti",
-                price: "₺12.000",
+            'netrandevu': {
+                title: "Net Randevu kolay randevu sistemi",
+                price: "₺9.500",
                 icon: "fa-bag-shopping", // İkon kodu
-                desc: "NovaShop, sıradan bir e-ticaret scripti değil, tam teşekküllü bir dijital mağaza çözümüdür. Trendyol veya Hepsiburada gibi çok satıcılı (Multi-Vendor) pazaryeri kurmak isteyenler veya kendi markasını en güçlü altyapıyla satmak isteyenler için tasarlandı.",
+                desc: "",
                 features: [
-                    "Iyzico, Stripe ve PayTR 3D Secure Tam Entegrasyon",
-                    "Gelişmiş varyasyon yönetimi (Renk, Beden, Stok takibi)",
-                    "Otomatik Kargo Barkodu Oluşturma (Yurtiçi, Aras API)",
-                    "Pazaryeri Modülü: Başkaları sizin sitenizde ürün satıp komisyon ödeyebilir",
-                    "Google Merchant Center XML Çıktısı (Tek tıkla Google Shopping)",
-                    "Whatsapp Sipariş ve Canlı Destek Modülü"
+                    "Kolya ve hızlı randevu takibi için modern bir arayüz",
+                    "Müşteri ve personel yönetimi için gelişmiş panel",
+                    "kolay kurulum",
+                    "Kolayca güncelleme imkanı",
+                   
                 ],
-                link: "iletisim.html?paket=novashop"
+                link: "iletisim.html?paket=netrandevu"
             },
             'gastroqr': {
                 title: "GastroQR Dijital Menü Sistemi",
